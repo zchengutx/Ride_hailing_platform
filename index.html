@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打车平台 - 首页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-wechat {
+            background: #07c160;
+            color: white;
+        }
+
+        .btn-wechat:hover {
+            background: #06ad56;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e1e5e9;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        .divider {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            color: #666;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e1e5e9;
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        .switch-form {
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .switch-form a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .success-message {
+            color: #28a745;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .loading {
+            display: none;
+            margin: 10px 0;
+        }
+
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <div class="logo-icon">🚗</div>
+            打车平台
+        </div>
+
+        <!-- 登录表单 -->
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginMobile">手机号</label>
+                <input type="tel" id="loginMobile" name="mobile" placeholder="请输入手机号" required>
+            </div>
+            <div class="form-group">
+                <label for="loginSmsCode">验证码</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="loginSmsCode" name="sms_code" placeholder="请输入验证码" required style="flex: 1;">
+                    <button type="button" class="btn btn-secondary" id="sendSmsBtn" style="width: auto; padding: 12px 16px;">发送验证码</button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">登录</button>
+            <div class="loading" id="loginLoading">
+                <div class="spinner"></div>
+            </div>
+            <div class="error-message" id="loginError"></div>
+            <div class="success-message" id="loginSuccess"></div>
+        </form>
+
+        <div class="divider">
+            <span>或</span>
+        </div>
+
+        <button class="btn btn-wechat" id="wechatLoginBtn">
+            <span style="margin-right: 8px;">📱</span>
+            微信登录
+        </button>
+
+        <div class="switch-form">
+            还没有账号？<a href="#" id="showRegister">立即注册</a>
+        </div>
+    </div>
+
+    <!-- 注册表单 -->
+    <div class="container hidden" id="registerContainer">
+        <div class="logo">
+            <div class="logo-icon">🚗</div>
+            用户注册
+        </div>
+
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="registerMobile">手机号</label>
+                <input type="tel" id="registerMobile" name="mobile" placeholder="请输入手机号" required>
+            </div>
+            <div class="form-group">
+                <label for="registerSmsCode">验证码</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="registerSmsCode" name="sms_code" placeholder="请输入验证码" required style="flex: 1;">
+                    <button type="button" class="btn btn-secondary" id="sendRegisterSmsBtn" style="width: auto; padding: 12px 16px;">发送验证码</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="registerName">姓名</label>
+                <input type="text" id="registerName" name="name" placeholder="请输入姓名" required>
+            </div>
+            <button type="submit" class="btn btn-primary">注册</button>
+            <div class="loading" id="registerLoading">
+                <div class="spinner"></div>
+            </div>
+            <div class="error-message" id="registerError"></div>
+            <div class="success-message" id="registerSuccess"></div>
+        </form>
+
+        <div class="switch-form">
+            已有账号？<a href="#" id="showLogin">立即登录</a>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8889/api';
+
+        // 切换表单显示
+        document.getElementById('showRegister').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.container').classList.add('hidden');
+            document.getElementById('registerContainer').classList.remove('hidden');
+        });
+
+        document.getElementById('showLogin').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('registerContainer').classList.add('hidden');
+            document.querySelector('.container').classList.remove('hidden');
+        });
+
+        // 发送验证码
+        function sendSms(mobile, source, btnElement, loadingElement, errorElement) {
+            if (!mobile) {
+                showError(errorElement, '请输入手机号');
+                return;
+            }
+
+            btnElement.disabled = true;
+            btnElement.textContent = '发送中...';
+
+            fetch(`${API_BASE}/user/sms/send`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `mobile=${encodeURIComponent(mobile)}&source=${encodeURIComponent(source)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code === 200) {
+                    showSuccess(errorElement, '验证码发送成功');
+                    // 倒计时
+                    let countdown = 60;
+                    const timer = setInterval(() => {
+                        btnElement.textContent = `${countdown}秒后重发`;
+                        countdown--;
+                        if (countdown < 0) {
+                            clearInterval(timer);
+                            btnElement.disabled = false;
+                            btnElement.textContent = '发送验证码';
+                        }
+                    }, 1000);
+                } else {
+                    showError(errorElement, data.message || '发送失败');
+                    btnElement.disabled = false;
+                    btnElement.textContent = '发送验证码';
+                }
+            })
+            .catch(error => {
+                showError(errorElement, '网络错误，请重试');
+                btnElement.disabled = false;
+                btnElement.textContent = '发送验证码';
+            });
+        }
+
+        // 登录表单处理
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const mobile = document.getElementById('loginMobile').value;
+            const smsCode = document.getElementById('loginSmsCode').value;
+            const loading = document.getElementById('loginLoading');
+            const error = document.getElementById('loginError');
+            const success = document.getElementById('loginSuccess');
+
+            if (!mobile || !smsCode) {
+                showError(error, '请填写完整信息');
+                return;
+            }
+
+            loading.style.display = 'block';
+            hideMessages();
+
+            fetch(`${API_BASE}/user/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `mobile=${encodeURIComponent(mobile)}&sms_code=${encodeURIComponent(smsCode)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                loading.style.display = 'none';
+                if (data.code === 200) {
+                    showSuccess(success, '登录成功');
+                    // 保存token
+                    if (data.data && data.data.token) {
+                        localStorage.setItem('token', data.data.token);
+                    }
+                    // 跳转到主页面
+                    setTimeout(() => {
+                        window.location.href = 'main.html';
+                    }, 1000);
+                } else {
+                    showError(error, data.message || '登录失败');
+                }
+            })
+            .catch(error => {
+                loading.style.display = 'none';
+                showError(error, '网络错误，请重试');
+            });
+        });
+
+        // 注册表单处理
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const mobile = document.getElementById('registerMobile').value;
+            const smsCode = document.getElementById('registerSmsCode').value;
+            const name = document.getElementById('registerName').value;
+            const loading = document.getElementById('registerLoading');
+            const error = document.getElementById('registerError');
+            const success = document.getElementById('registerSuccess');
+
+            if (!mobile || !smsCode || !name) {
+                showError(error, '请填写完整信息');
+                return;
+            }
+
+            loading.style.display = 'block';
+            hideMessages();
+
+            fetch(`${API_BASE}/user/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `mobile=${encodeURIComponent(mobile)}&sms_code=${encodeURIComponent(smsCode)}&name=${encodeURIComponent(name)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                loading.style.display = 'none';
+                if (data.code === 200) {
+                    showSuccess(success, '注册成功');
+                    // 自动登录
+                    setTimeout(() => {
+                        document.getElementById('loginMobile').value = mobile;
+                        document.getElementById('loginSmsCode').value = smsCode;
+                        document.getElementById('showLogin').click();
+                    }, 1000);
+                } else {
+                    showError(error, data.message || '注册失败');
+                }
+            })
+            .catch(error => {
+                loading.style.display = 'none';
+                showError(error, '网络错误，请重试');
+            });
+        });
+
+        // 发送验证码按钮事件
+        document.getElementById('sendSmsBtn').addEventListener('click', function() {
+            const mobile = document.getElementById('loginMobile').value;
+            sendSms(mobile, 'login', this, document.getElementById('loginLoading'), document.getElementById('loginError'));
+        });
+
+        document.getElementById('sendRegisterSmsBtn').addEventListener('click', function() {
+            const mobile = document.getElementById('registerMobile').value;
+            sendSms(mobile, 'register', this, document.getElementById('registerLoading'), document.getElementById('registerError'));
+        });
+
+        // 微信登录
+        document.getElementById('wechatLoginBtn').addEventListener('click', function() {
+            // 这里应该跳转到微信授权页面
+            alert('微信登录功能需要配置微信开放平台，请先配置相关参数');
+        });
+
+        // 工具函数
+        function showError(element, message) {
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+
+        function showSuccess(element, message) {
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+
+        function hideMessages() {
+            document.querySelectorAll('.error-message, .success-message').forEach(el => {
+                el.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html> 

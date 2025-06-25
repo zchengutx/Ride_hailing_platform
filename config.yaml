@@ -1,0 +1,16 @@
+MysqlConfig:
+  User: "root"
+  Pass: "82AF916059F13E331E633AC0B8A8191B"
+  Host: "14.103.143.229"
+  Port: 3306
+  Data: lxh_dd
+
+RedisConfig:
+  Addr: "14.103.143.229:6379"
+  Pass: "82AF916059F13E331E633AC0B8A8191B"
+  DB: 0
+
+WechatConfig:
+  AppID: "wx30ae4282ebd98450"
+  AppSecret: "07d740b066bb0af519631b02f08b9fde"
+  RedirectURL: "http://808a352.r9.cpolar.top/sign"

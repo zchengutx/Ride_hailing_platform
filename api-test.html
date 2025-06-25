@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API测试页面 - 打车平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .api-section {
+            margin-bottom: 30px;
+            border: 1px solid #e1e5e9;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e1e5e9;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .section-content {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .response-area {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e1e5e9;
+        }
+
+        .response-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .response-content {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #e1e5e9;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .status-success {
+            color: #28a745;
+        }
+
+        .status-error {
+            color: #dc3545;
+        }
+
+        .loading {
+            display: none;
+            margin: 10px 0;
+        }
+
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .api-info {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .api-info h3 {
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+
+        .api-info p {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚗 打车平台 API 测试</h1>
+            <p>测试后端接口功能</p>
+        </div>
+
+        <div class="content">
+            <div class="api-info">
+                <h3>📋 API 说明</h3>
+                <p>本页面用于测试打车平台的后端接口。请确保后端服务已启动在 <strong>http://localhost:8889</strong>。</p>
+                <p>测试前请先配置相应的数据库和Redis连接。</p>
+            </div>
+
+            <!-- 用户相关API -->
+            <div class="api-section">
+                <div class="section-header">👤 用户相关接口</div>
+                <div class="section-content">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>手机号</label>
+                            <input type="tel" id="userMobile" placeholder="请输入手机号" value="13800138000">
+                        </div>
+                        <div class="form-group">
+                            <label>验证码</label>
+                            <input type="text" id="userSmsCode" placeholder="请输入验证码" value="123456">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>姓名</label>
+                        <input type="text" id="userName" placeholder="请输入姓名" value="测试用户">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="sendSms()">发送验证码</button>
+                    <button class="btn btn-success" onclick="userRegister()">用户注册</button>
+                    <button class="btn btn-primary" onclick="userLogin()">用户登录</button>
+                    <button class="btn btn-secondary" onclick="getUserInfo()">获取用户信息</button>
+                    <button class="btn btn-secondary" onclick="updateUserInfo()">更新用户信息</button>
+                    
+                    <div class="loading" id="userLoading">
+                        <div class="spinner"></div>
+                        请求中...
+                    </div>
+                    <div class="response-area" id="userResponse">
+                        <div class="response-title">响应结果</div>
+                        <div class="response-content" id="userResponseContent">等待测试...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 司机相关API -->
+            <div class="api-section">
+                <div class="section-header">🚗 司机相关接口</div>
+                <div class="section-content">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>司机手机号</label>
+                            <input type="tel" id="driverMobile" placeholder="请输入司机手机号" value="13900139000">
+                        </div>
+                        <div class="form-group">
+                            <label>司机验证码</label>
+                            <input type="text" id="driverSmsCode" placeholder="请输入司机验证码" value="123456">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>司机姓名</label>
+                        <input type="text" id="driverName" placeholder="请输入司机姓名" value="张师傅">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>司机ID</label>
+                            <input type="number" id="driverId" placeholder="请输入司机ID" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label>工作状态</label>
+                            <select id="driverStatus">
+                                <option value="1">在线</option>
+                                <option value="0">离线</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="sendDriverSms()">发送司机验证码</button>
+                    <button class="btn btn-success" onclick="driverRegister()">司机注册</button>
+                    <button class="btn btn-primary" onclick="getDriverInfo()">获取司机信息</button>
+                    <button class="btn btn-secondary" onclick="updateDriverStatus()">更新司机状态</button>
+                    
+                    <div class="loading" id="driverLoading">
+                        <div class="spinner"></div>
+                        请求中...
+                    </div>
+                    <div class="response-area" id="driverResponse">
+                        <div class="response-title">响应结果</div>
+                        <div class="response-content" id="driverResponseContent">等待测试...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 订单相关API -->
+            <div class="api-section">
+                <div class="section-header">📋 订单相关接口</div>
+                <div class="section-content">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>乘客ID</label>
+                            <input type="text" id="passengerId" placeholder="请输入乘客ID" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label>司机ID</label>
+                            <input type="number" id="orderDriverId" placeholder="请输入司机ID" value="1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>起点位置</label>
+                            <input type="text" id="startLocation" placeholder="请输入起点位置" value="北京西站">
+                        </div>
+                        <div class="form-group">
+                            <label>终点位置</label>
+                            <input type="text" id="endLocation" placeholder="请输入终点位置" value="天安门广场">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>车型</label>
+                            <select id="carType">
+                                <option value="快车">快车</option>
+                                <option value="专车">专车</option>
+                                <option value="豪华车">豪华车</option>
+                                <option value="拼车">拼车</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>订单类型</label>
+                            <select id="orderType">
+                                <option value="1">正常打车</option>
+                                <option value="0">预约</option>
+                                <option value="2">代人叫车</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="getPricing()">获取计价</button>
+                    <button class="btn btn-success" onclick="placeOrder()">下单</button>
+                    <button class="btn btn-secondary" onclick="routePlan()">路线规划</button>
+                    <button class="btn btn-primary" onclick="getAwaitOrders()">获取待接订单</button>
+                    <button class="btn btn-success" onclick="accessOrder()">接单</button>
+                    <button class="btn btn-danger" onclick="rejectOrder()">拒接</button>
+                    
+                    <div class="loading" id="orderLoading">
+                        <div class="spinner"></div>
+                        请求中...
+                    </div>
+                    <div class="response-area" id="orderResponse">
+                        <div class="response-title">响应结果</div>
+                        <div class="response-content" id="orderResponseContent">等待测试...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 微信相关API -->
+            <div class="api-section">
+                <div class="section-header">📱 微信相关接口</div>
+                <div class="section-content">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>OpenID</label>
+                            <input type="text" id="openId" placeholder="请输入OpenID" value="test_openid_123">
+                        </div>
+                        <div class="form-group">
+                            <label>UnionID</label>
+                            <input type="text" id="unionId" placeholder="请输入UnionID" value="test_unionid_123">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>微信昵称</label>
+                            <input type="text" id="wechatNickname" placeholder="请输入微信昵称" value="微信用户">
+                        </div>
+                        <div class="form-group">
+                            <label>微信头像</label>
+                            <input type="text" id="wechatAvatar" placeholder="请输入微信头像URL" value="https://example.com/avatar.jpg">
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="wechatLogin()">微信登录</button>
+                    <button class="btn btn-secondary" onclick="bindWechat()">绑定微信</button>
+                    <button class="btn btn-danger" onclick="unbindWechat()">解绑微信</button>
+                    <button class="btn btn-secondary" onclick="getWechatAuthUrl()">获取微信授权URL</button>
+                    
+                    <div class="loading" id="wechatLoading">
+                        <div class="spinner"></div>
+                        请求中...
+                    </div>
+                    <div class="response-area" id="wechatResponse">
+                        <div class="response-title">响应结果</div>
+                        <div class="response-content" id="wechatResponseContent">等待测试...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8889/api';
+
+        // 通用请求函数
+        async function makeRequest(endpoint, method = 'GET', data = null, loadingId = null, responseId = null) {
+            const loading = loadingId ? document.getElementById(loadingId) : null;
+            const responseContent = responseId ? document.getElementById(responseId) : null;
+
+            if (loading) loading.style.display = 'block';
+            if (responseContent) responseContent.textContent = '请求中...';
+
+            try {
+                const options = {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                };
+
+                if (data) {
+                    options.body = new URLSearchParams(data).toString();
+                }
+
+                const response = await fetch(`${API_BASE}${endpoint}`, options);
+                const result = await response.json();
+
+                if (responseContent) {
+                    responseContent.textContent = JSON.stringify(result, null, 2);
+                    responseContent.className = result.code === 200 ? 'response-content status-success' : 'response-content status-error';
+                }
+
+                return result;
+            } catch (error) {
+                const errorMsg = `请求失败: ${error.message}`;
+                if (responseContent) {
+                    responseContent.textContent = errorMsg;
+                    responseContent.className = 'response-content status-error';
+                }
+                console.error(errorMsg, error);
+                return null;
+            } finally {
+                if (loading) loading.style.display = 'none';
+            }
+        }
+
+        // 用户相关API
+        async function sendSms() {
+            const mobile = document.getElementById('userMobile').value;
+            await makeRequest('/user/sms/send', 'POST', {
+                mobile: mobile,
+                source: 'test'
+            }, 'userLoading', 'userResponseContent');
+        }
+
+        async function userRegister() {
+            const mobile = document.getElementById('userMobile').value;
+            const smsCode = document.getElementById('userSmsCode').value;
+            const name = document.getElementById('userName').value;
+            
+            await makeRequest('/user/register', 'POST', {
+                mobile: mobile,
+                sms_code: smsCode,
+                name: name
+            }, 'userLoading', 'userResponseContent');
+        }
+
+        async function userLogin() {
+            const mobile = document.getElementById('userMobile').value;
+            const smsCode = document.getElementById('userSmsCode').value;
+            
+            const result = await makeRequest('/user/login', 'POST', {
+                mobile: mobile,
+                sms_code: smsCode
+            }, 'userLoading', 'userResponseContent');
+
+            if (result && result.code === 200 && result.data && result.data.token) {
+                localStorage.setItem('token', result.data.token);
+            }
+        }
+
+        async function getUserInfo() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                document.getElementById('userResponseContent').textContent = '请先登录获取token';
+                return;
+            }
+
+            await makeRequest('/user/info', 'GET', null, 'userLoading', 'userResponseContent');
+        }
+
+        async function updateUserInfo() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                document.getElementById('userResponseContent').textContent = '请先登录获取token';
+                return;
+            }
+
+            const name = document.getElementById('userName').value;
+            await makeRequest('/user/info/update', 'POST', {
+                name: name
+            }, 'userLoading', 'userResponseContent');
+        }
+
+        // 司机相关API
+        async function sendDriverSms() {
+            const mobile = document.getElementById('driverMobile').value;
+            await makeRequest('/driver/sms/send', 'POST', {
+                mobile: mobile,
+                source: 'driver_test'
+            }, 'driverLoading', 'driverResponseContent');
+        }
+
+        async function driverRegister() {
+            const mobile = document.getElementById('driverMobile').value;
+            const smsCode = document.getElementById('driverSmsCode').value;
+            const name = document.getElementById('driverName').value;
+            
+            await makeRequest('/driver/register', 'POST', {
+                mobile: mobile,
+                sms_code: smsCode,
+                name: name
+            }, 'driverLoading', 'driverResponseContent');
+        }
+
+        async function getDriverInfo() {
+            const driverId = document.getElementById('driverId').value;
+            await makeRequest(`/driver/info?driver_id=${driverId}`, 'GET', null, 'driverLoading', 'driverResponseContent');
+        }
+
+        async function updateDriverStatus() {
+            const driverId = document.getElementById('driverId').value;
+            const status = document.getElementById('driverStatus').value;
+            
+            await makeRequest('/driver/status/update', 'POST', {
+                driver_id: driverId,
+                work_status: status
+            }, 'driverLoading', 'driverResponseContent');
+        }
+
+        // 订单相关API
+        async function getPricing() {
+            const startLocation = document.getElementById('startLocation').value;
+            const endLocation = document.getElementById('endLocation').value;
+            const carType = document.getElementById('carType').value;
+            
+            await makeRequest('/order/pricing', 'POST', {
+                start_location: startLocation,
+                end_location: endLocation,
+                car_type: carType
+            }, 'orderLoading', 'orderResponseContent');
+        }
+
+        async function placeOrder() {
+            const passengerId = document.getElementById('passengerId').value;
+            const startLocation = document.getElementById('startLocation').value;
+            const endLocation = document.getElementById('endLocation').value;
+            const carType = document.getElementById('carType').value;
+            const orderType = document.getElementById('orderType').value;
+            
+            await makeRequest('/order/place', 'POST', {
+                passenger_id: passengerId,
+                start_location: startLocation,
+                end_location: endLocation,
+                car_type: carType,
+                order_type: orderType
+            }, 'orderLoading', 'orderResponseContent');
+        }
+
+        async function routePlan() {
+            const startLat = 39.9042;
+            const startLng = 116.4074;
+            const endLat = 39.9087;
+            const endLng = 116.3975;
+            const carType = document.getElementById('carType').value;
+            
+            await makeRequest('/order/route/plan', 'POST', {
+                start_lat: startLat,
+                start_lng: startLng,
+                end_lat: endLat,
+                end_lng: endLng,
+                car_type: carType
+            }, 'orderLoading', 'orderResponseContent');
+        }
+
+        async function getAwaitOrders() {
+            const driverId = document.getElementById('orderDriverId').value;
+            const distance = 10;
+            
+            await makeRequest('/driver/await/orders', 'POST', {
+                driver_id: driverId,
+                distance: distance
+            }, 'orderLoading', 'orderResponseContent');
+        }
+
+        async function accessOrder() {
+            const orderId = 1;
+            const driverId = document.getElementById('orderDriverId').value;
+            
+            await makeRequest('/driver/order/access', 'POST', {
+                order_id: orderId,
+                driver_id: driverId
+            }, 'orderLoading', 'orderResponseContent');
+        }
+
+        async function rejectOrder() {
+            const orderId = 1;
+            const driverId = document.getElementById('orderDriverId').value;
+            
+            await makeRequest('/driver/order/reject', 'POST', {
+                order_id: orderId,
+                driver_id: driverId
+            }, 'orderLoading', 'orderResponseContent');
+        }
+
+        // 微信相关API
+        async function wechatLogin() {
+            const openId = document.getElementById('openId').value;
+            const nickname = document.getElementById('wechatNickname').value;
+            const avatar = document.getElementById('wechatAvatar').value;
+            
+            const result = await makeRequest('/user/wechat/login', 'POST', {
+                openid: openId,
+                nickname: nickname,
+                avatar: avatar
+            }, 'wechatLoading', 'wechatResponseContent');
+
+            if (result && result.code === 200 && result.data && result.data.token) {
+                localStorage.setItem('token', result.data.token);
+            }
+        }
+
+        async function bindWechat() {
+            const userId = 1;
+            const openId = document.getElementById('openId').value;
+            const nickname = document.getElementById('wechatNickname').value;
+            const avatar = document.getElementById('wechatAvatar').value;
+            
+            await makeRequest('/user/wechat/bind', 'POST', {
+                user_id: userId,
+                openid: openId,
+                nickname: nickname,
+                avatar: avatar
+            }, 'wechatLoading', 'wechatResponseContent');
+        }
+
+        async function unbindWechat() {
+            const userId = 1;
+            
+            await makeRequest('/user/wechat/unbind', 'POST', {
+                user_id: userId
+            }, 'wechatLoading', 'wechatResponseContent');
+        }
+
+        async function getWechatAuthUrl() {
+            const userId = 1;
+            
+            await makeRequest(`/wechat/auth/url?user_id=${userId}`, 'GET', null, 'wechatLoading', 'wechatResponseContent');
+        }
+
+        // 页面加载时检查服务状态
+        window.onload = async function() {
+            try {
+                const response = await fetch(`${API_BASE}/user/info`);
+                if (response.ok) {
+                    console.log('✅ API服务连接正常');
+                } else {
+                    console.log('❌ API服务连接异常');
+                }
+            } catch (error) {
+                console.log('❌ 无法连接到API服务，请确保后端服务已启动');
+            }
+        };
+    </script>
+</body>
+</html> 

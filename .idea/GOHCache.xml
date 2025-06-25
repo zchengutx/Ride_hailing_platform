@@ -1,0 +1,1337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GoORMHelperCache">
+    <option name="schemaMapping">
+      <map>
+        <entry key="AccessOrderReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="AccessOrderResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ArriveLocationReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="ArriveLocationResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="BaiduRouteResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/utils/baidu.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="BindWechatReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="BindWechatResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Claims">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/utils/jwt.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverRegisterReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverRegisterResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerAccessOrderArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerAccessOrderResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerArriveLocationArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerArriveLocationResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerEndTripArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerEndTripResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerGetAwaitOrderArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerGetAwaitOrderResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerGetDriverInfoArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerGetDriverInfoResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/rpc/driver/handler.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerRegisterArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerRegisterResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerRejectionOrderArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerRejectionOrderResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerSendSmsArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerSendSmsResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerStartTripArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerStartTripResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerUpdateDriverStatusArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerUpdateDriverStatusResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="EndTripReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="EndTripResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="GetAwaitOrderReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="GetAwaitOrderResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="GetDriverInfoReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="GetDriverInfoResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="GetUserInfoReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="GetUserInfoResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="JWTConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/utils/jwt.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="JWTManager">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/utils/jwt.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LocationReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LocationResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LoginReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LoginResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LxhDriver">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/handler/model/driver.go" />
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LxhOrder">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/handler/model/order.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LxhPassenger">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/handler/model/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="OrderReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="OrderResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Passengers">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerBindWechatArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerBindWechatResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerGetLocationArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerGetLocationResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerGetPricingArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerGetPricingResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerGetTripInfoArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerGetTripInfoResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerGetUserInfoArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerGetUserInfoResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/rpc/passengers/handler.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerLoginArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerLoginResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerPlaceOrderArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerPlaceOrderResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerRegisterArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerRegisterResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerRoutePlanArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerRoutePlanResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerSendSmsArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerSendSmsResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerUnbindWechatArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerUnbindWechatResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerUpdateUserInfoArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerUpdateUserInfoResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerWechatLoginArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PassengersServerWechatLoginResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PricingReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PricingResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RegisterReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RegisterResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RejectionOrderReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RejectionOrderResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RoutePlanReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RoutePlanResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SendSmsDriverReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SendSmsDriverResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SendSmsReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SendSmsResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="StartTripReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="StartTripResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="TokenPair">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/utils/jwt.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="TripReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="TripResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UnbindWechatReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UnbindWechatResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UpdateDriverStatusReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UpdateDriverStatusResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UpdateUserInfoReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UpdateUserInfoResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserHandler">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/handler/api_server/user_handler.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Vehicle">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/handler/model/vehicle.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Viper">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/basic/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Wallet">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/handler/model/wallet.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="WalletTransaction">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/handler/model/wallet.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="WechatAccessTokenResponse">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/handler/model/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="WechatAuthHandler">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/handler/api_server/wechat_auth.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="WechatLoginReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="WechatLoginResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="WechatUserInfo">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/handler/model/passengers.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="kClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driverserver/driverserver.go" />
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengersserver/passengersserver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="kDriverServerClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/driver/driverserver/client.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="kPassengersServerClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/passengers/passengersserver/client.go" />
+            </set>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="scannedPathMapping">
+      <map>
+        <entry key="file://$PROJECT_DIR$/api/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752285395539" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/basic/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751678959304" />
+              <option name="schema">
+                <list>
+                  <option value="Viper" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/basic/global/global.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751810810983" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/basic/init/init.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752132970090" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/handler/api_server/user_handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752215998431" />
+              <option name="schema">
+                <list>
+                  <option value="UserHandler" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/handler/api_server/wechat_auth.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752216031222" />
+              <option name="schema">
+                <list>
+                  <option value="WechatAuthHandler" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/handler/model/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752136765120" />
+              <option name="schema">
+                <list>
+                  <option value="LxhDriver" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/handler/model/order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752133053056" />
+              <option name="schema">
+                <list>
+                  <option value="LxhOrder" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/handler/model/passengers.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752134598125" />
+              <option name="schema">
+                <list>
+                  <option value="LxhPassenger" />
+                  <option value="WechatUserInfo" />
+                  <option value="WechatAccessTokenResponse" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/handler/model/vehicle.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752133059645" />
+              <option name="schema">
+                <list>
+                  <option value="Vehicle" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/handler/model/wallet.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752133091726" />
+              <option name="schema">
+                <list>
+                  <option value="Wallet" />
+                  <option value="WalletTransaction" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/driver/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752235913041" />
+              <option name="schema">
+                <list>
+                  <option value="LxhDriver" />
+                  <option value="SendSmsDriverReq" />
+                  <option value="SendSmsDriverResp" />
+                  <option value="DriverRegisterReq" />
+                  <option value="DriverRegisterResp" />
+                  <option value="GetDriverInfoReq" />
+                  <option value="GetDriverInfoResp" />
+                  <option value="UpdateDriverStatusReq" />
+                  <option value="UpdateDriverStatusResp" />
+                  <option value="GetAwaitOrderReq" />
+                  <option value="GetAwaitOrderResp" />
+                  <option value="AccessOrderReq" />
+                  <option value="AccessOrderResp" />
+                  <option value="RejectionOrderReq" />
+                  <option value="RejectionOrderResp" />
+                  <option value="StartTripReq" />
+                  <option value="StartTripResp" />
+                  <option value="EndTripReq" />
+                  <option value="EndTripResp" />
+                  <option value="ArriveLocationReq" />
+                  <option value="ArriveLocationResp" />
+                  <option value="DriverServerSendSmsArgs" />
+                  <option value="DriverServerSendSmsResult" />
+                  <option value="DriverServerRegisterArgs" />
+                  <option value="DriverServerRegisterResult" />
+                  <option value="DriverServerGetDriverInfoArgs" />
+                  <option value="DriverServerGetDriverInfoResult" />
+                  <option value="DriverServerUpdateDriverStatusArgs" />
+                  <option value="DriverServerUpdateDriverStatusResult" />
+                  <option value="DriverServerGetAwaitOrderArgs" />
+                  <option value="DriverServerGetAwaitOrderResult" />
+                  <option value="DriverServerAccessOrderArgs" />
+                  <option value="DriverServerAccessOrderResult" />
+                  <option value="DriverServerRejectionOrderArgs" />
+                  <option value="DriverServerRejectionOrderResult" />
+                  <option value="DriverServerArriveLocationArgs" />
+                  <option value="DriverServerArriveLocationResult" />
+                  <option value="DriverServerStartTripArgs" />
+                  <option value="DriverServerStartTripResult" />
+                  <option value="DriverServerEndTripArgs" />
+                  <option value="DriverServerEndTripResult" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/driver/driverserver/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752235913039" />
+              <option name="schema">
+                <list>
+                  <option value="kDriverServerClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/driver/driverserver/driverserver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752235913040" />
+              <option name="schema">
+                <list>
+                  <option value="kClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/driver/driverserver/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752235913039" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/driver/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752235913039" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/driver/k-driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752235913047" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/passengers/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752235922912" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/passengers/k-passengers.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752235922924" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/passengers/passengers.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752235922916" />
+              <option name="schema">
+                <list>
+                  <option value="Passengers" />
+                  <option value="SendSmsReq" />
+                  <option value="SendSmsResp" />
+                  <option value="RegisterReq" />
+                  <option value="RegisterResp" />
+                  <option value="LoginReq" />
+                  <option value="LoginResp" />
+                  <option value="LocationReq" />
+                  <option value="LocationResp" />
+                  <option value="TripReq" />
+                  <option value="TripResp" />
+                  <option value="PricingReq" />
+                  <option value="PricingResp" />
+                  <option value="OrderReq" />
+                  <option value="OrderResp" />
+                  <option value="RoutePlanReq" />
+                  <option value="RoutePlanResp" />
+                  <option value="WechatLoginReq" />
+                  <option value="WechatLoginResp" />
+                  <option value="BindWechatReq" />
+                  <option value="BindWechatResp" />
+                  <option value="UnbindWechatReq" />
+                  <option value="UnbindWechatResp" />
+                  <option value="GetUserInfoReq" />
+                  <option value="GetUserInfoResp" />
+                  <option value="UpdateUserInfoReq" />
+                  <option value="UpdateUserInfoResp" />
+                  <option value="PassengersServerSendSmsArgs" />
+                  <option value="PassengersServerSendSmsResult" />
+                  <option value="PassengersServerRegisterArgs" />
+                  <option value="PassengersServerRegisterResult" />
+                  <option value="PassengersServerLoginArgs" />
+                  <option value="PassengersServerLoginResult" />
+                  <option value="PassengersServerGetLocationArgs" />
+                  <option value="PassengersServerGetLocationResult" />
+                  <option value="PassengersServerGetTripInfoArgs" />
+                  <option value="PassengersServerGetTripInfoResult" />
+                  <option value="PassengersServerGetPricingArgs" />
+                  <option value="PassengersServerGetPricingResult" />
+                  <option value="PassengersServerPlaceOrderArgs" />
+                  <option value="PassengersServerPlaceOrderResult" />
+                  <option value="PassengersServerRoutePlanArgs" />
+                  <option value="PassengersServerRoutePlanResult" />
+                  <option value="PassengersServerWechatLoginArgs" />
+                  <option value="PassengersServerWechatLoginResult" />
+                  <option value="PassengersServerBindWechatArgs" />
+                  <option value="PassengersServerBindWechatResult" />
+                  <option value="PassengersServerUnbindWechatArgs" />
+                  <option value="PassengersServerUnbindWechatResult" />
+                  <option value="PassengersServerGetUserInfoArgs" />
+                  <option value="PassengersServerGetUserInfoResult" />
+                  <option value="PassengersServerUpdateUserInfoArgs" />
+                  <option value="PassengersServerUpdateUserInfoResult" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/passengers/passengersserver/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752235922913" />
+              <option name="schema">
+                <list>
+                  <option value="kPassengersServerClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/passengers/passengersserver/passengersserver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752235922913" />
+              <option name="schema">
+                <list>
+                  <option value="kClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/passengers/passengersserver/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752235922912" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/rpc/driver/handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752223971237" />
+              <option name="schema">
+                <list>
+                  <option value="DriverServerImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/rpc/driver/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752129588088" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/rpc/passengers/handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752223534187" />
+              <option name="schema">
+                <list>
+                  <option value="PassengersServerImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/rpc/passengers/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752216866091" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/status.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752232097011" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/utils/baidu.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752223387110" />
+              <option name="schema">
+                <list>
+                  <option value="BaiduRouteResp" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/utils/float.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752219994871" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/utils/jwt.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751804899017" />
+              <option name="schema">
+                <list>
+                  <option value="JWTConfig" />
+                  <option value="Claims" />
+                  <option value="JWTManager" />
+                  <option value="TokenPair" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="tableStructMapping">
+      <map>
+        <entry key="access_order_req" value="AccessOrderReq" />
+        <entry key="access_order_resp" value="AccessOrderResp" />
+        <entry key="arrive_location_req" value="ArriveLocationReq" />
+        <entry key="arrive_location_resp" value="ArriveLocationResp" />
+        <entry key="baidu_route_resp" value="BaiduRouteResp" />
+        <entry key="bind_wechat_req" value="BindWechatReq" />
+        <entry key="bind_wechat_resp" value="BindWechatResp" />
+        <entry key="claims" value="Claims" />
+        <entry key="driver_register_req" value="DriverRegisterReq" />
+        <entry key="driver_register_resp" value="DriverRegisterResp" />
+        <entry key="driver_server_access_order_args" value="DriverServerAccessOrderArgs" />
+        <entry key="driver_server_access_order_result" value="DriverServerAccessOrderResult" />
+        <entry key="driver_server_arrive_location_args" value="DriverServerArriveLocationArgs" />
+        <entry key="driver_server_arrive_location_result" value="DriverServerArriveLocationResult" />
+        <entry key="driver_server_end_trip_args" value="DriverServerEndTripArgs" />
+        <entry key="driver_server_end_trip_result" value="DriverServerEndTripResult" />
+        <entry key="driver_server_get_await_order_args" value="DriverServerGetAwaitOrderArgs" />
+        <entry key="driver_server_get_await_order_result" value="DriverServerGetAwaitOrderResult" />
+        <entry key="driver_server_get_driver_info_args" value="DriverServerGetDriverInfoArgs" />
+        <entry key="driver_server_get_driver_info_result" value="DriverServerGetDriverInfoResult" />
+        <entry key="driver_server_impl" value="DriverServerImpl" />
+        <entry key="driver_server_register_args" value="DriverServerRegisterArgs" />
+        <entry key="driver_server_register_result" value="DriverServerRegisterResult" />
+        <entry key="driver_server_rejection_order_args" value="DriverServerRejectionOrderArgs" />
+        <entry key="driver_server_rejection_order_result" value="DriverServerRejectionOrderResult" />
+        <entry key="driver_server_send_sms_args" value="DriverServerSendSmsArgs" />
+        <entry key="driver_server_send_sms_result" value="DriverServerSendSmsResult" />
+        <entry key="driver_server_start_trip_args" value="DriverServerStartTripArgs" />
+        <entry key="driver_server_start_trip_result" value="DriverServerStartTripResult" />
+        <entry key="driver_server_update_driver_status_args" value="DriverServerUpdateDriverStatusArgs" />
+        <entry key="driver_server_update_driver_status_result" value="DriverServerUpdateDriverStatusResult" />
+        <entry key="end_trip_req" value="EndTripReq" />
+        <entry key="end_trip_resp" value="EndTripResp" />
+        <entry key="get_await_order_req" value="GetAwaitOrderReq" />
+        <entry key="get_await_order_resp" value="GetAwaitOrderResp" />
+        <entry key="get_driver_info_req" value="GetDriverInfoReq" />
+        <entry key="get_driver_info_resp" value="GetDriverInfoResp" />
+        <entry key="get_user_info_req" value="GetUserInfoReq" />
+        <entry key="get_user_info_resp" value="GetUserInfoResp" />
+        <entry key="jwt_config" value="JWTConfig" />
+        <entry key="jwt_manager" value="JWTManager" />
+        <entry key="k_client" value="kClient" />
+        <entry key="k_driver_server_client" value="kDriverServerClient" />
+        <entry key="k_passengers_server_client" value="kPassengersServerClient" />
+        <entry key="location_req" value="LocationReq" />
+        <entry key="location_resp" value="LocationResp" />
+        <entry key="login_req" value="LoginReq" />
+        <entry key="login_resp" value="LoginResp" />
+        <entry key="lxh_driver" value="LxhDriver" />
+        <entry key="lxh_order" value="LxhOrder" />
+        <entry key="lxh_passenger" value="LxhPassenger" />
+        <entry key="order_req" value="OrderReq" />
+        <entry key="order_resp" value="OrderResp" />
+        <entry key="passengers" value="Passengers" />
+        <entry key="passengers_server_bind_wechat_args" value="PassengersServerBindWechatArgs" />
+        <entry key="passengers_server_bind_wechat_result" value="PassengersServerBindWechatResult" />
+        <entry key="passengers_server_get_location_args" value="PassengersServerGetLocationArgs" />
+        <entry key="passengers_server_get_location_result" value="PassengersServerGetLocationResult" />
+        <entry key="passengers_server_get_pricing_args" value="PassengersServerGetPricingArgs" />
+        <entry key="passengers_server_get_pricing_result" value="PassengersServerGetPricingResult" />
+        <entry key="passengers_server_get_trip_info_args" value="PassengersServerGetTripInfoArgs" />
+        <entry key="passengers_server_get_trip_info_result" value="PassengersServerGetTripInfoResult" />
+        <entry key="passengers_server_get_user_info_args" value="PassengersServerGetUserInfoArgs" />
+        <entry key="passengers_server_get_user_info_result" value="PassengersServerGetUserInfoResult" />
+        <entry key="passengers_server_impl" value="PassengersServerImpl" />
+        <entry key="passengers_server_login_args" value="PassengersServerLoginArgs" />
+        <entry key="passengers_server_login_result" value="PassengersServerLoginResult" />
+        <entry key="passengers_server_place_order_args" value="PassengersServerPlaceOrderArgs" />
+        <entry key="passengers_server_place_order_result" value="PassengersServerPlaceOrderResult" />
+        <entry key="passengers_server_register_args" value="PassengersServerRegisterArgs" />
+        <entry key="passengers_server_register_result" value="PassengersServerRegisterResult" />
+        <entry key="passengers_server_route_plan_args" value="PassengersServerRoutePlanArgs" />
+        <entry key="passengers_server_route_plan_result" value="PassengersServerRoutePlanResult" />
+        <entry key="passengers_server_send_sms_args" value="PassengersServerSendSmsArgs" />
+        <entry key="passengers_server_send_sms_result" value="PassengersServerSendSmsResult" />
+        <entry key="passengers_server_unbind_wechat_args" value="PassengersServerUnbindWechatArgs" />
+        <entry key="passengers_server_unbind_wechat_result" value="PassengersServerUnbindWechatResult" />
+        <entry key="passengers_server_update_user_info_args" value="PassengersServerUpdateUserInfoArgs" />
+        <entry key="passengers_server_update_user_info_result" value="PassengersServerUpdateUserInfoResult" />
+        <entry key="passengers_server_wechat_login_args" value="PassengersServerWechatLoginArgs" />
+        <entry key="passengers_server_wechat_login_result" value="PassengersServerWechatLoginResult" />
+        <entry key="pricing_req" value="PricingReq" />
+        <entry key="pricing_resp" value="PricingResp" />
+        <entry key="register_req" value="RegisterReq" />
+        <entry key="register_resp" value="RegisterResp" />
+        <entry key="rejection_order_req" value="RejectionOrderReq" />
+        <entry key="rejection_order_resp" value="RejectionOrderResp" />
+        <entry key="route_plan_req" value="RoutePlanReq" />
+        <entry key="route_plan_resp" value="RoutePlanResp" />
+        <entry key="send_sms_driver_req" value="SendSmsDriverReq" />
+        <entry key="send_sms_driver_resp" value="SendSmsDriverResp" />
+        <entry key="send_sms_req" value="SendSmsReq" />
+        <entry key="send_sms_resp" value="SendSmsResp" />
+        <entry key="start_trip_req" value="StartTripReq" />
+        <entry key="start_trip_resp" value="StartTripResp" />
+        <entry key="token_pair" value="TokenPair" />
+        <entry key="trip_req" value="TripReq" />
+        <entry key="trip_resp" value="TripResp" />
+        <entry key="unbind_wechat_req" value="UnbindWechatReq" />
+        <entry key="unbind_wechat_resp" value="UnbindWechatResp" />
+        <entry key="update_driver_status_req" value="UpdateDriverStatusReq" />
+        <entry key="update_driver_status_resp" value="UpdateDriverStatusResp" />
+        <entry key="update_user_info_req" value="UpdateUserInfoReq" />
+        <entry key="update_user_info_resp" value="UpdateUserInfoResp" />
+        <entry key="user_handler" value="UserHandler" />
+        <entry key="vehicle" value="Vehicle" />
+        <entry key="viper" value="Viper" />
+        <entry key="wallet" value="Wallet" />
+        <entry key="wallet_transaction" value="WalletTransaction" />
+        <entry key="wechat_access_token_response" value="WechatAccessTokenResponse" />
+        <entry key="wechat_auth_handler" value="WechatAuthHandler" />
+        <entry key="wechat_login_req" value="WechatLoginReq" />
+        <entry key="wechat_login_resp" value="WechatLoginResp" />
+        <entry key="wechat_user_info" value="WechatUserInfo" />
+      </map>
+    </option>
+    <option name="lastTimeChecked" value="1752289272396" />
+  </component>
+</project>

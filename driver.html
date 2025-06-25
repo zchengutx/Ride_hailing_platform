@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>司机端 - 打车平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .driver-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .driver-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        .map-container {
+            flex: 1;
+            background: #e8e8e8;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
+                        linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
+                        linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .sidebar {
+            width: 350px;
+            background: white;
+            border-left: 1px solid #e1e5e9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-section {
+            padding: 20px;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .status-toggle {
+            display: flex;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 15px;
+        }
+
+        .status-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .status-btn.active {
+            background: #28a745;
+            color: white;
+        }
+
+        .status-btn:not(.active) {
+            background: transparent;
+            color: #666;
+        }
+
+        .driver-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .orders-section {
+            padding: 20px;
+            border-bottom: 1px solid #e1e5e9;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .order-card {
+            background: white;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .order-card:hover {
+            border-color: #28a745;
+            transform: translateY(-2px);
+        }
+
+        .order-card.selected {
+            border-color: #28a745;
+            background: #f8fff9;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .order-id {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .order-price {
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .order-location {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .order-distance {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .action-section {
+            padding: 20px;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e1e5e9;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #28a745;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .success-message {
+            color: #28a745;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .current-order {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .current-order h3 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .order-detail {
+            font-size: 14px;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .no-orders {
+            text-align: center;
+            color: #666;
+            padding: 40px 20px;
+        }
+
+        .no-orders-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚗 司机端</h1>
+        <div class="driver-info">
+            <div class="driver-avatar" id="driverAvatar">👨‍💼</div>
+            <span id="driverName">司机</span>
+            <button class="logout-btn" id="logoutBtn">退出</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="map-container">
+            <div class="map-placeholder">
+                🗺️ 地图加载中...
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="status-section">
+                <div class="status-toggle">
+                    <button class="status-btn active" id="onlineBtn">在线</button>
+                    <button class="status-btn" id="offlineBtn">离线</button>
+                </div>
+
+                <div class="driver-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="todayEarnings">¥0</div>
+                        <div class="stat-label">今日收入</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="todayOrders">0</div>
+                        <div class="stat-label">今日订单</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="orders-section">
+                <div class="section-title">待接订单</div>
+                
+                <div class="current-order" id="currentOrder">
+                    <h3>当前订单</h3>
+                    <div class="order-detail" id="currentOrderInfo"></div>
+                </div>
+
+                <div id="ordersList">
+                    <div class="no-orders">
+                        <div class="no-orders-icon">📱</div>
+                        <div>暂无待接订单</div>
+                        <div style="font-size: 12px; margin-top: 5px;">请保持在线状态</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-section">
+                <button class="btn btn-primary" id="acceptOrderBtn" style="display: none;">接单</button>
+                <button class="btn btn-secondary" id="rejectOrderBtn" style="display: none;">拒接</button>
+                <button class="btn btn-primary" id="startTripBtn" style="display: none;">开始行程</button>
+                <button class="btn btn-secondary" id="arriveBtn" style="display: none;">到达乘客位置</button>
+                <button class="btn btn-danger" id="endTripBtn" style="display: none;">结束行程</button>
+                
+                <div class="loading" id="actionLoading">
+                    <div class="spinner"></div>
+                </div>
+                <div class="error-message" id="actionError"></div>
+                <div class="success-message" id="actionSuccess"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8889/api';
+        let currentDriver = null;
+        let isOnline = true;
+        let currentOrder = null;
+        let selectedOrder = null;
+        let orders = [];
+
+        // 页面加载时检查登录状态
+        window.onload = function() {
+            const token = localStorage.getItem('driverToken');
+            if (!token) {
+                // 显示司机登录页面
+                showDriverLogin();
+                return;
+            }
+
+            // 获取司机信息
+            getDriverInfo();
+            
+            // 开始轮询订单
+            startOrderPolling();
+        };
+
+        // 显示司机登录
+        function showDriverLogin() {
+            const loginHtml = `
+                <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1000; display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center; padding: 40px;">
+                        <h2 style="margin-bottom: 30px;">司机登录</h2>
+                        <div style="margin-bottom: 20px;">
+                            <input type="tel" id="driverMobile" placeholder="手机号" style="width: 100%; padding: 12px; border: 2px solid #e1e5e9; border-radius: 8px; margin-bottom: 10px;">
+                            <div style="display: flex; gap: 10px;">
+                                <input type="text" id="driverSmsCode" placeholder="验证码" style="flex: 1; padding: 12px; border: 2px solid #e1e5e9; border-radius: 8px;">
+                                <button id="sendDriverSmsBtn" style="padding: 12px 16px; background: #28a745; color: white; border: none; border-radius: 8px;">发送验证码</button>
+                            </div>
+                        </div>
+                        <button id="driverLoginBtn" style="width: 100%; padding: 12px; background: #28a745; color: white; border: none; border-radius: 8px;">登录</button>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', loginHtml);
+
+            // 绑定登录事件
+            document.getElementById('driverLoginBtn').addEventListener('click', driverLogin);
+            document.getElementById('sendDriverSmsBtn').addEventListener('click', sendDriverSms);
+        }
+
+        // 司机登录
+        function driverLogin() {
+            const mobile = document.getElementById('driverMobile').value;
+            const smsCode = document.getElementById('driverSmsCode').value;
+
+            if (!mobile || !smsCode) {
+                alert('请填写完整信息');
+                return;
+            }
+
+            // 模拟司机登录
+            localStorage.setItem('driverToken', 'driver_token_' + Date.now());
+            localStorage.setItem('driverMobile', mobile);
+            
+            // 移除登录界面
+            document.querySelector('[style*="position: fixed"]').remove();
+            
+            // 重新初始化
+            getDriverInfo();
+            startOrderPolling();
+        }
+
+        // 发送司机验证码
+        function sendDriverSms() {
+            const mobile = document.getElementById('driverMobile').value;
+            if (!mobile) {
+                alert('请输入手机号');
+                return;
+            }
+
+            const btn = document.getElementById('sendDriverSmsBtn');
+            btn.disabled = true;
+            btn.textContent = '发送中...';
+
+            setTimeout(() => {
+                btn.textContent = '验证码已发送';
+                setTimeout(() => {
+                    btn.disabled = false;
+                    btn.textContent = '发送验证码';
+                }, 60000);
+            }, 1000);
+        }
+
+        // 获取司机信息
+        function getDriverInfo() {
+            const mobile = localStorage.getItem('driverMobile');
+            if (mobile) {
+                currentDriver = {
+                    id: 1,
+                    name: '张师傅',
+                    mobile: mobile,
+                    carType: '快车',
+                    rating: 4.8
+                };
+                updateDriverDisplay();
+            }
+        }
+
+        // 更新司机显示
+        function updateDriverDisplay() {
+            if (currentDriver) {
+                document.getElementById('driverName').textContent = currentDriver.name;
+                document.getElementById('driverAvatar').textContent = currentDriver.name.charAt(0);
+            }
+        }
+
+        // 开始轮询订单
+        function startOrderPolling() {
+            if (isOnline) {
+                fetchOrders();
+            }
+            
+            // 每10秒轮询一次
+            setInterval(() => {
+                if (isOnline) {
+                    fetchOrders();
+                }
+            }, 10000);
+        }
+
+        // 获取订单列表
+        function fetchOrders() {
+            // 模拟获取订单
+            const mockOrders = [
+                {
+                    id: 'ORDER001',
+                    startLocation: '北京西站',
+                    endLocation: '天安门广场',
+                    distance: '8.5km',
+                    price: '25.50',
+                    passengerName: '李女士'
+                },
+                {
+                    id: 'ORDER002',
+                    startLocation: '三里屯',
+                    endLocation: '国贸',
+                    distance: '12.3km',
+                    price: '35.80',
+                    passengerName: '王先生'
+                }
+            ];
+
+            orders = mockOrders;
+            updateOrdersDisplay();
+        }
+
+        // 更新订单显示
+        function updateOrdersDisplay() {
+            const ordersList = document.getElementById('ordersList');
+            
+            if (orders.length === 0) {
+                ordersList.innerHTML = `
+                    <div class="no-orders">
+                        <div class="no-orders-icon">📱</div>
+                        <div>暂无待接订单</div>
+                        <div style="font-size: 12px; margin-top: 5px;">请保持在线状态</div>
+                    </div>
+                `;
+            } else {
+                ordersList.innerHTML = orders.map(order => `
+                    <div class="order-card" data-order-id="${order.id}">
+                        <div class="order-header">
+                            <span class="order-id">${order.id}</span>
+                            <span class="order-price">¥${order.price}</span>
+                        </div>
+                        <div class="order-location">从: ${order.startLocation}</div>
+                        <div class="order-location">到: ${order.endLocation}</div>
+                        <div class="order-distance">距离: ${order.distance} | 乘客: ${order.passengerName}</div>
+                    </div>
+                `).join('');
+
+                // 绑定订单选择事件
+                document.querySelectorAll('.order-card').forEach(card => {
+                    card.addEventListener('click', function() {
+                        document.querySelectorAll('.order-card').forEach(c => c.classList.remove('selected'));
+                        this.classList.add('selected');
+                        selectedOrder = orders.find(o => o.id === this.dataset.orderId);
+                        
+                        // 显示接单按钮
+                        document.getElementById('acceptOrderBtn').style.display = 'block';
+                        document.getElementById('rejectOrderBtn').style.display = 'block';
+                    });
+                });
+            }
+        }
+
+        // 在线/离线切换
+        document.getElementById('onlineBtn').addEventListener('click', function() {
+            if (!isOnline) {
+                isOnline = true;
+                this.classList.add('active');
+                document.getElementById('offlineBtn').classList.remove('active');
+                startOrderPolling();
+                showSuccess('actionSuccess', '已切换为在线状态');
+            }
+        });
+
+        document.getElementById('offlineBtn').addEventListener('click', function() {
+            if (isOnline) {
+                isOnline = false;
+                this.classList.add('active');
+                document.getElementById('onlineBtn').classList.remove('active');
+                showSuccess('actionSuccess', '已切换为离线状态');
+            }
+        });
+
+        // 接单
+        document.getElementById('acceptOrderBtn').addEventListener('click', function() {
+            if (!selectedOrder) {
+                showError('actionError', '请先选择订单');
+                return;
+            }
+
+            const loading = document.getElementById('actionLoading');
+            loading.style.display = 'block';
+            hideMessages();
+
+            setTimeout(() => {
+                currentOrder = selectedOrder;
+                currentOrder.status = 'accepted';
+                
+                // 更新UI
+                document.getElementById('currentOrder').style.display = 'block';
+                document.getElementById('currentOrderInfo').textContent = 
+                    `订单号: ${currentOrder.id} | 乘客: ${currentOrder.passengerName} | 目的地: ${currentOrder.endLocation}`;
+                
+                // 隐藏接单按钮，显示其他按钮
+                this.style.display = 'none';
+                document.getElementById('rejectOrderBtn').style.display = 'none';
+                document.getElementById('startTripBtn').style.display = 'block';
+                document.getElementById('arriveBtn').style.display = 'block';
+                
+                // 从订单列表中移除
+                orders = orders.filter(o => o.id !== currentOrder.id);
+                updateOrdersDisplay();
+                
+                loading.style.display = 'none';
+                showSuccess('actionSuccess', '接单成功');
+            }, 1000);
+        });
+
+        // 拒接
+        document.getElementById('rejectOrderBtn').addEventListener('click', function() {
+            if (!selectedOrder) {
+                showError('actionError', '请先选择订单');
+                return;
+            }
+
+            selectedOrder = null;
+            document.querySelectorAll('.order-card').forEach(c => c.classList.remove('selected'));
+            this.style.display = 'none';
+            document.getElementById('acceptOrderBtn').style.display = 'none';
+            
+            showSuccess('actionSuccess', '已拒接订单');
+        });
+
+        // 开始行程
+        document.getElementById('startTripBtn').addEventListener('click', function() {
+            if (!currentOrder) return;
+
+            const loading = document.getElementById('actionLoading');
+            loading.style.display = 'block';
+            hideMessages();
+
+            setTimeout(() => {
+                currentOrder.status = 'in_progress';
+                document.getElementById('currentOrderInfo').textContent += ' | 行程进行中';
+                
+                this.style.display = 'none';
+                document.getElementById('endTripBtn').style.display = 'block';
+                
+                loading.style.display = 'none';
+                showSuccess('actionSuccess', '行程已开始');
+            }, 1000);
+        });
+
+        // 到达乘客位置
+        document.getElementById('arriveBtn').addEventListener('click', function() {
+            if (!currentOrder) return;
+
+            showSuccess('actionSuccess', '已到达乘客位置');
+        });
+
+        // 结束行程
+        document.getElementById('endTripBtn').addEventListener('click', function() {
+            if (!currentOrder) return;
+
+            const loading = document.getElementById('actionLoading');
+            loading.style.display = 'block';
+            hideMessages();
+
+            setTimeout(() => {
+                // 更新统计数据
+                const todayEarnings = parseFloat(document.getElementById('todayEarnings').textContent.replace('¥', '')) + parseFloat(currentOrder.price);
+                const todayOrders = parseInt(document.getElementById('todayOrders').textContent) + 1;
+                
+                document.getElementById('todayEarnings').textContent = '¥' + todayEarnings.toFixed(2);
+                document.getElementById('todayOrders').textContent = todayOrders;
+                
+                // 清除当前订单
+                currentOrder = null;
+                document.getElementById('currentOrder').style.display = 'none';
+                document.getElementById('endTripBtn').style.display = 'none';
+                document.getElementById('arriveBtn').style.display = 'none';
+                
+                loading.style.display = 'none';
+                showSuccess('actionSuccess', '行程已结束，收入已计入');
+            }, 1000);
+        });
+
+        // 退出登录
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('driverToken');
+            localStorage.removeItem('driverMobile');
+            window.location.reload();
+        });
+
+        // 工具函数
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+
+        function showSuccess(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+
+        function hideMessages() {
+            document.querySelectorAll('.error-message, .success-message').forEach(el => {
+                el.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html> 

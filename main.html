@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打车平台 - 主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        .map-container {
+            flex: 1;
+            background: #e8e8e8;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
+                        linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
+                        linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 18px;
+        }
+
+        .sidebar {
+            width: 350px;
+            background: white;
+            border-left: 1px solid #e1e5e9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .location-section {
+            padding: 20px;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .location-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .location-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .location-input.start {
+            border-color: #28a745;
+        }
+
+        .location-input.end {
+            border-color: #dc3545;
+        }
+
+        .car-type-section {
+            padding: 20px;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .car-type-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .car-types {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .car-type {
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .car-type:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .car-type.selected {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .car-type-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .car-type-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .car-type-price {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .pricing-section {
+            padding: 20px;
+            border-bottom: 1px solid #e1e5e9;
+        }
+
+        .price-display {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .price-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .price-unit {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .route-info {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .action-section {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e1e5e9;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .success-message {
+            color: #28a745;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .order-status {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .order-status h3 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .order-info {
+            font-size: 14px;
+            color: #856404;
+            margin-bottom: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .location-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e1e5e9;
+            border-radius: 0 0 10px 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+
+        .suggestion-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .suggestion-item:hover {
+            background: #f8f9fa;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚗 打车平台</h1>
+        <div class="user-info">
+            <div class="user-avatar" id="userAvatar">👤</div>
+            <span id="userName">用户</span>
+            <button class="logout-btn" id="logoutBtn">退出</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="map-container">
+            <div class="map-placeholder">
+                🗺️ 地图加载中...
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="location-section">
+                <input type="text" class="location-input start" id="startLocation" placeholder="📍 您在哪里上车？" readonly>
+                <div class="location-suggestions" id="startSuggestions"></div>
+                
+                <input type="text" class="location-input end" id="endLocation" placeholder="🎯 您要去哪里？">
+                <div class="location-suggestions" id="endSuggestions"></div>
+            </div>
+
+            <div class="car-type-section">
+                <div class="car-type-title">选择车型</div>
+                <div class="car-types">
+                    <div class="car-type" data-type="快车" data-price="1.0">
+                        <div class="car-type-icon">🚗</div>
+                        <div class="car-type-name">快车</div>
+                        <div class="car-type-price">经济实惠</div>
+                    </div>
+                    <div class="car-type" data-type="专车" data-price="1.5">
+                        <div class="car-type-icon">🚙</div>
+                        <div class="car-type-name">专车</div>
+                        <div class="car-type-price">舒适体验</div>
+                    </div>
+                    <div class="car-type" data-type="豪华车" data-price="2.0">
+                        <div class="car-type-icon">🏎️</div>
+                        <div class="car-type-name">豪华车</div>
+                        <div class="car-type-price">高端享受</div>
+                    </div>
+                    <div class="car-type" data-type="拼车" data-price="0.7">
+                        <div class="car-type-icon">🚐</div>
+                        <div class="car-type-name">拼车</div>
+                        <div class="car-type-price">省钱出行</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-section">
+                <div class="price-display">
+                    <div class="price-amount" id="priceAmount">--</div>
+                    <div class="price-unit">元</div>
+                    <div class="route-info" id="routeInfo">距离: -- km | 时间: -- 分钟</div>
+                </div>
+                <div class="loading" id="pricingLoading">
+                    <div class="spinner"></div>
+                </div>
+                <div class="error-message" id="pricingError"></div>
+            </div>
+
+            <div class="action-section">
+                <div class="order-status" id="orderStatus">
+                    <h3>订单状态</h3>
+                    <div class="order-info" id="orderInfo"></div>
+                </div>
+
+                <button class="btn btn-primary" id="callCarBtn">立即叫车</button>
+                <button class="btn btn-secondary" id="routePlanBtn">路线规划</button>
+                <button class="btn btn-secondary" id="getLocationBtn">获取当前位置</button>
+                
+                <div class="loading" id="actionLoading">
+                    <div class="spinner"></div>
+                </div>
+                <div class="error-message" id="actionError"></div>
+                <div class="success-message" id="actionSuccess"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8889/api';
+        let currentUser = null;
+        let selectedCarType = '快车';
+        let currentOrder = null;
+
+        // 页面加载时检查登录状态
+        window.onload = function() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // 获取用户信息
+            getUserInfo();
+            
+            // 获取当前位置
+            getCurrentLocation();
+        };
+
+        // 获取用户信息
+        function getUserInfo() {
+            const token = localStorage.getItem('token');
+            if (!token) return;
+
+            fetch(`${API_BASE}/user/info`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code === 200) {
+                    currentUser = data.data;
+                    updateUserDisplay();
+                }
+            })
+            .catch(error => {
+                console.error('获取用户信息失败:', error);
+            });
+        }
+
+        // 更新用户显示
+        function updateUserDisplay() {
+            if (currentUser && currentUser.passengers) {
+                const user = currentUser.passengers;
+                document.getElementById('userName').textContent = user.Name || user.NickName || '用户';
+                document.getElementById('userAvatar').textContent = user.Name ? user.Name.charAt(0) : '👤';
+            }
+        }
+
+        // 获取当前位置
+        function getCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lng = position.coords.longitude;
+                        
+                        // 这里应该调用地理编码API获取地址
+                        // 暂时使用坐标显示
+                        document.getElementById('startLocation').value = `当前位置 (${lat.toFixed(4)}, ${lng.toFixed(4)})`;
+                        
+                        // 保存位置信息
+                        localStorage.setItem('currentLat', lat);
+                        localStorage.setItem('currentLng', lng);
+                    },
+                    function(error) {
+                        console.error('获取位置失败:', error);
+                        document.getElementById('startLocation').value = '无法获取当前位置';
+                    }
+                );
+            } else {
+                document.getElementById('startLocation').value = '浏览器不支持定位';
+            }
+        }
+
+        // 车型选择
+        document.querySelectorAll('.car-type').forEach(carType => {
+            carType.addEventListener('click', function() {
+                document.querySelectorAll('.car-type').forEach(ct => ct.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedCarType = this.dataset.type;
+                
+                // 重新计算价格
+                calculatePrice();
+            });
+        });
+
+        // 目的地输入处理
+        document.getElementById('endLocation').addEventListener('input', function() {
+            const value = this.value;
+            if (value.length > 2) {
+                // 这里应该调用地址搜索API
+                showLocationSuggestions(this, value);
+            } else {
+                hideLocationSuggestions(this);
+            }
+        });
+
+        // 显示地址建议
+        function showLocationSuggestions(input, query) {
+            const suggestions = input.id === 'startLocation' ? 
+                document.getElementById('startSuggestions') : 
+                document.getElementById('endSuggestions');
+            
+            // 模拟地址建议
+            const mockSuggestions = [
+                `${query}地铁站`,
+                `${query}购物中心`,
+                `${query}医院`,
+                `${query}学校`,
+                `${query}机场`
+            ];
+            
+            suggestions.innerHTML = mockSuggestions.map(suggestion => 
+                `<div class="suggestion-item" onclick="selectLocation('${input.id}', '${suggestion}')">${suggestion}</div>`
+            ).join('');
+            
+            suggestions.style.display = 'block';
+        }
+
+        // 隐藏地址建议
+        function hideLocationSuggestions(input) {
+            const suggestions = input.id === 'startLocation' ? 
+                document.getElementById('startSuggestions') : 
+                document.getElementById('endSuggestions');
+            suggestions.style.display = 'none';
+        }
+
+        // 选择地址
+        function selectLocation(inputId, address) {
+            document.getElementById(inputId).value = address;
+            hideLocationSuggestions(document.getElementById(inputId));
+            
+            if (inputId === 'endLocation') {
+                calculatePrice();
+            }
+        }
+
+        // 计算价格
+        function calculatePrice() {
+            const startLocation = document.getElementById('startLocation').value;
+            const endLocation = document.getElementById('endLocation').value;
+            
+            if (!startLocation || !endLocation || startLocation === '无法获取当前位置') {
+                return;
+            }
+
+            const loading = document.getElementById('pricingLoading');
+            const error = document.getElementById('pricingError');
+            
+            loading.style.display = 'block';
+            error.style.display = 'none';
+
+            // 模拟价格计算
+            setTimeout(() => {
+                const basePrice = 10;
+                const distance = Math.random() * 20 + 5; // 5-25km
+                const duration = Math.random() * 30 + 15; // 15-45分钟
+                const priceMultiplier = parseFloat(document.querySelector('.car-type.selected').dataset.price);
+                const totalPrice = (basePrice + distance * 2) * priceMultiplier;
+
+                document.getElementById('priceAmount').textContent = totalPrice.toFixed(2);
+                document.getElementById('routeInfo').textContent = `距离: ${distance.toFixed(1)} km | 时间: ${Math.round(duration)} 分钟`;
+                
+                loading.style.display = 'none';
+            }, 1000);
+        }
+
+        // 路线规划
+        document.getElementById('routePlanBtn').addEventListener('click', function() {
+            const startLocation = document.getElementById('startLocation').value;
+            const endLocation = document.getElementById('endLocation').value;
+            
+            if (!startLocation || !endLocation) {
+                showError('actionError', '请先设置起点和终点');
+                return;
+            }
+
+            const loading = document.getElementById('actionLoading');
+            loading.style.display = 'block';
+            hideMessages();
+
+            // 模拟路线规划
+            setTimeout(() => {
+                showSuccess('actionSuccess', '路线规划完成');
+                loading.style.display = 'none';
+            }, 1500);
+        });
+
+        // 获取当前位置
+        document.getElementById('getLocationBtn').addEventListener('click', function() {
+            getCurrentLocation();
+            showSuccess('actionSuccess', '已更新当前位置');
+        });
+
+        // 叫车
+        document.getElementById('callCarBtn').addEventListener('click', function() {
+            const startLocation = document.getElementById('startLocation').value;
+            const endLocation = document.getElementById('endLocation').value;
+            
+            if (!startLocation || !endLocation) {
+                showError('actionError', '请先设置起点和终点');
+                return;
+            }
+
+            if (startLocation === '无法获取当前位置') {
+                showError('actionError', '无法获取当前位置，请手动输入');
+                return;
+            }
+
+            const loading = document.getElementById('actionLoading');
+            const orderStatus = document.getElementById('orderStatus');
+            
+            loading.style.display = 'block';
+            hideMessages();
+
+            // 模拟下单
+            setTimeout(() => {
+                const orderId = 'ORDER' + Date.now();
+                currentOrder = {
+                    id: orderId,
+                    startLocation: startLocation,
+                    endLocation: endLocation,
+                    carType: selectedCarType,
+                    status: 'searching'
+                };
+
+                orderStatus.style.display = 'block';
+                document.getElementById('orderInfo').textContent = `订单号: ${orderId} | 正在寻找司机...`;
+                
+                this.textContent = '取消订单';
+                this.classList.remove('btn-primary');
+                this.classList.add('btn-secondary');
+                
+                loading.style.display = 'none';
+                showSuccess('actionSuccess', '订单已提交，正在为您匹配司机');
+                
+                // 模拟司机接单
+                setTimeout(() => {
+                    document.getElementById('orderInfo').textContent = `司机已接单 | 预计3分钟到达`;
+                    currentOrder.status = 'accepted';
+                }, 3000);
+            }, 1500);
+        });
+
+        // 退出登录
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('currentLat');
+            localStorage.removeItem('currentLng');
+            window.location.href = 'index.html';
+        });
+
+        // 工具函数
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+
+        function showSuccess(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+
+        function hideMessages() {
+            document.querySelectorAll('.error-message, .success-message').forEach(el => {
+                el.style.display = 'none';
+            });
+        }
+
+        // 点击其他地方隐藏地址建议
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.location-section')) {
+                document.querySelectorAll('.location-suggestions').forEach(suggestion => {
+                    suggestion.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
