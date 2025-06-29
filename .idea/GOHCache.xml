@@ -1,6 +1,417 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="GoORMHelperCache">
-    <option name="lastTimeChecked" value="1750833285425" />
+    <option name="schemaMapping">
+      <map>
+        <entry key="BaseResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/base/base.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Config">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/client/basic/config/config.go" />
+              <option value="file://$PROJECT_DIR$/common/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="CreateUserReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/client/handler/request/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="CreateUserResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="CustomClaims">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/utlis/jwt.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="JWT">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/utlis/jwt.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LoginUserReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/client/handler/request/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LoginUserResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Mysql">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/common/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Redis">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/common/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="System">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/client/basic/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/common/model/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserCreateUserArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserCreateUserResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/srock/handler.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserLoginUserArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserLoginUserResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="kClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="kUserClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user/client.go" />
+            </set>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="scannedPathMapping">
+      <map>
+        <entry key="file://$PROJECT_DIR$/api/client/userClient.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751199438832" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/client/basic/cmd/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751201346500" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/client/basic/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751202169485" />
+              <option name="schema">
+                <list>
+                  <option value="Config" />
+                  <option value="System" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/client/basic/config/global.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203429865" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/client/basic/global/global.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751202286074" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/client/basic/inits/init.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751202368445" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/client/handler/api/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203689180" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/client/handler/request/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203339616" />
+              <option name="schema">
+                <list>
+                  <option value="CreateUserReq" />
+                  <option value="LoginUserReq" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/client/router/router.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751201346589" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/client/router/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203339650" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/common/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751200030941" />
+              <option name="schema">
+                <list>
+                  <option value="Config" />
+                  <option value="Mysql" />
+                  <option value="Redis" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/common/global/global.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751200030931" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/common/inits/init.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751200103091" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/common/model/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751200217154" />
+              <option name="schema">
+                <list>
+                  <option value="User" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/base/base.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203131525" />
+              <option name="schema">
+                <list>
+                  <option value="BaseResp" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/base/k-base.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203131525" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/base/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203131525" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203131525" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/k-user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203720418" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203244038" />
+              <option name="schema">
+                <list>
+                  <option value="CreateUserReq" />
+                  <option value="CreateUserResp" />
+                  <option value="LoginUserReq" />
+                  <option value="LoginUserResp" />
+                  <option value="UserCreateUserArgs" />
+                  <option value="UserCreateUserResult" />
+                  <option value="UserLoginUserArgs" />
+                  <option value="UserLoginUserResult" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203131525" />
+              <option name="schema">
+                <list>
+                  <option value="kUserClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203131525" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203131525" />
+              <option name="schema">
+                <list>
+                  <option value="kClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/srock/handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203192449" />
+              <option name="schema">
+                <list>
+                  <option value="UserImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/srock/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751200837062" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/utlis/jwt.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751203429859" />
+              <option name="schema">
+                <list>
+                  <option value="CustomClaims" />
+                  <option value="JWT" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="tableStructMapping">
+      <map>
+        <entry key="base_resp" value="BaseResp" />
+        <entry key="config" value="Config" />
+        <entry key="create_user_req" value="CreateUserReq" />
+        <entry key="create_user_resp" value="CreateUserResp" />
+        <entry key="custom_claims" value="CustomClaims" />
+        <entry key="jwt" value="JWT" />
+        <entry key="k_client" value="kClient" />
+        <entry key="k_user_client" value="kUserClient" />
+        <entry key="login_user_req" value="LoginUserReq" />
+        <entry key="login_user_resp" value="LoginUserResp" />
+        <entry key="mysql" value="Mysql" />
+        <entry key="redis" value="Redis" />
+        <entry key="system" value="System" />
+        <entry key="user" value="User" />
+        <entry key="user_create_user_args" value="UserCreateUserArgs" />
+        <entry key="user_create_user_result" value="UserCreateUserResult" />
+        <entry key="user_impl" value="UserImpl" />
+        <entry key="user_login_user_args" value="UserLoginUserArgs" />
+        <entry key="user_login_user_result" value="UserLoginUserResult" />
+      </map>
+    </option>
+    <option name="lastTimeChecked" value="1751197024182" />
   </component>
 </project>

@@ -1,0 +1,10 @@
+Mysql:
+  User: root
+  Password: badb6fe15b05b84863ff1e2b249deab2
+  Host: 14.103.243.15
+  Port: 3306
+  Database: taxi_platform
+Redis:
+  Addr: 14.103.243.15:6379
+  Password: badb6fe15b05b84863ff1e2b249deab2
+  Db: 0
