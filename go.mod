@@ -1,4 +1,4 @@
-module kitexTwo
+module Ride_hailing_platform
 
 go 1.24.4
 
