@@ -10,11 +10,43 @@
             </set>
           </value>
         </entry>
+        <entry key="CalblackReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/biz/handler/request/wechat.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="CallACarReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/biz/handler/request/driver.go" />
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driver.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/client/handler/request/order.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/order/order.go" />
+              <option value="file://$PROJECT_DIR$/kitex/client/handler/request/order.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/order/order.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="CallACarResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driver.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/order/order.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/order/order.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="Config">
           <value>
             <set>
+              <option value="file://$PROJECT_DIR$/Didi/biz/dal/config/config.go" />
+              <option value="file://$PROJECT_DIR$/Didi/rpc/common/config/config.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/config/config.go" />
               <option value="file://$PROJECT_DIR$/client/basic/config/config.go" />
               <option value="file://$PROJECT_DIR$/common/config/config.go" />
+              <option value="file://$PROJECT_DIR$/kitex/basic/config/config.go" />
             </set>
           </value>
         </entry>
@@ -36,21 +68,166 @@
         <entry key="CustomClaims">
           <value>
             <set>
+              <option value="file://$PROJECT_DIR$/Didi/biz/dal/middleware/jwt.go" />
+              <option value="file://$PROJECT_DIR$/Didi/biz/middleware/jwt.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/client/utils/jwt.go" />
+              <option value="file://$PROJECT_DIR$/kitex/client/utils/jwt.go" />
               <option value="file://$PROJECT_DIR$/utlis/jwt.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Driver">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/rpc/common/model/driver.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/model/driver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/basic/model/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverApplication">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/rpc/common/model/driver_application.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/model/driver_application.go" />
+              <option value="file://$PROJECT_DIR$/kitex/basic/model/driver_application.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverApplicationReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/client/handler/request/driver.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/client/handler/request/driver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverApplicationResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/rpc/common/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/client/handler/request/driver.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/client/handler/request/driver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServer">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/config/config.go" />
+              <option value="file://$PROJECT_DIR$/kitex/basic/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerCallACarArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerCallACarResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerDriverApplicationArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerDriverApplicationResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerDriverArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerDriverResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DriverServerImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/rpc/driver/handler.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/rpc/driver/handler.go" />
+              <option value="file://$PROJECT_DIR$/kitex/rpc/driver/handler.go" />
             </set>
           </value>
         </entry>
         <entry key="JWT">
           <value>
             <set>
+              <option value="file://$PROJECT_DIR$/Didi/biz/dal/middleware/jwt.go" />
+              <option value="file://$PROJECT_DIR$/Didi/biz/middleware/jwt.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/client/utils/jwt.go" />
+              <option value="file://$PROJECT_DIR$/kitex/client/utils/jwt.go" />
               <option value="file://$PROJECT_DIR$/utlis/jwt.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LoginReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/biz/dal/handler/request/user.go" />
+              <option value="file://$PROJECT_DIR$/Didi/biz/handler/request/user.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/client/handler/request/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/client/handler/request/user.go" />
             </set>
           </value>
         </entry>
         <entry key="LoginUserReq">
           <value>
             <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go" />
               <option value="file://$PROJECT_DIR$/client/handler/request/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go" />
               <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user.go" />
             </set>
           </value>
@@ -58,6 +235,9 @@
         <entry key="LoginUserResp">
           <value>
             <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go" />
               <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user.go" />
             </set>
           </value>
@@ -65,20 +245,113 @@
         <entry key="Mysql">
           <value>
             <set>
+              <option value="file://$PROJECT_DIR$/Didi/rpc/common/config/config.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/config/config.go" />
               <option value="file://$PROJECT_DIR$/common/config/config.go" />
+              <option value="file://$PROJECT_DIR$/kitex/basic/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Order">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/model/order.go" />
+              <option value="file://$PROJECT_DIR$/kitex/basic/model/order.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="OrderServer">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/config/config.go" />
+              <option value="file://$PROJECT_DIR$/kitex/basic/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="OrderServerCallACarArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/order/order.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/order/order.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="OrderServerCallACarResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/order/order.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/order/order.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="OrderServerImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/rpc/order/handler.go" />
+              <option value="file://$PROJECT_DIR$/kitex/rpc/order/handler.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RealNameReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/biz/handler/request/user.go" />
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/client/handler/request/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/client/handler/request/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RealNameResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" />
             </set>
           </value>
         </entry>
         <entry key="Redis">
           <value>
             <set>
+              <option value="file://$PROJECT_DIR$/Didi/rpc/common/config/config.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/config/config.go" />
               <option value="file://$PROJECT_DIR$/common/config/config.go" />
+              <option value="file://$PROJECT_DIR$/kitex/basic/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SendSmsReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/biz/dal/handler/request/user.go" />
+              <option value="file://$PROJECT_DIR$/Didi/biz/handler/request/user.go" />
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/client/handler/request/user.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/client/handler/request/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SendSmsResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SignReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/biz/handler/request/wechat.go" />
             </set>
           </value>
         </entry>
         <entry key="System">
           <value>
             <set>
+              <option value="file://$PROJECT_DIR$/Didi/biz/dal/config/config.go" />
               <option value="file://$PROJECT_DIR$/client/basic/config/config.go" />
             </set>
           </value>
@@ -86,7 +359,18 @@
         <entry key="User">
           <value>
             <set>
+              <option value="file://$PROJECT_DIR$/Didi/rpc/common/model/user.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/model/user.go" />
               <option value="file://$PROJECT_DIR$/common/model/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/basic/model/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/biz/dal/config/config.go" />
+              <option value="file://$PROJECT_DIR$/Didi/rpc/common/config/config.go" />
             </set>
           </value>
         </entry>
@@ -125,10 +409,134 @@
             </set>
           </value>
         </entry>
+        <entry key="UserRealNameReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserRealNameResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServer">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/config/config.go" />
+              <option value="file://$PROJECT_DIR$/kitex/basic/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/rpc/user/handler.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/rpc/user/handler.go" />
+              <option value="file://$PROJECT_DIR$/kitex/rpc/user/handler.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerLoginUserArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerLoginUserResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerRealNameArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerRealNameResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerSendSmsArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerSendSmsResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerUserRealNameArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerUserRealNameResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="kClient">
           <value>
             <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driverserver/driverserver.go" />
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/userserver/userserver.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driverserver/driverserver.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/order/orderserver/orderserver.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/userserver/userserver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driverserver/driverserver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/order/orderserver/orderserver.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/userserver/userserver.go" />
               <option value="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="kDriverServerClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driverserver/client.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driverserver/client.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driverserver/client.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="kOrderServerClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/order/orderserver/client.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/order/orderserver/client.go" />
             </set>
           </value>
         </entry>
@@ -139,28 +547,965 @@
             </set>
           </value>
         </entry>
+        <entry key="kUserServerClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/userserver/client.go" />
+              <option value="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/userserver/client.go" />
+              <option value="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/userserver/client.go" />
+            </set>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="scannedPathMapping">
       <map>
-        <entry key="file://$PROJECT_DIR$/api/client/userClient.go">
+        <entry key="file://$PROJECT_DIR$/Didi/biz/dal/config/config.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751199438832" />
+              <option name="lastModified" value="1751859946915" />
+              <option name="schema">
+                <list>
+                  <option value="Config" />
+                  <option value="System" />
+                  <option value="UserClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/dal/global/global.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751860796245" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/dal/handler/api/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751857880726" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/dal/handler/request/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751857344997" />
+              <option name="schema">
+                <list>
+                  <option value="SendSmsReq" />
+                  <option value="LoginReq" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/dal/init/init.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751858144129" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/dal/inits/init.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751859272916" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/dal/middleware/jwt.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751857749904" />
+              <option name="schema">
+                <list>
+                  <option value="CustomClaims" />
+                  <option value="JWT" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/dal/router/router.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751857260272" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/dal/router/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751857320718" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/handler/api/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751874737027" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/handler/api/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751874756054" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/handler/api/wechat.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751860988573" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/handler/request/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751874585595" />
+              <option name="schema">
+                <list>
+                  <option value="CallACarReq" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/handler/request/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751861703707" />
+              <option name="schema">
+                <list>
+                  <option value="SendSmsReq" />
+                  <option value="LoginReq" />
+                  <option value="RealNameReq" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/handler/request/wechat.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751860652312" />
+              <option name="schema">
+                <list>
+                  <option value="SignReq" />
+                  <option value="CalblackReq" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751858256592" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/middleware/jwt.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751857749904" />
+              <option name="schema">
+                <list>
+                  <option value="CustomClaims" />
+                  <option value="JWT" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/router/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751874519636" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/router/router.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751874434950" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/router/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751861598859" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/biz/router/weChat.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751860585288" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/idl/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751873160186" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751874236810" />
+              <option name="schema">
+                <list>
+                  <option value="CallACarReq" />
+                  <option value="CallACarResp" />
+                  <option value="DriverServerCallACarArgs" />
+                  <option value="DriverServerCallACarResult" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driverserver/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751874236809" />
+              <option name="schema">
+                <list>
+                  <option value="kDriverServerClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driverserver/driverserver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751874236810" />
+              <option name="schema">
+                <list>
+                  <option value="kClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driverserver/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751874236809" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751874236809" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/k-driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751874236811" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751861173141" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/k-user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751861173143" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751861173141" />
+              <option name="schema">
+                <list>
+                  <option value="SendSmsReq" />
+                  <option value="SendSmsResp" />
+                  <option value="LoginUserReq" />
+                  <option value="LoginUserResp" />
+                  <option value="RealNameReq" />
+                  <option value="RealNameResp" />
+                  <option value="UserServerSendSmsArgs" />
+                  <option value="UserServerSendSmsResult" />
+                  <option value="UserServerLoginUserArgs" />
+                  <option value="UserServerLoginUserResult" />
+                  <option value="UserServerRealNameArgs" />
+                  <option value="UserServerRealNameResult" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/userserver/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751861173141" />
+              <option name="schema">
+                <list>
+                  <option value="kUserServerClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/userserver/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751861173141" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/kitex_gen/Didi/user/userserver/userserver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751861173142" />
+              <option name="schema">
+                <list>
+                  <option value="kClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/rpc/common/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751858353898" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/rpc/common/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751873804071" />
+              <option name="schema">
+                <list>
+                  <option value="Config" />
+                  <option value="Mysql" />
+                  <option value="Redis" />
+                  <option value="UserClient" />
+                  <option value="DriverClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/rpc/common/global/global.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751858631536" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/rpc/common/inits/init.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751859340739" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/rpc/common/model/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751870994611" />
+              <option name="schema">
+                <list>
+                  <option value="Driver" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/rpc/common/model/driver_application.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751873804142" />
+              <option name="schema">
+                <list>
+                  <option value="DriverApplication" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/rpc/common/model/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751860109103" />
+              <option name="schema">
+                <list>
+                  <option value="User" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/rpc/driver/handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751874299692" />
+              <option name="schema">
+                <list>
+                  <option value="DriverServerImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/rpc/driver/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751873943599" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/rpc/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751856949244" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/rpc/user/handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751861469167" />
+              <option name="schema">
+                <list>
+                  <option value="UserServerImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/rpc/user/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751858788742" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/utils/idcard.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751861279290" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/utils/mobile.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751861267367" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/Didi/utils/wechatCode.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751860803040" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751810323152" />
+              <option name="schema">
+                <list>
+                  <option value="Config" />
+                  <option value="Mysql" />
+                  <option value="Redis" />
+                  <option value="UserServer" />
+                  <option value="DriverServer" />
+                  <option value="OrderServer" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/global/global.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751806788330" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/inits/inits.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751804119330" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/model/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751812170101" />
+              <option name="schema">
+                <list>
+                  <option value="Driver" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/model/driver_application.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751810048698" />
+              <option name="schema">
+                <list>
+                  <option value="DriverApplication" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/model/order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808304570" />
+              <option name="schema">
+                <list>
+                  <option value="Order" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/basic/model/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751804455362" />
+              <option name="schema">
+                <list>
+                  <option value="User" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/basic/cmd/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805341391" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/cmd/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751807024373" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/handler/api/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751812228120" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/handler/api/order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751809760966" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/handler/api/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751809657816" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/handler/request/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751812179763" />
+              <option name="schema">
+                <list>
+                  <option value="DriverApplicationReq" />
+                  <option value="DriverReq" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/handler/request/order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751809601207" />
+              <option name="schema">
+                <list>
+                  <option value="CallACarReq" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/handler/request/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805692211" />
+              <option name="schema">
+                <list>
+                  <option value="SendSmsReq" />
+                  <option value="LoginReq" />
+                  <option value="RealNameReq" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/router/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751812169955" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/router/order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751809520526" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/router/router.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811003680" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/router/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805636882" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/utils/idCard.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751806922432" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/utils/jwt.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751806788334" />
+              <option name="schema">
+                <list>
+                  <option value="CustomClaims" />
+                  <option value="JWT" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/client/utils/mobile.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805830918" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/idl/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751809809447" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/idl/order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808238934" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811727694" />
+              <option name="schema">
+                <list>
+                  <option value="DriverApplicationReq" />
+                  <option value="DriverApplicationResp" />
+                  <option value="DriverReq" />
+                  <option value="DriverResp" />
+                  <option value="DriverServerDriverApplicationArgs" />
+                  <option value="DriverServerDriverApplicationResult" />
+                  <option value="DriverServerDriverArgs" />
+                  <option value="DriverServerDriverResult" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driverserver/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811727694" />
+              <option name="schema">
+                <list>
+                  <option value="kDriverServerClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driverserver/driverserver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811727694" />
+              <option name="schema">
+                <list>
+                  <option value="kClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/driverserver/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811727694" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811727694" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/driver/k-driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811727696" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/order/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808535845" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/order/k-order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808535851" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/order/order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808535851" />
+              <option name="schema">
+                <list>
+                  <option value="CallACarReq" />
+                  <option value="CallACarResp" />
+                  <option value="OrderServerCallACarArgs" />
+                  <option value="OrderServerCallACarResult" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/order/orderserver/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808535851" />
+              <option name="schema">
+                <list>
+                  <option value="kOrderServerClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/order/orderserver/orderserver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808535851" />
+              <option name="schema">
+                <list>
+                  <option value="kClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/order/orderserver/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808535845" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805078902" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/k-user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805078904" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805078902" />
+              <option name="schema">
+                <list>
+                  <option value="SendSmsReq" />
+                  <option value="SendSmsResp" />
+                  <option value="LoginUserReq" />
+                  <option value="LoginUserResp" />
+                  <option value="UserRealNameReq" />
+                  <option value="UserRealNameResp" />
+                  <option value="UserServerSendSmsArgs" />
+                  <option value="UserServerSendSmsResult" />
+                  <option value="UserServerLoginUserArgs" />
+                  <option value="UserServerLoginUserResult" />
+                  <option value="UserServerUserRealNameArgs" />
+                  <option value="UserServerUserRealNameResult" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/userserver/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805078902" />
+              <option name="schema">
+                <list>
+                  <option value="kUserServerClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/userserver/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805078902" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/kitex_gen/kitex/user/userserver/userserver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805078902" />
+              <option name="schema">
+                <list>
+                  <option value="kClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/rpc/driver/handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751812059316" />
+              <option name="schema">
+                <list>
+                  <option value="DriverServerImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/rpc/driver/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751810491192" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/rpc/order/handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751809383362" />
+              <option name="schema">
+                <list>
+                  <option value="OrderServerImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/rpc/order/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808730211" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/rpc/user/handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751806994962" />
+              <option name="schema">
+                <list>
+                  <option value="UserServerImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/TakeATaxi/kitex/rpc/user/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751804333702" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/client/basic/cmd/main.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751201346500" />
+              <option name="lastModified" value="1751205899876" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/client/basic/config/config.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751202169485" />
+              <option name="lastModified" value="1751205501021" />
               <option name="schema">
                 <list>
                   <option value="Config" />
@@ -173,35 +1518,28 @@
         <entry key="file://$PROJECT_DIR$/client/basic/config/global.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203429865" />
-            </ScannedPath>
-          </value>
-        </entry>
-        <entry key="file://$PROJECT_DIR$/client/basic/global/global.go">
-          <value>
-            <ScannedPath>
-              <option name="lastModified" value="1751202286074" />
+              <option name="lastModified" value="1751205501021" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/client/basic/inits/init.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751202368445" />
+              <option name="lastModified" value="1751205899872" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/client/handler/api/user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203689180" />
+              <option name="lastModified" value="1751205899868" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/client/handler/request/user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203339616" />
+              <option name="lastModified" value="1751205501022" />
               <option name="schema">
                 <list>
                   <option value="CreateUserReq" />
@@ -214,21 +1552,21 @@
         <entry key="file://$PROJECT_DIR$/client/router/router.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751201346589" />
+              <option name="lastModified" value="1751205501022" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/client/router/user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203339650" />
+              <option name="lastModified" value="1751205899865" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/common/config/config.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751200030941" />
+              <option name="lastModified" value="1751205501022" />
               <option name="schema">
                 <list>
                   <option value="Config" />
@@ -242,21 +1580,21 @@
         <entry key="file://$PROJECT_DIR$/common/global/global.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751200030931" />
+              <option name="lastModified" value="1751205899722" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/common/inits/init.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751200103091" />
+              <option name="lastModified" value="1751205847577" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/common/model/user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751200217154" />
+              <option name="lastModified" value="1751205501023" />
               <option name="schema">
                 <list>
                   <option value="User" />
@@ -265,10 +1603,460 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/basic/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751810323152" />
+              <option name="schema">
+                <list>
+                  <option value="Config" />
+                  <option value="Mysql" />
+                  <option value="Redis" />
+                  <option value="UserServer" />
+                  <option value="DriverServer" />
+                  <option value="OrderServer" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/basic/global/global.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751806788330" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/basic/inits/inits.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751804119330" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/basic/model/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751812170101" />
+              <option name="schema">
+                <list>
+                  <option value="Driver" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/basic/model/driver_application.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751810048698" />
+              <option name="schema">
+                <list>
+                  <option value="DriverApplication" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/basic/model/order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808304570" />
+              <option name="schema">
+                <list>
+                  <option value="Order" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/basic/model/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751804455362" />
+              <option name="schema">
+                <list>
+                  <option value="User" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/cmd/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751807024373" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/handler/api/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751812228120" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/handler/api/order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751809760966" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/handler/api/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751809657816" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/handler/request/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751812179763" />
+              <option name="schema">
+                <list>
+                  <option value="DriverApplicationReq" />
+                  <option value="DriverReq" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/handler/request/order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751809601207" />
+              <option name="schema">
+                <list>
+                  <option value="CallACarReq" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/handler/request/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805692211" />
+              <option name="schema">
+                <list>
+                  <option value="SendSmsReq" />
+                  <option value="LoginReq" />
+                  <option value="RealNameReq" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/router/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751812169955" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/router/order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751809520526" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/router/router.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811003680" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/router/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805636882" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/utils/idCard.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751806922432" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/utils/jwt.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751806788334" />
+              <option name="schema">
+                <list>
+                  <option value="CustomClaims" />
+                  <option value="JWT" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/client/utils/mobile.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805830918" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811727694" />
+              <option name="schema">
+                <list>
+                  <option value="DriverApplicationReq" />
+                  <option value="DriverApplicationResp" />
+                  <option value="DriverReq" />
+                  <option value="DriverResp" />
+                  <option value="DriverServerDriverApplicationArgs" />
+                  <option value="DriverServerDriverApplicationResult" />
+                  <option value="DriverServerDriverArgs" />
+                  <option value="DriverServerDriverResult" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driverserver/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811727694" />
+              <option name="schema">
+                <list>
+                  <option value="kDriverServerClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driverserver/driverserver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811727694" />
+              <option name="schema">
+                <list>
+                  <option value="kClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/driverserver/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811727694" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811727694" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/driver/k-driver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751811727696" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/order/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808535845" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/order/k-order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808535851" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/order/order.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808535851" />
+              <option name="schema">
+                <list>
+                  <option value="CallACarReq" />
+                  <option value="CallACarResp" />
+                  <option value="OrderServerCallACarArgs" />
+                  <option value="OrderServerCallACarResult" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/order/orderserver/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808535851" />
+              <option name="schema">
+                <list>
+                  <option value="kOrderServerClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/order/orderserver/orderserver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808535851" />
+              <option name="schema">
+                <list>
+                  <option value="kClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/order/orderserver/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808535845" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805078902" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/k-user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805078904" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805078902" />
+              <option name="schema">
+                <list>
+                  <option value="SendSmsReq" />
+                  <option value="SendSmsResp" />
+                  <option value="LoginUserReq" />
+                  <option value="LoginUserResp" />
+                  <option value="UserRealNameReq" />
+                  <option value="UserRealNameResp" />
+                  <option value="UserServerSendSmsArgs" />
+                  <option value="UserServerSendSmsResult" />
+                  <option value="UserServerLoginUserArgs" />
+                  <option value="UserServerLoginUserResult" />
+                  <option value="UserServerUserRealNameArgs" />
+                  <option value="UserServerUserRealNameResult" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/userserver/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805078902" />
+              <option name="schema">
+                <list>
+                  <option value="kUserServerClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/userserver/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805078902" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/kitex_gen/kitex/user/userserver/userserver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751805078902" />
+              <option name="schema">
+                <list>
+                  <option value="kClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/rpc/driver/handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751812059316" />
+              <option name="schema">
+                <list>
+                  <option value="DriverServerImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/rpc/driver/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751810491192" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/rpc/order/handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751809383362" />
+              <option name="schema">
+                <list>
+                  <option value="OrderServerImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/rpc/order/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751808730211" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/rpc/user/handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751806994962" />
+              <option name="schema">
+                <list>
+                  <option value="UserServerImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex/rpc/user/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751804333702" />
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/base/base.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203131525" />
+              <option name="lastModified" value="1751205501025" />
               <option name="schema">
                 <list>
                   <option value="BaseResp" />
@@ -280,35 +2068,35 @@
         <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/base/k-base.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203131525" />
+              <option name="lastModified" value="1751205501025" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/base/k-consts.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203131525" />
+              <option name="lastModified" value="1751205501025" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/k-consts.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203131525" />
+              <option name="lastModified" value="1751205501025" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/k-user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203720418" />
+              <option name="lastModified" value="1751205847398" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203244038" />
+              <option name="lastModified" value="1751205501026" />
               <option name="schema">
                 <list>
                   <option value="CreateUserReq" />
@@ -327,7 +2115,7 @@
         <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user/client.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203131525" />
+              <option name="lastModified" value="1751205908369" />
               <option name="schema">
                 <list>
                   <option value="kUserClient" />
@@ -339,14 +2127,14 @@
         <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user/server.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203131525" />
+              <option name="lastModified" value="1751205916469" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/kitex_gen/kitexTwo/user/user/user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203131525" />
+              <option name="lastModified" value="1751205931093" />
               <option name="schema">
                 <list>
                   <option value="kClient" />
@@ -358,7 +2146,7 @@
         <entry key="file://$PROJECT_DIR$/kitex_gen/srock/handler.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203192449" />
+              <option name="lastModified" value="1751205854667" />
               <option name="schema">
                 <list>
                   <option value="UserImpl" />
@@ -370,14 +2158,14 @@
         <entry key="file://$PROJECT_DIR$/kitex_gen/srock/main.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751200837062" />
+              <option name="lastModified" value="1751205847573" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/utlis/jwt.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751203429859" />
+              <option name="lastModified" value="1751205501027" />
               <option name="schema">
                 <list>
                   <option value="CustomClaims" />
@@ -392,26 +2180,71 @@
     <option name="tableStructMapping">
       <map>
         <entry key="base_resp" value="BaseResp" />
+        <entry key="calblack_req" value="CalblackReq" />
+        <entry key="call_a_car_req" value="CallACarReq" />
+        <entry key="call_a_car_resp" value="CallACarResp" />
         <entry key="config" value="Config" />
         <entry key="create_user_req" value="CreateUserReq" />
         <entry key="create_user_resp" value="CreateUserResp" />
         <entry key="custom_claims" value="CustomClaims" />
+        <entry key="driver" value="Driver" />
+        <entry key="driver_application" value="DriverApplication" />
+        <entry key="driver_application_req" value="DriverApplicationReq" />
+        <entry key="driver_application_resp" value="DriverApplicationResp" />
+        <entry key="driver_client" value="DriverClient" />
+        <entry key="driver_req" value="DriverReq" />
+        <entry key="driver_resp" value="DriverResp" />
+        <entry key="driver_server" value="DriverServer" />
+        <entry key="driver_server_call_a_car_args" value="DriverServerCallACarArgs" />
+        <entry key="driver_server_call_a_car_result" value="DriverServerCallACarResult" />
+        <entry key="driver_server_driver_application_args" value="DriverServerDriverApplicationArgs" />
+        <entry key="driver_server_driver_application_result" value="DriverServerDriverApplicationResult" />
+        <entry key="driver_server_driver_args" value="DriverServerDriverArgs" />
+        <entry key="driver_server_driver_result" value="DriverServerDriverResult" />
+        <entry key="driver_server_impl" value="DriverServerImpl" />
         <entry key="jwt" value="JWT" />
         <entry key="k_client" value="kClient" />
+        <entry key="k_driver_server_client" value="kDriverServerClient" />
+        <entry key="k_order_server_client" value="kOrderServerClient" />
         <entry key="k_user_client" value="kUserClient" />
+        <entry key="k_user_server_client" value="kUserServerClient" />
+        <entry key="login_req" value="LoginReq" />
         <entry key="login_user_req" value="LoginUserReq" />
         <entry key="login_user_resp" value="LoginUserResp" />
         <entry key="mysql" value="Mysql" />
+        <entry key="order" value="Order" />
+        <entry key="order_server" value="OrderServer" />
+        <entry key="order_server_call_a_car_args" value="OrderServerCallACarArgs" />
+        <entry key="order_server_call_a_car_result" value="OrderServerCallACarResult" />
+        <entry key="order_server_impl" value="OrderServerImpl" />
+        <entry key="real_name_req" value="RealNameReq" />
+        <entry key="real_name_resp" value="RealNameResp" />
         <entry key="redis" value="Redis" />
+        <entry key="send_sms_req" value="SendSmsReq" />
+        <entry key="send_sms_resp" value="SendSmsResp" />
+        <entry key="sign_req" value="SignReq" />
         <entry key="system" value="System" />
         <entry key="user" value="User" />
+        <entry key="user_client" value="UserClient" />
         <entry key="user_create_user_args" value="UserCreateUserArgs" />
         <entry key="user_create_user_result" value="UserCreateUserResult" />
         <entry key="user_impl" value="UserImpl" />
         <entry key="user_login_user_args" value="UserLoginUserArgs" />
         <entry key="user_login_user_result" value="UserLoginUserResult" />
+        <entry key="user_real_name_req" value="UserRealNameReq" />
+        <entry key="user_real_name_resp" value="UserRealNameResp" />
+        <entry key="user_server" value="UserServer" />
+        <entry key="user_server_impl" value="UserServerImpl" />
+        <entry key="user_server_login_user_args" value="UserServerLoginUserArgs" />
+        <entry key="user_server_login_user_result" value="UserServerLoginUserResult" />
+        <entry key="user_server_real_name_args" value="UserServerRealNameArgs" />
+        <entry key="user_server_real_name_result" value="UserServerRealNameResult" />
+        <entry key="user_server_send_sms_args" value="UserServerSendSmsArgs" />
+        <entry key="user_server_send_sms_result" value="UserServerSendSmsResult" />
+        <entry key="user_server_user_real_name_args" value="UserServerUserRealNameArgs" />
+        <entry key="user_server_user_real_name_result" value="UserServerUserRealNameResult" />
       </map>
     </option>
-    <option name="lastTimeChecked" value="1751197024182" />
+    <option name="lastTimeChecked" value="1751802929791" />
   </component>
 </project>
