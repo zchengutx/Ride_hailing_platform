@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="78b030c1-8e7f-4dd3-92d3-cc049629c2a8" name="更改" comment="Merge remote-tracking branch 'origin/lyt' into lyt&#10;&#10;# Conflicts:&#10;#&#9;go.mod" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.4.windows-amd64" />
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="李宇涛 &lt;210461925@qq.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;liyutao210461925&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/zchengutx/Ride_hailing_platform.git&quot;,
+    &quot;accountId&quot;: &quot;f8e281e2-fd60-4637-9bf1-5bfdc2d9c6e5&quot;
+  }
+}</component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2zBXao6zmah9Jsncexmyjr6abHz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go 构建.go build Didi/biz.executor": "Run",
+    "Go 构建.go build Didi/rpc/driver.executor": "Run",
+    "Go 构建.go build Didi/rpc/user.executor": "Run",
+    "Go 构建.go build Ride_hailing_platform/client/basic/cmd.executor": "Run",
+    "Go 构建.go build Ride_hailing_platform/kitex_gen/srock.executor": "Run",
+    "Go 构建.go build kitex/client/cmd.executor": "Run",
+    "Go 构建.go build kitex/rpc/driver.executor": "Run",
+    "Go 构建.go build kitex/rpc/order.executor": "Run",
+    "Go 构建.go build kitex/rpc/user.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.GoLinterPluginOnboarding": "true",
+    "RunOnceActivity.GoLinterPluginStorageMigration": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "lyt",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "D:/gowork/src/Ride_hailing_platform/Didi",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "go.vgo",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\gowork\src\Ride_hailing_platform\Didi" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\gowork\src\Ride_hailing_platform\Didi\biz" />
+      <recent name="D:\gowork\src\Ride_hailing_platform\TakeATaxi\kitex\client" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="GoApplicationRunConfiguration" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Go 构建.go build Didi/rpc/driver">
+    <configuration name="go build Didi/biz" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Ride_hailing_platform" />
+      <working_directory value="$PROJECT_DIR$/Didi" />
+      <kind value="PACKAGE" />
+      <package value="Didi/biz" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/Didi/biz/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build Didi/rpc/driver" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Ride_hailing_platform" />
+      <working_directory value="$PROJECT_DIR$/Didi" />
+      <kind value="PACKAGE" />
+      <package value="Didi/rpc/driver" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/Didi/rpc/driver/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build Didi/rpc/user" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Ride_hailing_platform" />
+      <working_directory value="$PROJECT_DIR$/Didi" />
+      <kind value="PACKAGE" />
+      <package value="Didi/rpc/user" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/Didi/rpc/user/main.go" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Go 构建.go build Didi/biz" />
+      <item itemvalue="Go 构建.go build Didi/rpc/user" />
+      <item itemvalue="Go 构建.go build Didi/rpc/driver" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go 构建.go build Didi/biz" />
+        <item itemvalue="Go 构建.go build Didi/rpc/user" />
+        <item itemvalue="Go 构建.go build Didi/rpc/driver" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-3b128438d3f6-4b567d62c776-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-251.26094.127" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-GO-251.26094.127" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="78b030c1-8e7f-4dd3-92d3-cc049629c2a8" name="更改" comment="" />
+      <created>1751205506426</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751205506426</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update go.mod" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/lyt' into lyt&#10;&#10;# Conflicts:&#10;#&#9;go.mod" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/lyt' into lyt&#10;&#10;# Conflicts:&#10;#&#9;go.mod" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
