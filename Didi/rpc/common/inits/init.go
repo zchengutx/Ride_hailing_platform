@@ -2,6 +2,7 @@ package inits
 
 import (
 	"Didi/rpc/common/global"
+	"Didi/utils"
 	"context"
 	"fmt"
 	"log"
@@ -18,6 +19,7 @@ func init() {
 	InitViper()
 	InitMysql()
 	InitRedis()
+	InitRabbitMQ()
 }
 
 // findConfigFile 查找配置文件的路径
@@ -102,4 +104,15 @@ func InitRedis() {
 		panic(fmt.Errorf("redis连接失败: %s \n", err))
 	}
 	log.Println("redis连接成功", global.Rdb)
+}
+
+func InitRabbitMQ() {
+	err := utils.InitRabbitMQ()
+	if err != nil {
+		log.Printf("RabbitMQ连接失败: %v", err)
+		// 注意：这里不用panic，因为RabbitMQ可能在开发环境中不可用
+		// 在生产环境中可以考虑panic或者其他处理方式
+	} else {
+		log.Println("RabbitMQ连接成功")
+	}
 }

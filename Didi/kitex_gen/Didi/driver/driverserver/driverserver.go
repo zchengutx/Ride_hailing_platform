@@ -21,6 +21,34 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"DriverAudit": kitex.NewMethodInfo(
+		driverAuditHandler,
+		newDriverServerDriverAuditArgs,
+		newDriverServerDriverAuditResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"AddDriver": kitex.NewMethodInfo(
+		addDriverHandler,
+		newDriverServerAddDriverArgs,
+		newDriverServerAddDriverResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"DriverOnline": kitex.NewMethodInfo(
+		driverOnlineHandler,
+		newDriverServerDriverOnlineArgs,
+		newDriverServerDriverOnlineResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
+	"ReceivingOrder": kitex.NewMethodInfo(
+		receivingOrderHandler,
+		newDriverServerReceivingOrderArgs,
+		newDriverServerReceivingOrderResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -105,6 +133,78 @@ func newDriverServerCallACarResult() interface{} {
 	return driver.NewDriverServerCallACarResult()
 }
 
+func driverAuditHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*driver.DriverServerDriverAuditArgs)
+	realResult := result.(*driver.DriverServerDriverAuditResult)
+	success, err := handler.(driver.DriverServer).DriverAudit(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newDriverServerDriverAuditArgs() interface{} {
+	return driver.NewDriverServerDriverAuditArgs()
+}
+
+func newDriverServerDriverAuditResult() interface{} {
+	return driver.NewDriverServerDriverAuditResult()
+}
+
+func addDriverHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*driver.DriverServerAddDriverArgs)
+	realResult := result.(*driver.DriverServerAddDriverResult)
+	success, err := handler.(driver.DriverServer).AddDriver(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newDriverServerAddDriverArgs() interface{} {
+	return driver.NewDriverServerAddDriverArgs()
+}
+
+func newDriverServerAddDriverResult() interface{} {
+	return driver.NewDriverServerAddDriverResult()
+}
+
+func driverOnlineHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*driver.DriverServerDriverOnlineArgs)
+	realResult := result.(*driver.DriverServerDriverOnlineResult)
+	success, err := handler.(driver.DriverServer).DriverOnline(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newDriverServerDriverOnlineArgs() interface{} {
+	return driver.NewDriverServerDriverOnlineArgs()
+}
+
+func newDriverServerDriverOnlineResult() interface{} {
+	return driver.NewDriverServerDriverOnlineResult()
+}
+
+func receivingOrderHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*driver.DriverServerReceivingOrderArgs)
+	realResult := result.(*driver.DriverServerReceivingOrderResult)
+	success, err := handler.(driver.DriverServer).ReceivingOrder(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newDriverServerReceivingOrderArgs() interface{} {
+	return driver.NewDriverServerReceivingOrderArgs()
+}
+
+func newDriverServerReceivingOrderResult() interface{} {
+	return driver.NewDriverServerReceivingOrderResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -120,6 +220,46 @@ func (p *kClient) CallACar(ctx context.Context, req *driver0.CallACarReq) (r *dr
 	_args.Req = req
 	var _result driver.DriverServerCallACarResult
 	if err = p.c.Call(ctx, "CallACar", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) DriverAudit(ctx context.Context, req *driver0.DriverAuditReq) (r *driver0.DriverAuditResp, err error) {
+	var _args driver.DriverServerDriverAuditArgs
+	_args.Req = req
+	var _result driver.DriverServerDriverAuditResult
+	if err = p.c.Call(ctx, "DriverAudit", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) AddDriver(ctx context.Context, req *driver0.AddDriverReq) (r *driver0.AddDriverResp, err error) {
+	var _args driver.DriverServerAddDriverArgs
+	_args.Req = req
+	var _result driver.DriverServerAddDriverResult
+	if err = p.c.Call(ctx, "AddDriver", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) DriverOnline(ctx context.Context, req *driver0.DriverOnlineReq) (r *driver0.DriverOnlineResp, err error) {
+	var _args driver.DriverServerDriverOnlineArgs
+	_args.Req = req
+	var _result driver.DriverServerDriverOnlineResult
+	if err = p.c.Call(ctx, "DriverOnline", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) ReceivingOrder(ctx context.Context, req *driver0.ReceivingOrderReq) (r *driver0.ReceivingOrderResp, err error) {
+	var _args driver.DriverServerReceivingOrderArgs
+	_args.Req = req
+	var _result driver.DriverServerReceivingOrderResult
+	if err = p.c.Call(ctx, "ReceivingOrder", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

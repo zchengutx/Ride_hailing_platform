@@ -271,12 +271,108 @@ var fieldIDToName_RealNameResp = map[int16]string{
 	2: "message",
 }
 
+type TakeACarReq struct {
+	UId           int64  `thrift:"UId,1" frugal:"1,default,i64" json:"UId"`
+	StartLocation string `thrift:"startLocation,2" frugal:"2,default,string" json:"startLocation"`
+	EndLocation   string `thrift:"endLocation,3" frugal:"3,default,string" json:"endLocation"`
+	CartType      string `thrift:"cartType,4" frugal:"4,default,string" json:"cartType"`
+}
+
+func NewTakeACarReq() *TakeACarReq {
+	return &TakeACarReq{}
+}
+
+func (p *TakeACarReq) InitDefault() {
+}
+
+func (p *TakeACarReq) GetUId() (v int64) {
+	return p.UId
+}
+
+func (p *TakeACarReq) GetStartLocation() (v string) {
+	return p.StartLocation
+}
+
+func (p *TakeACarReq) GetEndLocation() (v string) {
+	return p.EndLocation
+}
+
+func (p *TakeACarReq) GetCartType() (v string) {
+	return p.CartType
+}
+func (p *TakeACarReq) SetUId(val int64) {
+	p.UId = val
+}
+func (p *TakeACarReq) SetStartLocation(val string) {
+	p.StartLocation = val
+}
+func (p *TakeACarReq) SetEndLocation(val string) {
+	p.EndLocation = val
+}
+func (p *TakeACarReq) SetCartType(val string) {
+	p.CartType = val
+}
+
+func (p *TakeACarReq) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("TakeACarReq(%+v)", *p)
+}
+
+var fieldIDToName_TakeACarReq = map[int16]string{
+	1: "UId",
+	2: "startLocation",
+	3: "endLocation",
+	4: "cartType",
+}
+
+type TakeACarResp struct {
+	Code    int64  `thrift:"code,1" frugal:"1,default,i64" json:"code"`
+	Message string `thrift:"message,2" frugal:"2,default,string" json:"message"`
+}
+
+func NewTakeACarResp() *TakeACarResp {
+	return &TakeACarResp{}
+}
+
+func (p *TakeACarResp) InitDefault() {
+}
+
+func (p *TakeACarResp) GetCode() (v int64) {
+	return p.Code
+}
+
+func (p *TakeACarResp) GetMessage() (v string) {
+	return p.Message
+}
+func (p *TakeACarResp) SetCode(val int64) {
+	p.Code = val
+}
+func (p *TakeACarResp) SetMessage(val string) {
+	p.Message = val
+}
+
+func (p *TakeACarResp) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("TakeACarResp(%+v)", *p)
+}
+
+var fieldIDToName_TakeACarResp = map[int16]string{
+	1: "code",
+	2: "message",
+}
+
 type UserServer interface {
 	SendSms(ctx context.Context, req *SendSmsReq) (r *SendSmsResp, err error)
 
 	LoginUser(ctx context.Context, req *LoginUserReq) (r *LoginUserResp, err error)
 
 	RealName(ctx context.Context, req *RealNameReq) (r *RealNameResp, err error)
+
+	TakeACar(ctx context.Context, req *TakeACarReq) (r *TakeACarResp, err error)
 }
 
 type UserServerSendSmsArgs struct {
@@ -504,5 +600,81 @@ func (p *UserServerRealNameResult) String() string {
 }
 
 var fieldIDToName_UserServerRealNameResult = map[int16]string{
+	0: "success",
+}
+
+type UserServerTakeACarArgs struct {
+	Req *TakeACarReq `thrift:"req,1" frugal:"1,default,TakeACarReq" json:"req"`
+}
+
+func NewUserServerTakeACarArgs() *UserServerTakeACarArgs {
+	return &UserServerTakeACarArgs{}
+}
+
+func (p *UserServerTakeACarArgs) InitDefault() {
+}
+
+var UserServerTakeACarArgs_Req_DEFAULT *TakeACarReq
+
+func (p *UserServerTakeACarArgs) GetReq() (v *TakeACarReq) {
+	if !p.IsSetReq() {
+		return UserServerTakeACarArgs_Req_DEFAULT
+	}
+	return p.Req
+}
+func (p *UserServerTakeACarArgs) SetReq(val *TakeACarReq) {
+	p.Req = val
+}
+
+func (p *UserServerTakeACarArgs) IsSetReq() bool {
+	return p.Req != nil
+}
+
+func (p *UserServerTakeACarArgs) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("UserServerTakeACarArgs(%+v)", *p)
+}
+
+var fieldIDToName_UserServerTakeACarArgs = map[int16]string{
+	1: "req",
+}
+
+type UserServerTakeACarResult struct {
+	Success *TakeACarResp `thrift:"success,0,optional" frugal:"0,optional,TakeACarResp" json:"success,omitempty"`
+}
+
+func NewUserServerTakeACarResult() *UserServerTakeACarResult {
+	return &UserServerTakeACarResult{}
+}
+
+func (p *UserServerTakeACarResult) InitDefault() {
+}
+
+var UserServerTakeACarResult_Success_DEFAULT *TakeACarResp
+
+func (p *UserServerTakeACarResult) GetSuccess() (v *TakeACarResp) {
+	if !p.IsSetSuccess() {
+		return UserServerTakeACarResult_Success_DEFAULT
+	}
+	return p.Success
+}
+func (p *UserServerTakeACarResult) SetSuccess(x interface{}) {
+	p.Success = x.(*TakeACarResp)
+}
+
+func (p *UserServerTakeACarResult) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *UserServerTakeACarResult) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("UserServerTakeACarResult(%+v)", *p)
+}
+
+var fieldIDToName_UserServerTakeACarResult = map[int16]string{
 	0: "success",
 }

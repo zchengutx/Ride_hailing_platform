@@ -12,6 +12,10 @@ import (
 // Client is designed to provide IDL-compatible methods with call-option parameter for kitex framework.
 type Client interface {
 	CallACar(ctx context.Context, req *driver0.CallACarReq, callOptions ...callopt.Option) (r *driver0.CallACarResp, err error)
+	DriverAudit(ctx context.Context, req *driver0.DriverAuditReq, callOptions ...callopt.Option) (r *driver0.DriverAuditResp, err error)
+	AddDriver(ctx context.Context, req *driver0.AddDriverReq, callOptions ...callopt.Option) (r *driver0.AddDriverResp, err error)
+	DriverOnline(ctx context.Context, req *driver0.DriverOnlineReq, callOptions ...callopt.Option) (r *driver0.DriverOnlineResp, err error)
+	ReceivingOrder(ctx context.Context, req *driver0.ReceivingOrderReq, callOptions ...callopt.Option) (r *driver0.ReceivingOrderResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -46,4 +50,24 @@ type kDriverServerClient struct {
 func (p *kDriverServerClient) CallACar(ctx context.Context, req *driver0.CallACarReq, callOptions ...callopt.Option) (r *driver0.CallACarResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.CallACar(ctx, req)
+}
+
+func (p *kDriverServerClient) DriverAudit(ctx context.Context, req *driver0.DriverAuditReq, callOptions ...callopt.Option) (r *driver0.DriverAuditResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.DriverAudit(ctx, req)
+}
+
+func (p *kDriverServerClient) AddDriver(ctx context.Context, req *driver0.AddDriverReq, callOptions ...callopt.Option) (r *driver0.AddDriverResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.AddDriver(ctx, req)
+}
+
+func (p *kDriverServerClient) DriverOnline(ctx context.Context, req *driver0.DriverOnlineReq, callOptions ...callopt.Option) (r *driver0.DriverOnlineResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.DriverOnline(ctx, req)
+}
+
+func (p *kDriverServerClient) ReceivingOrder(ctx context.Context, req *driver0.ReceivingOrderReq, callOptions ...callopt.Option) (r *driver0.ReceivingOrderResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.ReceivingOrder(ctx, req)
 }

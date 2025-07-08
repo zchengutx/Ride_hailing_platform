@@ -34,6 +34,13 @@ var serviceMethods = map[string]kitex.MethodInfo{
 		false,
 		kitex.WithStreamingMode(kitex.StreamingNone),
 	),
+	"TakeACar": kitex.NewMethodInfo(
+		takeACarHandler,
+		newUserServerTakeACarArgs,
+		newUserServerTakeACarResult,
+		false,
+		kitex.WithStreamingMode(kitex.StreamingNone),
+	),
 }
 
 var (
@@ -154,6 +161,24 @@ func newUserServerRealNameResult() interface{} {
 	return user.NewUserServerRealNameResult()
 }
 
+func takeACarHandler(ctx context.Context, handler interface{}, arg, result interface{}) error {
+	realArg := arg.(*user.UserServerTakeACarArgs)
+	realResult := result.(*user.UserServerTakeACarResult)
+	success, err := handler.(user.UserServer).TakeACar(ctx, realArg.Req)
+	if err != nil {
+		return err
+	}
+	realResult.Success = success
+	return nil
+}
+func newUserServerTakeACarArgs() interface{} {
+	return user.NewUserServerTakeACarArgs()
+}
+
+func newUserServerTakeACarResult() interface{} {
+	return user.NewUserServerTakeACarResult()
+}
+
 type kClient struct {
 	c client.Client
 }
@@ -189,6 +214,16 @@ func (p *kClient) RealName(ctx context.Context, req *user.RealNameReq) (r *user.
 	_args.Req = req
 	var _result user.UserServerRealNameResult
 	if err = p.c.Call(ctx, "RealName", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
+
+func (p *kClient) TakeACar(ctx context.Context, req *user.TakeACarReq) (r *user.TakeACarResp, err error) {
+	var _args user.UserServerTakeACarArgs
+	_args.Req = req
+	var _result user.UserServerTakeACarResult
+	if err = p.c.Call(ctx, "TakeACar", &_args, &_result); err != nil {
 		return
 	}
 	return _result.GetSuccess(), nil

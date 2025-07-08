@@ -4,6 +4,7 @@ import (
 	"Didi/biz/dal/global"
 	"Didi/biz/handler/api"
 	"Didi/biz/middleware"
+
 	"github.com/cloudwego/hertz/pkg/route"
 )
 
@@ -12,5 +13,9 @@ func DriverModel(r *route.RouterGroup) {
 	{
 		driverModel.Use(middleware.JWTAuth(global.JWT_SELECT_KEY))
 		driverModel.POST("/callACar", api.CallACar)
+		driverModel.POST("/driverAudit", api.DriverAudit)
+		driverModel.POST("/addDriver", api.AddDriver)
+		driverModel.POST("/driverOnline", api.DriverOnline)
+		driverModel.POST("/receivingOrder", api.ReceivingOrder)
 	}
 }

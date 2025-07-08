@@ -14,3 +14,8 @@ type RealNameReq struct {
 	Age      int64  `json:"age" form:"age" binding:"required"`
 	IdCard   string `json:"id_card" form:"id_card" binding:"required"`
 }
+type TakeACarReq struct {
+	StartLocation string `json:"start_location" form:"start_location" binding:"required"`
+	EndLocation   string `json:"end_location" form:"end_location" binding:"required"`
+	CartType      string `json:"cart_type" form:"cart_type" binding:"required"`
+}

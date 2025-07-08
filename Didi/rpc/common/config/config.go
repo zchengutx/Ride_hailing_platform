@@ -3,6 +3,7 @@ package config
 type Config struct {
 	Mysql
 	Redis
+	RabbitMQ
 	UserClient
 	DriverClient
 }
@@ -17,6 +18,13 @@ type Redis struct {
 	Addr     string
 	Password string
 	Db       int
+}
+type RabbitMQ struct {
+	Host     string
+	Port     int
+	User     string
+	Password string
+	Vhost    string
 }
 type UserClient struct {
 	Host string

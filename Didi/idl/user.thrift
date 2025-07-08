@@ -27,8 +27,19 @@ struct RealNameResp{
     1: i64 code
     2: string message
 }
+struct TakeACarReq{ //叫车
+    1: i64 UId //用户ID
+    2: string startLocation //起始地
+    3: string endLocation //目的地
+    4: string cartType //服务类型
+}
+struct TakeACarResp{
+    1: i64 code
+    2: string message
+}
 service UserServer{
     SendSmsResp SendSms(1: SendSmsReq req)
     LoginUserResp LoginUser(1: LoginUserReq req)
     RealNameResp RealName(1: RealNameReq req)
+    TakeACarResp TakeACar(1: TakeACarReq req)
 }

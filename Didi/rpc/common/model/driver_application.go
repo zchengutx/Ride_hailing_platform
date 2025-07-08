@@ -26,3 +26,7 @@ type DriverApplication struct {
 	UpdatedAt            time.Time      `gorm:"column:updated_at;type:datetime(3);comment:更新时间;not null;default:CURRENT_TIMESTAMP(3);" json:"updated_at"` // 更新时间
 	DeletedAt            gorm.DeletedAt `gorm:"column:deleted_at;type:datetime(3);comment:删除时间;default:NULL;" json:"deleted_at"`                          // 删除时间
 }
+
+func (d *DriverApplication) TableName() string {
+	return "driver_application"
+}

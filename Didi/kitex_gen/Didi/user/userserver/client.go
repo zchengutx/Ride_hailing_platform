@@ -14,6 +14,7 @@ type Client interface {
 	SendSms(ctx context.Context, req *user.SendSmsReq, callOptions ...callopt.Option) (r *user.SendSmsResp, err error)
 	LoginUser(ctx context.Context, req *user.LoginUserReq, callOptions ...callopt.Option) (r *user.LoginUserResp, err error)
 	RealName(ctx context.Context, req *user.RealNameReq, callOptions ...callopt.Option) (r *user.RealNameResp, err error)
+	TakeACar(ctx context.Context, req *user.TakeACarReq, callOptions ...callopt.Option) (r *user.TakeACarResp, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -58,4 +59,9 @@ func (p *kUserServerClient) LoginUser(ctx context.Context, req *user.LoginUserRe
 func (p *kUserServerClient) RealName(ctx context.Context, req *user.RealNameReq, callOptions ...callopt.Option) (r *user.RealNameResp, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.RealName(ctx, req)
+}
+
+func (p *kUserServerClient) TakeACar(ctx context.Context, req *user.TakeACarReq, callOptions ...callopt.Option) (r *user.TakeACarResp, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.TakeACar(ctx, req)
 }
