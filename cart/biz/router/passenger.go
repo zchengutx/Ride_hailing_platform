@@ -13,14 +13,12 @@ func PassengerModel(r *route.RouterGroup) {
 	log.Println("乘客服务")
 	passengerModel := r.Group("/passenger")
 
-	// 不需要认证的接口
 	{
 		passengerModel.POST("/sendSms", api.SendSms)                     // 发送短信验证码
 		passengerModel.POST("/registerPassenger", api.RegisterPassenger) // 乘客注册
 		passengerModel.POST("/loginPassenger", api.LoginPassenger)       // 乘客登录
 	}
-
-	// 需要认证的接口
+	//jwt中间件
 	passengerAuth := passengerModel.Group("")
 	passengerAuth.Use(middleware.JWTAuth(global.JWT_SELECT_KEY))
 	{

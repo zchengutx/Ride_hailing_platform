@@ -7,86 +7,39 @@
     <list default="true" id="78b030c1-8e7f-4dd3-92d3-cc049629c2a8" name="更改" comment="Merge remote-tracking branch 'origin/lyt' into lyt&#10;&#10;# Conflicts:&#10;#&#9;go.mod">
       <change beforePath="$PROJECT_DIR$/.idea/GOHCache.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GOHCache.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/dal/config/config.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/dal/dev.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/dal/global/global.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/dal/inits/init.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/handler/api/driver.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/handler/api/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/handler/api/wechat.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/handler/request/driver.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/handler/request/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/handler/request/wechat.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/middleware/jwt.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/router/driver.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/router/router.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/router/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/biz/router/weChat.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/idl/driver.thrift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/idl/user.thrift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driver.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driverserver/client.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driverserver/driverserver.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/driverserver/server.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/k-consts.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/kitex_gen/Didi/driver/k-driver.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/kitex_gen/Didi/user/k-consts.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/kitex_gen/Didi/user/k-user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/kitex_gen/Didi/user/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/kitex_gen/Didi/user/userserver/client.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/kitex_gen/Didi/user/userserver/server.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/kitex_gen/Didi/user/userserver/userserver.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/config/config.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/dev.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/global/global.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/inits/init.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/model/driver.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/model/driver_application.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/model/lxh_driver.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/model/lxh_driver_check.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/model/lxh_order.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/model/lxh_order_detail.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/model/lxh_passenger.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/model/order.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/common/model/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/driver/build.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/driver/handler.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/driver/kitex_info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/driver/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/driver/script/bootstrap.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/user/build.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/user/handler.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/user/kitex_info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/user/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/rpc/user/script/bootstrap.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/uni-app/api/driver.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/uni-app/api/user.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/uni-app/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/uni-app/pages.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/uni-app/pages/index/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/uni-app/pages/login/login.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/uni-app/utils/auth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/uni-app/utils/config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/uni-app/utils/request.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/utils/client_manager.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/utils/driver_location_example.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/utils/idcard.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/utils/minio.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/utils/mobile.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/utils/order_utils.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/utils/rabbitmq.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/utils/redis_geo.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/utils/redis_hash.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/utils/redis_hash_example.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/utils/wechatCode.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/滴滴出行API接口文档.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/滴滴出行业务流程梳理文档.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/滴滴出行工作需求文档（Go语言版）.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/滴滴出行系统架构文档.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Didi/项目结构分析文档.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/.idea/GOHCache.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/.idea/cart.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/dal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/dal/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/dal/global/global.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/dal/global/global.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/dal/inits/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/dal/inits/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/handler/api/driver.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/api/driver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/handler/api/health.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/api/health.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/handler/api/map.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/api/map.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/handler/api/upload.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/api/upload.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/handler/api/wechat.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/api/wechat.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/handler/request/driver.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/request/driver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/handler/request/map.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/request/map.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/handler/request/passenger.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/request/passenger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/handler/request/wechat.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/request/wechat.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/router/driver.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/router/driver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/router/passenger.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/router/passenger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/biz/router/wechat.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/router/wechat.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/cart/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/cart/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/idl/passenger.thrift" beforeDir="false" afterPath="$PROJECT_DIR$/cart/idl/passenger.thrift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/rpc/basic/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/basic/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/rpc/basic/dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/basic/dev.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/rpc/basic/global/global.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/basic/global/global.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/rpc/basic/inits/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/basic/inits/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/rpc/driver/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/driver/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/rpc/driver/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/driver/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/rpc/mapserivce/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/mapserivce/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/rpc/passenger/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/passenger/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart/rpc/wechat/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/wechat/handler.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,6 +94,11 @@
     "Go 构建.go build Didi/rpc/user.executor": "Run",
     "Go 构建.go build Ride_hailing_platform/client/basic/cmd.executor": "Run",
     "Go 构建.go build Ride_hailing_platform/kitex_gen/srock.executor": "Run",
+    "Go 构建.go build cart/biz.executor": "Run",
+    "Go 构建.go build cart/rpc/driver.executor": "Run",
+    "Go 构建.go build cart/rpc/mapserivce.executor": "Run",
+    "Go 构建.go build cart/rpc/passenger.executor": "Run",
+    "Go 构建.go build cart/rpc/wechat.executor": "Run",
     "Go 构建.go build kitex/client/cmd.executor": "Run",
     "Go 构建.go build kitex/rpc/driver.executor": "Run",
     "Go 构建.go build kitex/rpc/order.executor": "Run",
@@ -182,44 +140,66 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Go 构建.go build Didi/rpc/driver">
-    <configuration name="go build Didi/biz" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go 构建.go build cart/biz">
+    <configuration name="go build cart/biz" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Ride_hailing_platform" />
-      <working_directory value="$PROJECT_DIR$/Didi" />
+      <working_directory value="$PROJECT_DIR$/cart" />
       <kind value="PACKAGE" />
-      <package value="Didi/biz" />
+      <package value="cart/biz" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/Didi/biz/main.go" />
+      <filePath value="$PROJECT_DIR$/cart/biz/main.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build Didi/rpc/driver" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build cart/rpc/driver" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Ride_hailing_platform" />
-      <working_directory value="$PROJECT_DIR$/Didi" />
+      <working_directory value="$PROJECT_DIR$/cart" />
       <kind value="PACKAGE" />
-      <package value="Didi/rpc/driver" />
+      <package value="cart/rpc/driver" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/Didi/rpc/driver/main.go" />
+      <filePath value="$PROJECT_DIR$/cart/rpc/driver/main.go" />
       <method v="2" />
     </configuration>
-    <configuration name="go build Didi/rpc/user" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build cart/rpc/mapserivce" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Ride_hailing_platform" />
-      <working_directory value="$PROJECT_DIR$/Didi" />
+      <working_directory value="$PROJECT_DIR$/cart" />
       <kind value="PACKAGE" />
-      <package value="Didi/rpc/user" />
+      <package value="cart/rpc/mapserivce" />
       <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/Didi/rpc/user/main.go" />
+      <filePath value="$PROJECT_DIR$/cart/rpc/mapserivce/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build cart/rpc/passenger" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Ride_hailing_platform" />
+      <working_directory value="$PROJECT_DIR$/cart" />
+      <kind value="PACKAGE" />
+      <package value="cart/rpc/passenger" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/cart/rpc/passenger/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build cart/rpc/wechat" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Ride_hailing_platform" />
+      <working_directory value="$PROJECT_DIR$/cart" />
+      <kind value="PACKAGE" />
+      <package value="cart/rpc/wechat" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/cart/rpc/wechat/main.go" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Go 构建.go build Didi/biz" />
-      <item itemvalue="Go 构建.go build Didi/rpc/driver" />
-      <item itemvalue="Go 构建.go build Didi/rpc/user" />
+      <item itemvalue="Go 构建.go build cart/biz" />
+      <item itemvalue="Go 构建.go build cart/rpc/driver" />
+      <item itemvalue="Go 构建.go build cart/rpc/mapserivce" />
+      <item itemvalue="Go 构建.go build cart/rpc/passenger" />
+      <item itemvalue="Go 构建.go build cart/rpc/wechat" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go 构建.go build Didi/biz" />
-        <item itemvalue="Go 构建.go build Didi/rpc/driver" />
-        <item itemvalue="Go 构建.go build Didi/rpc/user" />
+        <item itemvalue="Go 构建.go build cart/biz" />
+        <item itemvalue="Go 构建.go build cart/rpc/driver" />
+        <item itemvalue="Go 构建.go build cart/rpc/mapserivce" />
+        <item itemvalue="Go 构建.go build cart/rpc/passenger" />
+        <item itemvalue="Go 构建.go build cart/rpc/wechat" />
       </list>
     </recent_temporary>
   </component>

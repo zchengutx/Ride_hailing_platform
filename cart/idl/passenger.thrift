@@ -1,29 +1,35 @@
 namespace go cart.passenger
 
-struct SendSmsReq{ //短信发送
-    1: string mobile
-    2: string sendSmsCode
+// 短信发送请求
+struct SendSmsReq{
+    1: string mobile       // 手机号
+    2: string sendSmsCode  // 验证码
 }
+// 短信发送响应
 struct SendSmsResp{
-    1: i16 code
-    2: string message
+    1: i16 code           // 状态码
+    2: string message     // 返回消息
 }
-struct RegisterPassengerReq{ //注册
-    1: string mobile
-    2: string sendSmsCode
+// 乘客注册请求
+struct RegisterPassengerReq{
+    1: string mobile       // 手机号
+    2: string sendSmsCode  // 验证码
 }
+// 乘客注册响应
 struct RegisterPassengerResp{
-    1: i16 code
-    2: string message
+    1: i16 code           // 状态码
+    2: string message     // 返回消息
 }
-struct LoginPassengerReq{ //登录
-    1: string mobile
-    2: string sendSmsCode
+// 乘客登录请求
+struct LoginPassengerReq{
+    1: string mobile       // 手机号
+    2: string sendSmsCode  // 验证码
 }
+// 乘客登录响应
 struct LoginPassengerResp{
-    1: i16 code
-    2: string message
-    3: i16 passengerId
+    1: i16 code           // 状态码
+    2: string message     // 返回消息
+    3: i16 passengerId    // 乘客ID
 }
 
 // 主页请求
@@ -68,14 +74,16 @@ struct HomePageResp{
     3: optional HomePageData data
 }
 
+// 叫车请求
 struct CallACarReq{
-    1: i16 passengerId
-    2: string startingPlace
-    3: string destination
+    1: i16 passengerId      // 乘客ID
+    2: string startingPlace // 出发地
+    3: string destination   // 目的地
 }
+// 叫车响应
 struct CallACarResp{
-    1: i16 code
-    2: string message
+    1: i16 code            // 状态码
+    2: string message      // 返回消息
 }
 
 // 个人信息管理

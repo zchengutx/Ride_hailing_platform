@@ -20,8 +20,10 @@ import (
 // WeChatServiceImpl implements the last service interface defined in the IDL.
 type WeChatServiceImpl struct{}
 
-// Sign 微信签名验证
+// Sign 微信签名验证接口，验证微信服务器推送的消息签名
 func (s *WeChatServiceImpl) Sign(ctx context.Context, req *pb.SignReq) (resp *pb.SignResp, err error) {
+	ctx = context.Background()
+
 	// 获取微信配置
 	wechatConfig := &global.AppConf.WeChatConfig
 
@@ -38,7 +40,7 @@ func (s *WeChatServiceImpl) Sign(ctx context.Context, req *pb.SignReq) (resp *pb
 	if signature == req.Signature {
 		return &pb.SignResp{
 			Code:    200,
-			Message: "验证成功",
+			Message: "签名验证成功",
 			Echostr: &req.Echostr,
 		}, nil
 	}
@@ -49,8 +51,10 @@ func (s *WeChatServiceImpl) Sign(ctx context.Context, req *pb.SignReq) (resp *pb
 	}, nil
 }
 
-// GetQRCode 获取授权二维码
+// GetQRCode 获取授权二维码接口，生成微信扫码登录二维码
 func (s *WeChatServiceImpl) GetQRCode(ctx context.Context, req *pb.GetQRCodeReq) (resp *pb.GetQRCodeResp, err error) {
+	ctx = context.Background()
+
 	// 获取微信配置
 	wechatConfig := &global.AppConf.WeChatConfig
 
@@ -68,12 +72,12 @@ func (s *WeChatServiceImpl) GetQRCode(ctx context.Context, req *pb.GetQRCodeReq)
 	// 实际项目中可以生成二维码图片数据
 	return &pb.GetQRCodeResp{
 		Code:    200,
-		Message: "获取成功",
+		Message: "获取授权二维码成功",
 		AuthUrl: &authURL,
 	}, nil
 }
 
-// 微信用户信息结构（用于API调用）
+// WeChatUserInfoAPI 微信用户信息结构（用于API调用）
 type WeChatUserInfoAPI struct {
 	OpenID     string   `json:"openid"`
 	NickName   string   `json:"nickname"`
@@ -87,7 +91,7 @@ type WeChatUserInfoAPI struct {
 	UnionID    string   `json:"unionid"`
 }
 
-// 微信AccessToken响应
+// WeChatAccessTokenResp 微信AccessToken响应
 type WeChatAccessTokenResp struct {
 	AccessToken  string `json:"access_token"`
 	ExpiresIn    int    `json:"expires_in"`
@@ -105,7 +109,7 @@ func (s *WeChatServiceImpl) saveOrUpdateWeChatUser(userInfoData *WeChatUserInfoA
 
 	// 查询是否已存在该用户
 	var existingUser model.LxhWechatUser
-	result := global.DB.Where("openid = ?", userInfoData.OpenID).First(&existingUser)
+	result := global.DB.Debug().Where("openid = ?", userInfoData.OpenID).First(&existingUser)
 
 	if result.Error != nil {
 		// 用户不存在，创建新用户
@@ -137,7 +141,7 @@ func (s *WeChatServiceImpl) saveOrUpdateWeChatUser(userInfoData *WeChatUserInfoA
 		if userInfoData.UnionID != "" {
 			updates["unionid"] = userInfoData.UnionID
 		}
-		return global.DB.Model(&existingUser).Updates(updates).Error
+		return global.DB.Debug().Model(&existingUser).Updates(updates).Error
 	}
 }
 
@@ -148,7 +152,7 @@ func (s *WeChatServiceImpl) saveOrUpdateWeChatToken(tokenData *WeChatAccessToken
 
 	// 查询是否已存在该用户的令牌
 	var existingToken model.LxhWechatToken
-	result := global.DB.Where("openid = ?", tokenData.OpenID).First(&existingToken)
+	result := global.DB.Debug().Where("openid = ?", tokenData.OpenID).First(&existingToken)
 
 	if result.Error != nil {
 		// 令牌不存在，创建新令牌记录
@@ -171,12 +175,14 @@ func (s *WeChatServiceImpl) saveOrUpdateWeChatToken(tokenData *WeChatAccessToken
 			"scope":         tokenData.Scope,
 			"expires_at":    expiresAt,
 		}
-		return global.DB.Model(&existingToken).Updates(updates).Error
+		return global.DB.Debug().Model(&existingToken).Updates(updates).Error
 	}
 }
 
-// Callback 处理微信授权回调
+// Callback 处理微信授权回调接口，处理微信授权成功后的回调
 func (s *WeChatServiceImpl) Callback(ctx context.Context, req *pb.CallbackReq) (resp *pb.CallbackResp, err error) {
+	ctx = context.Background()
+
 	// 获取微信配置
 	wechatConfig := &global.AppConf.WeChatConfig
 
@@ -282,7 +288,7 @@ func (s *WeChatServiceImpl) Callback(ctx context.Context, req *pb.CallbackReq) (
 	// 返回成功响应
 	return &pb.CallbackResp{
 		Code:        200,
-		Message:     "授权成功",
+		Message:     "微信授权成功",
 		UserInfo:    userInfo,
 		AccessToken: &tokenData.AccessToken,
 	}, nil

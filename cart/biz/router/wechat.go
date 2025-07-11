@@ -11,7 +11,7 @@ func WeChatModel(r *route.RouterGroup) {
 	weChatModel := r.Group("/wechat")
 	{
 		weChatModel.GET("/sign", api.Sign)
-		weChatModel.GET("/one", api.One)
-		weChatModel.GET("/calBlack", api.CalBlack)
+		weChatModel.GET("/one", api.GetQRCode)
+		weChatModel.GET("/calBlack", api.Callback)
 	}
 }

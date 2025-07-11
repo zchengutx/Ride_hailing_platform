@@ -12,6 +12,7 @@ type Config struct {
 	MapClient       // 地图服务客户端配置
 	WeChatClient    // 微信服务客户端配置
 	Minio           // Minio 对象存储配置
+	MongoDB         // MongoDB 数据库配置
 }
 
 // System 结构体定义了系统的基础配置
@@ -72,4 +73,18 @@ type Minio struct {
 	UseSsl          string // 是否使用 SSL
 	BasePath        string // 基础路径
 	BucketUrl       string // 存储桶访问 URL
+}
+
+// MongoDB 结构体定义了 MongoDB 数据库的连接配置
+// User: 用户名
+// Password: 密码
+// Host: 主机地址
+// Port: 端口
+// Database: 数据库名称
+type MongoDB struct {
+	User     string // 用户名
+	Password string // 密码
+	Host     string // 主机地址
+	Port     int    // 端口
+	Database string // 数据库名称
 }

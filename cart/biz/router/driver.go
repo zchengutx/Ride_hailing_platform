@@ -13,13 +13,12 @@ func DriverModel(r *route.RouterGroup) {
 	log.Println("司机服务")
 	driverModel := r.Group("/driver")
 
-	// 不需要认证的接口
 	{
 		driverModel.POST("/petition", api.DriverPetition) // 司机注册申请
 		driverModel.POST("/login", api.DriverLogin)       // 司机登录
 	}
 
-	// 需要认证的接口
+	// jwt中间件
 	driverAuth := driverModel.Group("")
 	driverAuth.Use(middleware.JWTAuth(global.JWT_SELECT_KEY))
 	{

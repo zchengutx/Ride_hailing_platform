@@ -8,11 +8,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"math"
 	"net/http"
 	"net/url"
 	"strconv"
 	"strings"
+	"time"
+
+	"cart/rpc/basic/dal"
 )
 
 // BaiduMapClient 百度地图客户端
@@ -101,6 +105,69 @@ type MapServiceImpl struct {
 	mapClient *BaiduMapClient
 }
 
+var mongoService dal.MongoService
+
+// 初始化MongoDB服务
+func init() {
+	// 延迟初始化，确保global.MongoDB已经连接
+	go func() {
+		time.Sleep(2 * time.Second)
+		mongoService = dal.NewMongoService()
+
+		// 创建索引
+		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+		defer cancel()
+
+		if err := mongoService.CreateIndexes(ctx); err != nil {
+			log.Printf("创建MongoDB索引失败: %v", err)
+		} else {
+			log.Println("MongoDB索引创建成功")
+		}
+	}()
+}
+
+// logAPICall 记录API调用日志到MongoDB
+func (s *MapServiceImpl) logAPICall(ctx context.Context, apiType string, requestParams, responseData interface{}, responseCode, responseTime int, isSuccess bool, errorMessage string) {
+	if mongoService == nil {
+		return // 如果MongoDB服务未初始化，跳过日志记录
+	}
+
+	// 将请求参数和响应数据转换为map
+	var reqParamsMap, respDataMap map[string]interface{}
+
+	if requestParams != nil {
+		reqBytes, _ := json.Marshal(requestParams)
+		json.Unmarshal(reqBytes, &reqParamsMap)
+	}
+
+	if responseData != nil {
+		respBytes, _ := json.Marshal(responseData)
+		json.Unmarshal(respBytes, &respDataMap)
+	}
+
+	// 创建日志记录
+	logRecord := &model.MongoMapApiLog{
+		ApiType:       apiType,
+		RequestParams: reqParamsMap,
+		ResponseData:  respDataMap,
+		ResponseCode:  responseCode,
+		ResponseTime:  responseTime,
+		IsSuccess:     isSuccess,
+		ErrorMessage:  errorMessage,
+		CreatedAt:     time.Now(),
+	}
+
+	// 异步记录日志，不影响主业务逻辑
+	go func() {
+		logCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		defer cancel()
+
+		if err := mongoService.MapApiLog().Create(logCtx, logRecord); err != nil {
+			log.Printf("记录API日志失败: %v", err)
+		}
+	}()
+}
+
 // convertRegionToRegionInfo 将数据库Region模型转换为Thrift RegionInfo
 func convertRegionToRegionInfo(region *model.Region) *pb.RegionInfo {
 	return &pb.RegionInfo{
@@ -186,7 +253,7 @@ func (c *BaiduMapClient) GetLocationByIP(ip string) (*IPLocationResponse, error)
 	return &result, nil
 }
 
-// 计算两点间距离（哈弗森公式）
+// calculateDistance 计算两点间距离（哈弗森公式）
 func calculateDistance(lat1, lng1, lat2, lng2 float64) float64 {
 	const R = 6371000 // 地球半径，单位：米
 
@@ -204,13 +271,26 @@ func calculateDistance(lat1, lng1, lat2, lng2 float64) float64 {
 	return R * c
 }
 
-// GeoCoding implements the MapServiceImpl interface.
+// GeoCoding 地理编码接口，将地址转换为坐标
 func (s *MapServiceImpl) GeoCoding(ctx context.Context, req *pb.GeoCodingReq) (*pb.GeoCodingResp, error) {
+	ctx = context.Background()
+	startTime := time.Now()
+	var responseCode int
+	var isSuccess bool
+	var errorMessage string
+
 	if s.mapClient == nil {
 		s.mapClient = NewBaiduMapClient()
 	}
 
 	if req.Address == "" {
+		responseCode = 400
+		isSuccess = false
+		errorMessage = "地址参数不能为空"
+
+		// 记录API调用日志
+		s.logAPICall(ctx, "geocoding", req, nil, responseCode, int(time.Since(startTime).Milliseconds()), isSuccess, errorMessage)
+
 		return &pb.GeoCodingResp{
 			Code:    400,
 			Message: "地址参数不能为空",
@@ -219,6 +299,13 @@ func (s *MapServiceImpl) GeoCoding(ctx context.Context, req *pb.GeoCodingReq) (*
 
 	result, err := s.mapClient.GetLocationByAddress(req.Address)
 	if err != nil {
+		responseCode = 500
+		isSuccess = false
+		errorMessage = fmt.Sprintf("地理编码失败: %v", err)
+
+		// 记录API调用日志
+		s.logAPICall(ctx, "geocoding", req, nil, responseCode, int(time.Since(startTime).Milliseconds()), isSuccess, errorMessage)
+
 		return &pb.GeoCodingResp{
 			Code:    500,
 			Message: fmt.Sprintf("地理编码失败: %v", err),
@@ -226,15 +313,26 @@ func (s *MapServiceImpl) GeoCoding(ctx context.Context, req *pb.GeoCodingReq) (*
 	}
 
 	if result.Status != 0 {
+		responseCode = 500
+		isSuccess = false
+		errorMessage = fmt.Sprintf("百度地图API返回错误状态: %d", result.Status)
+
+		// 记录API调用日志
+		s.logAPICall(ctx, "geocoding", req, result, responseCode, int(time.Since(startTime).Milliseconds()), isSuccess, errorMessage)
+
 		return &pb.GeoCodingResp{
 			Code:    500,
 			Message: fmt.Sprintf("百度地图API返回错误状态: %d", result.Status),
 		}, nil
 	}
 
-	return &pb.GeoCodingResp{
+	responseCode = 200
+	isSuccess = true
+	errorMessage = ""
+
+	response := &pb.GeoCodingResp{
 		Code:    200,
-		Message: "成功",
+		Message: "地理编码成功",
 		Data: &pb.GeoCodingData{
 			Address: req.Address,
 			Lng:     result.Result.Location.Lng,
@@ -242,11 +340,18 @@ func (s *MapServiceImpl) GeoCoding(ctx context.Context, req *pb.GeoCodingReq) (*
 			Precise: int32(result.Result.Precise),
 			Level:   result.Result.Level,
 		},
-	}, nil
+	}
+
+	// 记录成功的API调用日志
+	s.logAPICall(ctx, "geocoding", req, response, responseCode, int(time.Since(startTime).Milliseconds()), isSuccess, errorMessage)
+
+	return response, nil
 }
 
-// ReverseGeoCoding implements the MapServiceImpl interface.
+// ReverseGeoCoding 逆地理编码接口，将坐标转换为地址
 func (s *MapServiceImpl) ReverseGeoCoding(ctx context.Context, req *pb.ReverseGeoCodingReq) (*pb.ReverseGeoCodingResp, error) {
+	ctx = context.Background()
+
 	if s.mapClient == nil {
 		s.mapClient = NewBaiduMapClient()
 	}
@@ -275,7 +380,7 @@ func (s *MapServiceImpl) ReverseGeoCoding(ctx context.Context, req *pb.ReverseGe
 
 	return &pb.ReverseGeoCodingResp{
 		Code:    200,
-		Message: "成功",
+		Message: "逆地理编码成功",
 		Data: &pb.ReverseGeoCodingData{
 			Lng:              result.Result.Location.Lng,
 			Lat:              result.Result.Location.Lat,
@@ -286,8 +391,10 @@ func (s *MapServiceImpl) ReverseGeoCoding(ctx context.Context, req *pb.ReverseGe
 	}, nil
 }
 
-// IPLocation implements the MapServiceImpl interface.
+// IPLocation IP定位接口，根据IP获取位置信息
 func (s *MapServiceImpl) IPLocation(ctx context.Context, req *pb.IPLocationReq) (*pb.IPLocationResp, error) {
+	ctx = context.Background()
+
 	if s.mapClient == nil {
 		s.mapClient = NewBaiduMapClient()
 	}
@@ -320,7 +427,7 @@ func (s *MapServiceImpl) IPLocation(ctx context.Context, req *pb.IPLocationReq) 
 
 	return &pb.IPLocationResp{
 		Code:    200,
-		Message: "成功",
+		Message: "IP定位成功",
 		Data: &pb.IPLocationData{
 			Ip:            req.Ip,
 			Address:       result.Content.Address,
@@ -333,8 +440,10 @@ func (s *MapServiceImpl) IPLocation(ctx context.Context, req *pb.IPLocationReq) 
 	}, nil
 }
 
-// DistanceCalculate implements the MapServiceImpl interface.
+// DistanceCalculate 距离计算接口，计算两点间距离
 func (s *MapServiceImpl) DistanceCalculate(ctx context.Context, req *pb.DistanceCalculateReq) (*pb.DistanceCalculateResp, error) {
+	ctx = context.Background()
+
 	if req.OriginLat == 0 || req.OriginLng == 0 || req.DestLat == 0 || req.DestLng == 0 {
 		return &pb.DistanceCalculateResp{
 			Code:    400,
@@ -348,7 +457,7 @@ func (s *MapServiceImpl) DistanceCalculate(ctx context.Context, req *pb.Distance
 
 	return &pb.DistanceCalculateResp{
 		Code:    200,
-		Message: "成功",
+		Message: "距离计算成功",
 		Data: &pb.DistanceData{
 			Origin: &pb.LocationPoint{
 				Lat: req.OriginLat,
@@ -364,8 +473,10 @@ func (s *MapServiceImpl) DistanceCalculate(ctx context.Context, req *pb.Distance
 	}, nil
 }
 
-// GetCurrentLocation implements the MapServiceImpl interface.
+// GetCurrentLocation 获取当前位置接口，根据IP获取当前位置
 func (s *MapServiceImpl) GetCurrentLocation(ctx context.Context, req *pb.GetCurrentLocationReq) (*pb.GetCurrentLocationResp, error) {
+	ctx = context.Background()
+
 	if s.mapClient == nil {
 		s.mapClient = NewBaiduMapClient()
 	}
@@ -398,7 +509,7 @@ func (s *MapServiceImpl) GetCurrentLocation(ctx context.Context, req *pb.GetCurr
 
 	return &pb.GetCurrentLocationResp{
 		Code:    200,
-		Message: "成功",
+		Message: "获取当前位置成功",
 		Data: &pb.IPLocationData{
 			Ip:            req.ClientIp,
 			Address:       result.Content.Address,
@@ -411,12 +522,14 @@ func (s *MapServiceImpl) GetCurrentLocation(ctx context.Context, req *pb.GetCurr
 	}, nil
 }
 
-// GetProvinces implements the MapServiceImpl interface.
+// GetProvinces 获取省份列表接口，获取所有省份信息
 func (s *MapServiceImpl) GetProvinces(ctx context.Context, req *pb.GetProvincesReq) (*pb.GetProvincesResp, error) {
+	ctx = context.Background()
+
 	var regions []model.Region
 
 	// 查询所有省份（level = 1）
-	if err := global.DB.Where("level = ?", 1).Find(&regions).Error; err != nil {
+	if err := global.DB.Debug().Where("level = ?", 1).Find(&regions).Error; err != nil {
 		return &pb.GetProvincesResp{
 			Code:    500,
 			Message: fmt.Sprintf("查询省份失败: %v", err),
@@ -436,8 +549,10 @@ func (s *MapServiceImpl) GetProvinces(ctx context.Context, req *pb.GetProvincesR
 	}, nil
 }
 
-// GetCities implements the MapServiceImpl interface.
+// GetCities 获取城市列表接口，获取指定省份下的城市信息
 func (s *MapServiceImpl) GetCities(ctx context.Context, req *pb.GetCitiesReq) (*pb.GetCitiesResp, error) {
+	ctx = context.Background()
+
 	if req.ProvinceCode == 0 {
 		return &pb.GetCitiesResp{
 			Code:    400,
@@ -448,7 +563,7 @@ func (s *MapServiceImpl) GetCities(ctx context.Context, req *pb.GetCitiesReq) (*
 	var regions []model.Region
 
 	// 查询指定省份下的所有城市（level = 2）
-	if err := global.DB.Where("pcode = ? AND level = ?", req.ProvinceCode, 2).Find(&regions).Error; err != nil {
+	if err := global.DB.Debug().Where("pcode = ? AND level = ?", req.ProvinceCode, 2).Find(&regions).Error; err != nil {
 		return &pb.GetCitiesResp{
 			Code:    500,
 			Message: fmt.Sprintf("查询城市失败: %v", err),
@@ -468,8 +583,10 @@ func (s *MapServiceImpl) GetCities(ctx context.Context, req *pb.GetCitiesReq) (*
 	}, nil
 }
 
-// GetDistricts implements the MapServiceImpl interface.
+// GetDistricts 获取区县列表接口，获取指定城市下的区县信息
 func (s *MapServiceImpl) GetDistricts(ctx context.Context, req *pb.GetDistrictsReq) (*pb.GetDistrictsResp, error) {
+	ctx = context.Background()
+
 	if req.CityCode == 0 {
 		return &pb.GetDistrictsResp{
 			Code:    400,
@@ -480,7 +597,7 @@ func (s *MapServiceImpl) GetDistricts(ctx context.Context, req *pb.GetDistrictsR
 	var regions []model.Region
 
 	// 查询指定城市下的所有区县（level = 3）
-	if err := global.DB.Where("pcode = ? AND level = ?", req.CityCode, 3).Find(&regions).Error; err != nil {
+	if err := global.DB.Debug().Where("pcode = ? AND level = ?", req.CityCode, 3).Find(&regions).Error; err != nil {
 		return &pb.GetDistrictsResp{
 			Code:    500,
 			Message: fmt.Sprintf("查询区县失败: %v", err),
@@ -500,8 +617,10 @@ func (s *MapServiceImpl) GetDistricts(ctx context.Context, req *pb.GetDistrictsR
 	}, nil
 }
 
-// GetRegionPath implements the MapServiceImpl interface.
+// GetRegionPath 获取区域路径接口，获取指定区域的完整路径
 func (s *MapServiceImpl) GetRegionPath(ctx context.Context, req *pb.GetRegionPathReq) (*pb.GetRegionPathResp, error) {
+	ctx = context.Background()
+
 	if req.RegionCode == 0 {
 		return &pb.GetRegionPathResp{
 			Code:    400,
@@ -511,7 +630,7 @@ func (s *MapServiceImpl) GetRegionPath(ctx context.Context, req *pb.GetRegionPat
 
 	// 获取当前区域
 	var currentRegion model.Region
-	if err := global.DB.Where("code = ?", req.RegionCode).First(&currentRegion).Error; err != nil {
+	if err := global.DB.Debug().Where("code = ?", req.RegionCode).First(&currentRegion).Error; err != nil {
 		return &pb.GetRegionPathResp{
 			Code:    404,
 			Message: "未找到指定区域",
@@ -569,8 +688,10 @@ func (s *MapServiceImpl) GetRegionPath(ctx context.Context, req *pb.GetRegionPat
 	}, nil
 }
 
-// SearchRegion implements the MapServiceImpl interface.
+// SearchRegion 搜索区域接口，根据关键词搜索区域信息
 func (s *MapServiceImpl) SearchRegion(ctx context.Context, req *pb.SearchRegionReq) (*pb.SearchRegionResp, error) {
+	ctx = context.Background()
+
 	if req.Keyword == "" {
 		return &pb.SearchRegionResp{
 			Code:    400,
@@ -579,7 +700,7 @@ func (s *MapServiceImpl) SearchRegion(ctx context.Context, req *pb.SearchRegionR
 	}
 
 	var regions []model.Region
-	query := global.DB.Model(&model.Region{})
+	query := global.DB.Debug().Model(&model.Region{})
 
 	// 如果指定了父级区域代码，则在该区域内搜索
 	if req.ParentCode != nil && *req.ParentCode != 0 {

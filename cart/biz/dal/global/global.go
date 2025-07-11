@@ -1,11 +1,17 @@
 // global 包用于存放全局变量和常量，便于在项目各处统一访问
 package global
 
-import "cart/biz/dal/config"
+import (
+	"cart/biz/dal/config"
+
+	"go.mongodb.org/mongo-driver/mongo"
+)
 
 // AppConf 全局配置变量，保存应用的所有配置信息
 var (
-	AppConf config.Config
+	AppConf     config.Config
+	MongoDB     *mongo.Client
+	MongoDBName string
 )
 
 // 统一定义全局常量

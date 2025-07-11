@@ -50,3 +50,9 @@ WeChatConfig:
   Token: "your_wechat_token"
   EncodingAESKey: "your_wechat_encoding_aes_key"
   RedirectURI: "http://your_domain.com/wechat/callback"
+MongoDB:
+  User: mongo_CAFJCH
+  Password: mongo_KSrmMC
+  Host: 14.103.243.15
+  Port: 27017
+  Database: cart

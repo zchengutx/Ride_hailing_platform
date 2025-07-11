@@ -225,7 +225,7 @@ func (s *PassengerServiceImpl) getNearbyCars(location string) []*pb.CarInfo {
 	carTypes := []string{"经济型", "舒适型", "豪华型", "商务型"}
 
 	// 车牌前缀，用于生成真实车牌
-	platePrefix := []string{"京A", "京B", "京C", "京D", "京E", "沪A", "沪B", "粤A", "粤B"}
+	platePrefix := []string{"沪A", "沪B", "沪C", "沪D", "沪E"}
 
 	for i, driver := range drivers {
 		// 动态生成距离（0.3-3.0公里）
@@ -238,8 +238,8 @@ func (s *PassengerServiceImpl) getNearbyCars(location string) []*pb.CarInfo {
 		carType := carTypes[rand.Intn(len(carTypes))]
 
 		// 生成真实车牌号：前缀+5位数字
-		platePrefix := platePrefix[rand.Intn(len(platePrefix))]
-		plateNumber := fmt.Sprintf("%s%05d", platePrefix, rand.Intn(100000))
+		newPlatePrefix := platePrefix[rand.Intn(len(platePrefix))]
+		plateNumber := fmt.Sprintf("%s%05d", newPlatePrefix, rand.Intn(100000))
 
 		// 生成评分（4.0-5.0之间）
 		rating := 4.0 + rand.Float64()

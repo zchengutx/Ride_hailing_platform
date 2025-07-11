@@ -12,6 +12,7 @@ func Router(h *server.Hertz) {
 			WeChatModel(apiGroup)
 			MapModel(apiGroup)
 			UploadFileModel(apiGroup)
+			MongoModel(apiGroup)
 		}
 	}
 }

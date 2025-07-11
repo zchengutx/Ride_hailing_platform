@@ -3,6 +3,7 @@ package config
 type Config struct {
 	Mysql
 	Redis
+	MongoDB
 	PassengerService
 	DriverService
 	MapService
@@ -37,6 +38,14 @@ type Redis struct {
 	Addr     string
 	Password string
 	Db       int
+}
+
+type MongoDB struct {
+	User     string
+	Password string
+	Host     string
+	Port     int
+	Database string
 }
 
 type PassengerService struct {
