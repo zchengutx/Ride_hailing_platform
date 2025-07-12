@@ -1,0 +1,11 @@
+Mysql:
+  User: root
+  Password: 1c96b09a0f66835d5c372d1e4064e07e
+  Host: 14.103.134.228
+  Port: 3306
+  Database: Luo_xiaohei_took_a_taxi
+
+Redis:
+  Addr: "14.103.134.228:6379"
+  Password: "1c96b09a0f66835d5c372d1e4064e07e"
+  DB: 0

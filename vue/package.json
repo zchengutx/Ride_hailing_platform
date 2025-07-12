@@ -1,0 +1,33 @@
+{
+  "name": "ride-hailing-app",
+  "version": "1.0.0",
+  "description": "A ride-hailing platform frontend built with Vue3",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 8080 --host",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "mock": "node mock-server.js"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "@types/js-cookie": "^3.0.6",
+    "@types/leaflet": "^1.9.19",
+    "axios": "^1.4.0",
+    "cors": "^2.8.5",
+    "element-plus": "^2.3.8",
+    "express": "^4.21.2",
+    "js-cookie": "^3.0.5",
+    "leaflet": "^1.9.4",
+    "pinia": "^2.1.6",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.5",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "typescript": "~5.1.6",
+    "vite": "^4.4.5",
+    "vue-tsc": "^1.8.5"
+  }
+}

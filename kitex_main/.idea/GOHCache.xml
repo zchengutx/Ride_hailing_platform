@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GoORMHelperCache">
+    <option name="schemaMapping">
+      <map>
+        <entry key="AppConfig">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Auth">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/model/auth.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="CallBackReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="CallBackResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="CustomClaims">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/pkg/jwt.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="JWT">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/pkg/jwt.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Login">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/gateway/biz/handler/request/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LoginReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="LoginResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Mysql">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Redis">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="Response">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/gateway/biz/handler/response/response.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SendSms">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/gateway/biz/handler/request/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SendSmsReq">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="SendSmsResp">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/model/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerCallBackArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerCallBackResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/rpc/user/handler.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerLoginArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerLoginResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerSendSmsArgs">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="UserServerSendSmsResult">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="kClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/userserver/userserver.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="kUserServerClient">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/userserver/client.go" />
+            </set>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="scannedPathMapping">
+      <map>
+        <entry key="file://$PROJECT_DIR$/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751027371057" />
+              <option name="schema">
+                <list>
+                  <option value="AppConfig" />
+                  <option value="Mysql" />
+                  <option value="Redis" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/config/global.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751269539981" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/gateway/biz/handler/request/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751269048078" />
+              <option name="schema">
+                <list>
+                  <option value="SendSms" />
+                  <option value="Login" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/gateway/biz/handler/response/response.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751081483118" />
+              <option name="schema">
+                <list>
+                  <option value="Response" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/gateway/biz/handler/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751334006441" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/gateway/biz/router/register.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751080492785" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/gateway/biz/router/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751270108232" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/gateway/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751277226962" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/gateway/router.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751080877278" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/gateway/router_gen.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751080492784" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/init/init.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751198320114" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/k-consts.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751275286435" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/k-user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751275286437" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751275286436" />
+              <option name="schema">
+                <list>
+                  <option value="SendSmsReq" />
+                  <option value="SendSmsResp" />
+                  <option value="LoginReq" />
+                  <option value="LoginResp" />
+                  <option value="CallBackReq" />
+                  <option value="CallBackResp" />
+                  <option value="UserServerSendSmsArgs" />
+                  <option value="UserServerSendSmsResult" />
+                  <option value="UserServerLoginArgs" />
+                  <option value="UserServerLoginResult" />
+                  <option value="UserServerCallBackArgs" />
+                  <option value="UserServerCallBackResult" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/userserver/client.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751275286435" />
+              <option name="schema">
+                <list>
+                  <option value="kUserServerClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/userserver/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751275286435" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kitex_gen/Ride_hailing_platform/user/userserver/userserver.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751275286435" />
+              <option name="schema">
+                <list>
+                  <option value="kClient" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/model/auth.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751273819360" />
+              <option name="schema">
+                <list>
+                  <option value="Auth" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/model/user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751208559378" />
+              <option name="schema">
+                <list>
+                  <option value="User" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/pkg/CheckMobile.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751252887748" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/pkg/RandomString.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751201872044" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/pkg/jwt.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751265630787" />
+              <option name="schema">
+                <list>
+                  <option value="CustomClaims" />
+                  <option value="JWT" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/pkg/sendSms.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751029593170" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/rpc/user/handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751293378094" />
+              <option name="schema">
+                <list>
+                  <option value="UserServerImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/rpc/user/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1751198552684" />
+            </ScannedPath>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="tableStructMapping">
+      <map>
+        <entry key="app_config" value="AppConfig" />
+        <entry key="auth" value="Auth" />
+        <entry key="call_back_req" value="CallBackReq" />
+        <entry key="call_back_resp" value="CallBackResp" />
+        <entry key="custom_claims" value="CustomClaims" />
+        <entry key="jwt" value="JWT" />
+        <entry key="k_client" value="kClient" />
+        <entry key="k_user_server_client" value="kUserServerClient" />
+        <entry key="login" value="Login" />
+        <entry key="login_req" value="LoginReq" />
+        <entry key="login_resp" value="LoginResp" />
+        <entry key="mysql" value="Mysql" />
+        <entry key="redis" value="Redis" />
+        <entry key="response" value="Response" />
+        <entry key="send_sms" value="SendSms" />
+        <entry key="send_sms_req" value="SendSmsReq" />
+        <entry key="send_sms_resp" value="SendSmsResp" />
+        <entry key="user" value="User" />
+        <entry key="user_server_call_back_args" value="UserServerCallBackArgs" />
+        <entry key="user_server_call_back_result" value="UserServerCallBackResult" />
+        <entry key="user_server_impl" value="UserServerImpl" />
+        <entry key="user_server_login_args" value="UserServerLoginArgs" />
+        <entry key="user_server_login_result" value="UserServerLoginResult" />
+        <entry key="user_server_send_sms_args" value="UserServerSendSmsArgs" />
+        <entry key="user_server_send_sms_result" value="UserServerSendSmsResult" />
+      </map>
+    </option>
+    <option name="lastTimeChecked" value="1751333964365" />
+  </component>
+</project>
