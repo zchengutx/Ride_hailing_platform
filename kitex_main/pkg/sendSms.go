@@ -6,7 +6,7 @@ import (
 	util "github.com/alibabacloud-go/tea-utils/v2/service"
 	"github.com/alibabacloud-go/tea/tea"
 	credential "github.com/aliyun/credentials-go/credentials"
-	"github.com/spf13/viper"
+	config2 "kitex_main/config"
 )
 
 // Description:
@@ -23,9 +23,11 @@ func CreateClient() (_result *dysmsapi20170525.Client, _err error) {
 		return _result, _err
 	}
 
+	var configs config2.AppConfig
+
 	config := &openapi.Config{
-		AccessKeyId:     tea.String(viper.GetString("LTAI5tLNaojcRjuW2u5pFf2o")),
-		AccessKeySecret: tea.String(viper.GetString("VkeNMo2lXCUZefIdoWcZWceLghzmJ4")),
+		AccessKeyId:     tea.String(configs.ALiYun.AccessKeyID),
+		AccessKeySecret: tea.String(configs.ALiYun.AccessKeySecret),
 		Credential:      credential,
 	}
 	// Endpoint 请参考 https://api.aliyun.com/product/Dysmsapi

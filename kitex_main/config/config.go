@@ -1,8 +1,9 @@
 package config
 
 type AppConfig struct {
-	Mysql Mysql
-	Redis Redis
+	Mysql  Mysql
+	Redis  Redis
+	ALiYun ALiYun
 }
 
 type Mysql struct {
@@ -17,4 +18,9 @@ type Redis struct {
 	Addr     string
 	Password string
 	DB       int32
+}
+
+type ALiYun struct {
+	AccessKeyID     string
+	AccessKeySecret string
 }
