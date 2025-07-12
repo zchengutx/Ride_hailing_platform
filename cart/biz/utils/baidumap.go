@@ -4,8 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"math"
 	"net/http"
 	"net/url"
+
+	mapservicepb "cart/kitex_gen/cart/mapservice"
+	"cart/rpc/basic/model"
 )
 
 // 百度地图API配置
@@ -15,17 +19,12 @@ const (
 	DefaultBaiduMapAPIKey = "mGQEH6rmm11Em096OUIIY4SUfUI5AD3u" // 您的百度地图API Key
 )
 
-// BaiduMapClient 百度地图客户端
-type BaiduMapClient struct {
-	APIKey string
-}
-
 // NewBaiduMapClient 创建百度地图客户端
-func NewBaiduMapClient(apiKey string) *BaiduMapClient {
-	if apiKey == "" {
-		apiKey = DefaultBaiduMapAPIKey
+func NewBaiduMapClient(apiKey, apiHost string) *model.BaiduMapClient {
+	return &model.BaiduMapClient{
+		APIKey:  apiKey,
+		APIHost: apiHost,
 	}
-	return &BaiduMapClient{APIKey: apiKey}
 }
 
 // Location 坐标结构
@@ -94,7 +93,7 @@ type IPLocationResponse struct {
 }
 
 // GetLocationByAddress 根据地址获取坐标（地理编码）
-func (c *BaiduMapClient) GetLocationByAddress(address string) (*GeoCodingResponse, error) {
+func GetLocationByAddress(c *model.BaiduMapClient, address string) (*GeoCodingResponse, error) {
 	apiURL := fmt.Sprintf("%s/geocoding/v3/?address=%s&output=json&ak=%s",
 		BaiduMapAPIHost, url.QueryEscape(address), c.APIKey)
 
@@ -118,7 +117,7 @@ func (c *BaiduMapClient) GetLocationByAddress(address string) (*GeoCodingRespons
 }
 
 // GetAddressByLocation 根据坐标获取地址（逆地理编码）
-func (c *BaiduMapClient) GetAddressByLocation(lat, lng float64) (*ReverseGeoCodingResponse, error) {
+func GetAddressByLocation(c *model.BaiduMapClient, lat, lng float64) (*ReverseGeoCodingResponse, error) {
 	apiURL := fmt.Sprintf("%s/reverse_geocoding/v3/?ak=%s&output=json&coordtype=wgs84ll&location=%f,%f",
 		BaiduMapAPIHost, c.APIKey, lat, lng)
 
@@ -145,7 +144,7 @@ func (c *BaiduMapClient) GetAddressByLocation(lat, lng float64) (*ReverseGeoCodi
 }
 
 // GetLocationByIP 根据IP获取位置信息
-func (c *BaiduMapClient) GetLocationByIP(ip string) (*IPLocationResponse, error) {
+func GetLocationByIP(c *model.BaiduMapClient, ip string) (*IPLocationResponse, error) {
 	apiURL := fmt.Sprintf("%s/location/ip?ip=%s&ak=%s&coor=bd09ll",
 		BaiduMapAPIHost, ip, c.APIKey)
 
@@ -169,6 +168,33 @@ func (c *BaiduMapClient) GetLocationByIP(ip string) (*IPLocationResponse, error)
 }
 
 // GetDefaultBaiduMapClient 获取默认百度地图客户端
-func GetDefaultBaiduMapClient() *BaiduMapClient {
-	return NewBaiduMapClient("")
+func GetDefaultBaiduMapClient() *model.BaiduMapClient {
+	return NewBaiduMapClient("", "")
+}
+
+// ConvertRegionToRegionInfo 将数据库Region模型转换为Thrift RegionInfo
+func ConvertRegionToRegionInfo(region *model.Region) *mapservicepb.RegionInfo {
+	return &mapservicepb.RegionInfo{
+		Code:    region.Code,
+		Name:    region.Name,
+		Pcode:   region.Pcode,
+		Sname:   region.Sname,
+		Level:   region.Level,
+		Mername: region.Mername,
+		Pinyin:  region.Pinyin,
+	}
+}
+
+// CalculateDistance 计算两点间距离（哈弗辛公式）
+func CalculateDistance(lat1, lng1, lat2, lng2 float64) float64 {
+	const R = 6371000 // 地球半径，单位：米
+	lat1Rad := lat1 * math.Pi / 180
+	lat2Rad := lat2 * math.Pi / 180
+	deltaLat := (lat2 - lat1) * math.Pi / 180
+	deltaLng := (lng2 - lng1) * math.Pi / 180
+	a := math.Sin(deltaLat/2)*math.Sin(deltaLat/2) +
+		math.Cos(lat1Rad)*math.Cos(lat2Rad)*
+			math.Sin(deltaLng/2)*math.Sin(deltaLng/2)
+	c := 2 * math.Atan2(math.Sqrt(a), math.Sqrt(1-a))
+	return R * c
 }

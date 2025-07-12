@@ -95,6 +95,7 @@ func LoginPassenger(ctx context.Context, c *app.RequestContext) {
 	})
 	if passenger.Code != 200 {
 		c.JSON(200, passenger)
+		return
 	}
 	token, _ := middleware.NewJWT(global.JWT_SELECT_KEY).CreateToken(middleware.CustomClaims{
 		ID: int(passenger.PassengerId),

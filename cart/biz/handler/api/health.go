@@ -10,7 +10,8 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// HealthCheck 健康检查接口，返回服务及依赖组件的健康状态
+// HealthCheck 健康检查端点，返回服务及依赖组件的健康状态
+// 检查数据库、Redis等依赖服务的可用性，并返回详细状态
 func HealthCheck(ctx context.Context, c *app.RequestContext) {
 	startTime := time.Now()
 

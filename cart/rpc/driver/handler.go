@@ -1,100 +1,27 @@
 package main
 
 import (
+	"cart/biz/utils"
 	pb "cart/kitex_gen/cart/driver"
 	"cart/rpc/basic/global"
 	"cart/rpc/basic/model"
 	"context"
 	"fmt"
-	"math/rand"
 	"strings"
 	"time"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"gorm.io/gorm"
 )
 
 // DriverServiceImpl implements the last service interface defined in the IDL.
 type DriverServiceImpl struct{}
 
-// validateDriverInfo 验证司机基本信息
-func (s *DriverServiceImpl) validateDriverInfo(req *pb.DriverPetitionReq) error {
-	if strings.TrimSpace(req.Name) == "" {
-		return fmt.Errorf("姓名不能为空")
-	}
-	if strings.TrimSpace(req.NickName) == "" {
-		return fmt.Errorf("昵称不能为空")
-	}
-	if strings.TrimSpace(req.Mobile) == "" {
-		return fmt.Errorf("手机号不能为空")
-	}
-	if len(req.Mobile) != 11 {
-		return fmt.Errorf("手机号格式不正确")
-	}
-	if req.CarAge < 0 || req.CarAge > 20 {
-		return fmt.Errorf("车龄应在0-20年之间")
-	}
-	if strings.TrimSpace(req.IdCardFileId) == "" {
-		return fmt.Errorf("身份证照片不能为空")
-	}
-	if strings.TrimSpace(req.DriverLicenseFileId) == "" {
-		return fmt.Errorf("驾驶证照片不能为空")
-	}
-	if strings.TrimSpace(req.DrivingLicenseFileId) == "" {
-		return fmt.Errorf("行驶证照片不能为空")
-	}
-	if strings.TrimSpace(req.AvatarFileId) == "" {
-		return fmt.Errorf("头像不能为空")
-	}
-	return nil
-}
-
-// generateOrderCode 生成订单编号
-func (s *DriverServiceImpl) generateOrderCode() string {
-	timestamp := time.Now().Unix()
-	randomNum := rand.Intn(10000)
-	return fmt.Sprintf("D%d%04d", timestamp, randomNum)
-}
-
-// convertOrderToInfo 将订单模型转换为返回信息
-func (s *DriverServiceImpl) convertOrderToInfo(order model.LxhOrder) *pb.OrderInfo {
-	// 获取乘客信息
-	var passenger model.LxhPassenger
-	passengerName := "未知乘客"
-	passengerMobile := ""
-	if err := global.DB.Where("id = ?", order.PassengerId).First(&passenger).Error; err == nil {
-		if passenger.NickName != "" {
-			passengerName = passenger.NickName
-		} else if passenger.Name != "" {
-			passengerName = passenger.Name
-		}
-		// 脱敏处理手机号
-		if len(passenger.Mobile) == 11 {
-			passengerMobile = passenger.Mobile[:3] + "****" + passenger.Mobile[7:]
-		}
-	}
-
-	return &pb.OrderInfo{
-		Id:              order.Id,
-		OrderCode:       order.OrderCode,
-		Amount:          order.Amount,
-		OrderStatus:     order.OrderStatus,
-		PassengerId:     order.PassengerId,
-		PassengerName:   passengerName,
-		PassengerMobile: passengerMobile,
-		StartAddr:       order.StartAddr,
-		EndAddr:         order.EndEnd,
-		StartTime:       order.StartTime.Format("2006-01-02 15:04:05"),
-		EndTime:         order.EndTime.Format("2006-01-02 15:04:05"),
-		OrderType:       order.OrderType,
-	}
-}
-
-// DriverPetition 司机注册申请接口，实现司机注册申请功能
+// DriverPetition 司机申请接口
+// 处理司机注册申请，包括基本信息验证、文件上传验证、创建司机记录和审核记录
 func (s *DriverServiceImpl) DriverPetition(ctx context.Context, req *pb.DriverPetitionReq) (*pb.DriverPetitionResp, error) {
-	ctx = context.Background()
-
 	// 参数验证
-	if err := s.validateDriverInfo(req); err != nil {
+	if err := utils.ValidateDriverInfo(req); err != nil {
 		return &pb.DriverPetitionResp{
 			Code:    400,
 			Message: err.Error(),
@@ -102,8 +29,8 @@ func (s *DriverServiceImpl) DriverPetition(ctx context.Context, req *pb.DriverPe
 	}
 
 	// 检查手机号是否已注册
-	var existingDriver model.LxhDriver
-	if err := global.DB.Debug().Where("mobile = ?", req.Mobile).First(&existingDriver).Error; err == nil {
+	var driver model.LxhDriver
+	if err := global.DB.Where("mobile = ?", req.Mobile).First(&driver).Error; err == nil {
 		return &pb.DriverPetitionResp{
 			Code:    400,
 			Message: "该手机号已注册司机账户",
@@ -111,14 +38,14 @@ func (s *DriverServiceImpl) DriverPetition(ctx context.Context, req *pb.DriverPe
 	}
 
 	// 检查是否已有审核中的申请
-	var existingCheck model.LxhDriverCheck
-	if err := global.DB.Debug().Joins("JOIN lxh_driver ON lxh_driver_check.id = lxh_driver.id").
-		Where("lxh_driver.mobile = ? AND lxh_driver_check.check_status = ?", req.Mobile, "pending").
-		First(&existingCheck).Error; err == nil {
-		return &pb.DriverPetitionResp{
-			Code:    400,
-			Message: "您已有审核中的申请，请耐心等待",
-		}, nil
+	if err := global.DB.Where("mobile = ?", req.Mobile).First(&driver).Error; err == nil {
+		var check model.LxhDriverCheck
+		if err := global.DB.Where("id = ? AND check_status = ?", driver.Id, "pending").First(&check).Error; err == nil {
+			return &pb.DriverPetitionResp{
+				Code:    400,
+				Message: "您已有审核中的申请，请耐心等待",
+			}, nil
+		}
 	}
 
 	// 使用事务确保数据一致性
@@ -137,14 +64,11 @@ func (s *DriverServiceImpl) DriverPetition(ctx context.Context, req *pb.DriverPe
 	}()
 
 	// 创建司机记录
-	driver := model.LxhDriver{
-		Name:      strings.TrimSpace(req.Name),
-		NickName:  strings.TrimSpace(req.NickName),
-		Mobile:    req.Mobile,
-		CarAge:    req.CarAge,
-		Status:    "offline",
-		FileId:    0,
-		AllAcount: 0,
+	driver = model.LxhDriver{
+		Name:     strings.TrimSpace(req.Name),
+		NickName: strings.TrimSpace(req.NickName),
+		Mobile:   req.Mobile,
+		CarAge:   req.CarAge,
 	}
 
 	if err := tx.Create(&driver).Error; err != nil {
@@ -162,8 +86,6 @@ func (s *DriverServiceImpl) DriverPetition(ctx context.Context, req *pb.DriverPe
 		DriverLicenseFileId:  req.DriverLicenseFileId,
 		DrivingLicenseFileId: req.DrivingLicenseFileId,
 		AvatorFileId:         req.AvatarFileId,
-		CheckStatus:          "pending",
-		Remark:               "申请已提交，正在审核中",
 	}
 
 	if err := tx.Create(&driverCheck).Error; err != nil {
@@ -189,10 +111,9 @@ func (s *DriverServiceImpl) DriverPetition(ctx context.Context, req *pb.DriverPe
 	}, nil
 }
 
-// CheckStatus 查询司机审核状态接口，查询司机审核状态
+// CheckStatus 检查审核状态接口
+// 查询司机的审核状态，返回审核进度和结果
 func (s *DriverServiceImpl) CheckStatus(ctx context.Context, req *pb.CheckStatusReq) (*pb.CheckStatusResp, error) {
-	ctx = context.Background()
-
 	if req.DriverId <= 0 {
 		return &pb.CheckStatusResp{
 			Code:    400,
@@ -201,20 +122,13 @@ func (s *DriverServiceImpl) CheckStatus(ctx context.Context, req *pb.CheckStatus
 	}
 
 	var driverCheck model.LxhDriverCheck
-	if err := global.DB.Debug().Where("id = ?", req.DriverId).First(&driverCheck).Error; err != nil {
-		if err == gorm.ErrRecordNotFound {
-			return &pb.CheckStatusResp{
-				Code:    404,
-				Message: "未找到审核记录",
-			}, nil
-		}
+	if err := global.DB.Where("id = ?", req.DriverId).First(&driverCheck).Error; err != nil {
 		return &pb.CheckStatusResp{
-			Code:    503,
-			Message: "查询失败，请重试",
+			Code:    404,
+			Message: "未找到审核记录",
 		}, nil
 	}
 
-	// 根据审核状态返回友好信息
 	var statusMessage string
 	switch driverCheck.CheckStatus {
 	case "pending":
@@ -235,10 +149,9 @@ func (s *DriverServiceImpl) CheckStatus(ctx context.Context, req *pb.CheckStatus
 	}, nil
 }
 
-// DriverLogin 司机登录接口，实现司机登录功能
+// DriverLogin 司机登录接口
+// 验证手机号和短信验证码，返回司机信息和登录令牌
 func (s *DriverServiceImpl) DriverLogin(ctx context.Context, req *pb.DriverLoginReq) (*pb.DriverLoginResp, error) {
-	ctx = context.Background()
-
 	// 参数验证
 	if strings.TrimSpace(req.Mobile) == "" {
 		return &pb.DriverLoginResp{
@@ -271,7 +184,7 @@ func (s *DriverServiceImpl) DriverLogin(ctx context.Context, req *pb.DriverLogin
 
 	// 查找司机记录
 	var driver model.LxhDriver
-	if err := global.DB.Debug().Where("mobile = ?", req.Mobile).First(&driver).Error; err != nil {
+	if err := global.DB.Where("mobile = ?", req.Mobile).First(&driver).Error; err != nil {
 		if err == gorm.ErrRecordNotFound {
 			return &pb.DriverLoginResp{
 				Code:    401,
@@ -286,7 +199,7 @@ func (s *DriverServiceImpl) DriverLogin(ctx context.Context, req *pb.DriverLogin
 
 	// 检查审核状态
 	var driverCheck model.LxhDriverCheck
-	if err := global.DB.Debug().Where("id = ?", driver.Id).First(&driverCheck).Error; err != nil {
+	if err := global.DB.Where("id = ?", driver.Id).First(&driverCheck).Error; err != nil {
 		return &pb.DriverLoginResp{
 			Code:    403,
 			Message: "账户信息异常，请联系客服",
@@ -314,10 +227,8 @@ func (s *DriverServiceImpl) DriverLogin(ctx context.Context, req *pb.DriverLogin
 		}, nil
 	}
 
-	// 生成token（这里简化处理，实际应该用JWT）
 	token := fmt.Sprintf("driver_token_%d_%d", driver.Id, time.Now().Unix())
 
-	// 删除验证码（防止重复使用）
 	global.Rdb.Del(ctx, "sendSms"+req.Mobile)
 
 	// 构建司机信息
@@ -341,10 +252,9 @@ func (s *DriverServiceImpl) DriverLogin(ctx context.Context, req *pb.DriverLogin
 	}, nil
 }
 
-// GetDriverInfo 获取司机信息接口，获取司机详细信息
+// GetDriverInfo 获取司机信息接口
+// 根据司机ID查询并返回司机的详细信息
 func (s *DriverServiceImpl) GetDriverInfo(ctx context.Context, req *pb.GetDriverInfoReq) (*pb.GetDriverInfoResp, error) {
-	ctx = context.Background()
-
 	if req.DriverId <= 0 {
 		return &pb.GetDriverInfoResp{
 			Code:    400,
@@ -353,7 +263,7 @@ func (s *DriverServiceImpl) GetDriverInfo(ctx context.Context, req *pb.GetDriver
 	}
 
 	var driver model.LxhDriver
-	if err := global.DB.Debug().Where("id = ?", req.DriverId).First(&driver).Error; err != nil {
+	if err := global.DB.Where("id = ?", req.DriverId).First(&driver).Error; err != nil {
 		if err == gorm.ErrRecordNotFound {
 			return &pb.GetDriverInfoResp{
 				Code:    404,
@@ -384,10 +294,9 @@ func (s *DriverServiceImpl) GetDriverInfo(ctx context.Context, req *pb.GetDriver
 	}, nil
 }
 
-// UpdateDriverInfo 更新司机信息接口，更新司机个人信息
+// UpdateDriverInfo 更新司机信息接口
+// 更新司机的昵称、头像等基本信息
 func (s *DriverServiceImpl) UpdateDriverInfo(ctx context.Context, req *pb.UpdateDriverInfoReq) (*pb.UpdateDriverInfoResp, error) {
-	ctx = context.Background()
-
 	if req.DriverId <= 0 {
 		return &pb.UpdateDriverInfoResp{
 			Code:    400,
@@ -397,7 +306,7 @@ func (s *DriverServiceImpl) UpdateDriverInfo(ctx context.Context, req *pb.Update
 
 	// 验证司机是否存在
 	var driver model.LxhDriver
-	if err := global.DB.Debug().Where("id = ?", req.DriverId).First(&driver).Error; err != nil {
+	if err := global.DB.Where("id = ?", req.DriverId).First(&driver).Error; err != nil {
 		if err == gorm.ErrRecordNotFound {
 			return &pb.UpdateDriverInfoResp{
 				Code:    404,
@@ -433,7 +342,7 @@ func (s *DriverServiceImpl) UpdateDriverInfo(ctx context.Context, req *pb.Update
 		}, nil
 	}
 
-	if err := global.DB.Debug().Model(&model.LxhDriver{}).Where("id = ?", req.DriverId).Updates(updateData).Error; err != nil {
+	if err := global.DB.Model(&model.LxhDriver{}).Where("id = ?", req.DriverId).Updates(updateData).Error; err != nil {
 		return &pb.UpdateDriverInfoResp{
 			Code:    503,
 			Message: "更新失败，请重试",
@@ -446,10 +355,9 @@ func (s *DriverServiceImpl) UpdateDriverInfo(ctx context.Context, req *pb.Update
 	}, nil
 }
 
-// ChangeStatus 司机状态切换接口，实现司机上线下线功能
+// ChangeStatus 改变司机状态接口
+// 司机上线/下线状态切换，上线时需要提供位置信息
 func (s *DriverServiceImpl) ChangeStatus(ctx context.Context, req *pb.ChangeStatusReq) (*pb.ChangeStatusResp, error) {
-	ctx = context.Background()
-
 	if req.DriverId <= 0 {
 		return &pb.ChangeStatusResp{
 			Code:    400,
@@ -467,7 +375,7 @@ func (s *DriverServiceImpl) ChangeStatus(ctx context.Context, req *pb.ChangeStat
 
 	// 验证司机是否存在且已审核通过
 	var driver model.LxhDriver
-	if err := global.DB.Debug().Where("id = ?", req.DriverId).First(&driver).Error; err != nil {
+	if err := global.DB.Where("id = ?", req.DriverId).First(&driver).Error; err != nil {
 		if err == gorm.ErrRecordNotFound {
 			return &pb.ChangeStatusResp{
 				Code:    404,
@@ -482,7 +390,7 @@ func (s *DriverServiceImpl) ChangeStatus(ctx context.Context, req *pb.ChangeStat
 
 	// 检查审核状态
 	var driverCheck model.LxhDriverCheck
-	if err := global.DB.Debug().Where("id = ?", driver.Id).First(&driverCheck).Error; err != nil || driverCheck.CheckStatus != "approved" {
+	if err := global.DB.Where("id = ?", driver.Id).First(&driverCheck).Error; err != nil || driverCheck.CheckStatus != "approved" {
 		return &pb.ChangeStatusResp{
 			Code:    403,
 			Message: "账户未审核通过，无法上线",
@@ -500,7 +408,7 @@ func (s *DriverServiceImpl) ChangeStatus(ctx context.Context, req *pb.ChangeStat
 	// 检查是否有未完成的订单
 	if req.Status == "offline" {
 		var activeOrderCount int64
-		global.DB.Debug().Model(&model.LxhOrder{}).Where("driver = ? AND order_status IN ?", req.DriverId, []string{"已接单", "进行中"}).Count(&activeOrderCount)
+		global.DB.Model(&model.LxhOrder{}).Where("driver = ? AND order_status IN ?", req.DriverId, []string{"已接单", "进行中"}).Count(&activeOrderCount)
 		if activeOrderCount > 0 {
 			return &pb.ChangeStatusResp{
 				Code:    400,
@@ -510,7 +418,7 @@ func (s *DriverServiceImpl) ChangeStatus(ctx context.Context, req *pb.ChangeStat
 	}
 
 	// 更新司机状态
-	if err := global.DB.Debug().Model(&model.LxhDriver{}).Where("id = ?", req.DriverId).Update("status", req.Status).Error; err != nil {
+	if err := global.DB.Model(&model.LxhDriver{}).Where("id = ?", req.DriverId).Update("status", req.Status).Error; err != nil {
 		return &pb.ChangeStatusResp{
 			Code:    503,
 			Message: "状态更新失败，请重试",
@@ -541,10 +449,9 @@ func (s *DriverServiceImpl) ChangeStatus(ctx context.Context, req *pb.ChangeStat
 	}, nil
 }
 
-// GetPendingOrders 获取待接订单接口，获取司机可接取的订单列表
+// GetPendingOrders 获取待接订单接口
+// 查询当前可接的订单列表，按时间排序
 func (s *DriverServiceImpl) GetPendingOrders(ctx context.Context, req *pb.GetPendingOrdersReq) (*pb.GetPendingOrdersResp, error) {
-	ctx = context.Background()
-
 	if req.DriverId <= 0 {
 		return &pb.GetPendingOrdersResp{
 			Code:    400,
@@ -554,7 +461,7 @@ func (s *DriverServiceImpl) GetPendingOrders(ctx context.Context, req *pb.GetPen
 
 	// 验证司机是否在线
 	var driver model.LxhDriver
-	if err := global.DB.Debug().Where("id = ? AND status = ?", req.DriverId, "online").First(&driver).Error; err != nil {
+	if err := global.DB.Where("id = ? AND status = ?", req.DriverId, "online").First(&driver).Error; err != nil {
 		if err == gorm.ErrRecordNotFound {
 			return &pb.GetPendingOrdersResp{
 				Code:    403,
@@ -569,7 +476,7 @@ func (s *DriverServiceImpl) GetPendingOrders(ctx context.Context, req *pb.GetPen
 
 	// 查询待接订单（未分配司机的订单）
 	var orders []model.LxhOrder
-	query := global.DB.Debug().Where("order_status = ? AND (driver = 0 OR driver IS NULL)", "待接单").
+	query := global.DB.Where("order_status = ? AND (driver = 0 OR driver IS NULL)", "待接单").
 		Order("start_time ASC").
 		Limit(20) // 默认最多返回20条
 
@@ -583,7 +490,7 @@ func (s *DriverServiceImpl) GetPendingOrders(ctx context.Context, req *pb.GetPen
 	// 转换为返回格式
 	var orderInfos []*pb.OrderInfo
 	for _, order := range orders {
-		orderInfo := s.convertOrderToInfo(order)
+		orderInfo := utils.ConvertOrderToInfo(order, global.DB)
 		orderInfos = append(orderInfos, orderInfo)
 	}
 
@@ -594,10 +501,9 @@ func (s *DriverServiceImpl) GetPendingOrders(ctx context.Context, req *pb.GetPen
 	}, nil
 }
 
-// AcceptOrder 司机接单接口，司机接受订单
+// AcceptOrder 接单接口
+// 司机接受指定订单，更新订单状态和司机信息
 func (s *DriverServiceImpl) AcceptOrder(ctx context.Context, req *pb.AcceptOrderReq) (*pb.AcceptOrderResp, error) {
-	ctx = context.Background()
-
 	if req.DriverId <= 0 {
 		return &pb.AcceptOrderResp{
 			Code:    400,
@@ -613,7 +519,7 @@ func (s *DriverServiceImpl) AcceptOrder(ctx context.Context, req *pb.AcceptOrder
 
 	// 验证司机是否在线
 	var driver model.LxhDriver
-	if err := global.DB.Debug().Where("id = ? AND status = ?", req.DriverId, "online").First(&driver).Error; err != nil {
+	if err := global.DB.Where("id = ? AND status = ?", req.DriverId, "online").First(&driver).Error; err != nil {
 		return &pb.AcceptOrderResp{
 			Code:    403,
 			Message: "请先上线再接单",
@@ -622,7 +528,7 @@ func (s *DriverServiceImpl) AcceptOrder(ctx context.Context, req *pb.AcceptOrder
 
 	// 检查司机是否已有进行中的订单
 	var activeOrderCount int64
-	global.DB.Debug().Model(&model.LxhOrder{}).Where("driver = ? AND order_status IN ?", req.DriverId, []string{"已接单", "进行中"}).Count(&activeOrderCount)
+	global.DB.Model(&model.LxhOrder{}).Where("driver = ? AND order_status IN ?", req.DriverId, []string{"已接单", "进行中"}).Count(&activeOrderCount)
 	if activeOrderCount > 0 {
 		return &pb.AcceptOrderResp{
 			Code:    400,
@@ -682,7 +588,7 @@ func (s *DriverServiceImpl) AcceptOrder(ctx context.Context, req *pb.AcceptOrder
 	}
 
 	// 重新查询订单信息
-	if err := global.DB.Debug().Where("id = ?", req.OrderId).First(&order).Error; err != nil {
+	if err := global.DB.Where("id = ?", req.OrderId).First(&order).Error; err != nil {
 		return &pb.AcceptOrderResp{
 			Code:    503,
 			Message: "接单成功，但获取订单信息失败",
@@ -690,7 +596,7 @@ func (s *DriverServiceImpl) AcceptOrder(ctx context.Context, req *pb.AcceptOrder
 	}
 
 	// 构建订单信息返回
-	orderInfo := s.convertOrderToInfo(order)
+	orderInfo := utils.ConvertOrderToInfo(order, global.DB)
 	orderInfo.OrderStatus = "已接单"
 
 	return &pb.AcceptOrderResp{
@@ -700,10 +606,9 @@ func (s *DriverServiceImpl) AcceptOrder(ctx context.Context, req *pb.AcceptOrder
 	}, nil
 }
 
-// StartTrip 开始行程接口，司机开始行程
+// StartTrip 开始行程接口
+// 司机开始行程，更新订单状态为进行中
 func (s *DriverServiceImpl) StartTrip(ctx context.Context, req *pb.StartTripReq) (*pb.StartTripResp, error) {
-	ctx = context.Background()
-
 	if req.DriverId <= 0 {
 		return &pb.StartTripResp{
 			Code:    400,
@@ -719,7 +624,7 @@ func (s *DriverServiceImpl) StartTrip(ctx context.Context, req *pb.StartTripReq)
 
 	// 检查订单状态
 	var order model.LxhOrder
-	if err := global.DB.Debug().Where("id = ? AND driver = ? AND order_status = ?", req.OrderId, req.DriverId, "已接单").First(&order).Error; err != nil {
+	if err := global.DB.Where("id = ? AND driver = ? AND order_status = ?", req.OrderId, req.DriverId, "已接单").First(&order).Error; err != nil {
 		if err == gorm.ErrRecordNotFound {
 			return &pb.StartTripResp{
 				Code:    404,
@@ -734,7 +639,7 @@ func (s *DriverServiceImpl) StartTrip(ctx context.Context, req *pb.StartTripReq)
 
 	// 更新订单状态为进行中
 	currentTime := time.Now()
-	if err := global.DB.Debug().Model(&order).Updates(map[string]interface{}{
+	if err := global.DB.Model(&order).Updates(map[string]interface{}{
 		"order_status": "进行中",
 		"start_time":   currentTime,
 	}).Error; err != nil {
@@ -745,7 +650,7 @@ func (s *DriverServiceImpl) StartTrip(ctx context.Context, req *pb.StartTripReq)
 	}
 
 	// 更新路线记录状态（如果存在）
-	global.DB.Debug().Model(&model.LxhRouteRecord{}).Where("order_id = ?", req.OrderId).Updates(map[string]interface{}{
+	global.DB.Model(&model.LxhRouteRecord{}).Where("order_id = ?", req.OrderId).Updates(map[string]interface{}{
 		"route_status": "running",
 		"start_time":   currentTime,
 	})
@@ -756,10 +661,9 @@ func (s *DriverServiceImpl) StartTrip(ctx context.Context, req *pb.StartTripReq)
 	}, nil
 }
 
-// CompleteOrder 完成订单接口，司机完成订单
+// CompleteOrder 完成订单接口
+// 司机完成订单，计算费用并更新收益
 func (s *DriverServiceImpl) CompleteOrder(ctx context.Context, req *pb.CompleteOrderReq) (*pb.CompleteOrderResp, error) {
-	ctx = context.Background()
-
 	if req.DriverId <= 0 {
 		return &pb.CompleteOrderResp{
 			Code:    400,
@@ -779,7 +683,19 @@ func (s *DriverServiceImpl) CompleteOrder(ctx context.Context, req *pb.CompleteO
 		}, nil
 	}
 
-	// 使用事务确保数据一致性
+	// 1. 从MongoDB读取订单
+	orderCode := fmt.Sprintf("O%d", req.OrderId) // 这里假设OrderId就是订单号后缀，如有不同请调整
+	collection := global.MongoDB.Database("cart").Collection("orders")
+	var mongoOrder model.MongoOrder
+	err := collection.FindOne(ctx, bson.M{"order_id": orderCode}).Decode(&mongoOrder)
+	if err != nil {
+		return &pb.CompleteOrderResp{
+			Code:    404,
+			Message: "MongoDB中未找到订单",
+		}, nil
+	}
+
+	// 2. 写入MySQL
 	tx := global.DB.Begin()
 	if tx.Error != nil {
 		return &pb.CompleteOrderResp{
@@ -787,48 +703,35 @@ func (s *DriverServiceImpl) CompleteOrder(ctx context.Context, req *pb.CompleteO
 			Message: "完成订单失败，请重试",
 		}, nil
 	}
-
 	defer func() {
 		if r := recover(); r != nil {
 			tx.Rollback()
 		}
 	}()
 
-	// 检查订单状态
-	var order model.LxhOrder
-	if err := tx.Where("id = ? AND driver = ? AND order_status = ?", req.OrderId, req.DriverId, "进行中").First(&order).Error; err != nil {
+	mysqlOrder := model.LxhOrder{
+		OrderCode:   mongoOrder.OrderId,
+		PassengerId: mongoOrder.PassengerId,
+		StartAddr:   mongoOrder.StartAddr,
+		EndEnd:      mongoOrder.EndAddr,
+		Driver:      req.DriverId,
+		OrderStatus: "已完成",
+		OrderType:   mongoOrder.OrderType,
+		PayStatus:   "已支付",
+		Amount:      req.ActualAmount,
+		StartTime:   mongoOrder.StartTime,
+		EndTime:     time.Now(),
+	}
+	if err := tx.Create(&mysqlOrder).Error; err != nil {
 		tx.Rollback()
-		if err == gorm.ErrRecordNotFound {
-			return &pb.CompleteOrderResp{
-				Code:    404,
-				Message: "订单不存在或状态异常",
-			}, nil
-		}
 		return &pb.CompleteOrderResp{
 			Code:    503,
-			Message: "完成订单失败，请重试",
+			Message: "写入MySQL失败",
 		}, nil
 	}
 
-	// 计算司机收入（假设司机分成80%）
+	// 3. 更新司机总收益
 	driverIncome := req.ActualAmount * 0.8
-	currentTime := time.Now()
-
-	// 更新订单状态
-	if err := tx.Model(&order).Updates(map[string]interface{}{
-		"order_status": "已完成",
-		"end_time":     currentTime,
-		"amount":       req.ActualAmount,
-		"pay_status":   "已支付",
-	}).Error; err != nil {
-		tx.Rollback()
-		return &pb.CompleteOrderResp{
-			Code:    503,
-			Message: "完成订单失败，请重试",
-		}, nil
-	}
-
-	// 更新司机总收益
 	if err := tx.Model(&model.LxhDriver{}).Where("id = ?", req.DriverId).
 		Update("all_acount", gorm.Expr("all_acount + ?", driverIncome)).Error; err != nil {
 		tx.Rollback()
@@ -838,19 +741,16 @@ func (s *DriverServiceImpl) CompleteOrder(ctx context.Context, req *pb.CompleteO
 		}, nil
 	}
 
-	// 更新路线记录状态
-	tx.Model(&model.LxhRouteRecord{}).Where("order_id = ?", req.OrderId).Updates(map[string]interface{}{
-		"route_status": "completed",
-		"end_time":     currentTime,
-	})
-
-	// 提交事务
+	// 4. 提交事务
 	if err := tx.Commit().Error; err != nil {
 		return &pb.CompleteOrderResp{
 			Code:    503,
 			Message: "完成订单失败，请重试",
 		}, nil
 	}
+
+	// 5. 删除MongoDB订单
+	_, _ = collection.DeleteOne(ctx, bson.M{"order_id": orderCode})
 
 	return &pb.CompleteOrderResp{
 		Code:         200,
@@ -859,7 +759,8 @@ func (s *DriverServiceImpl) CompleteOrder(ctx context.Context, req *pb.CompleteO
 	}, nil
 }
 
-// CancelOrder implements the DriverServiceImpl interface.
+// CancelOrder 取消订单接口
+// 司机取消已接订单，需要提供取消原因
 func (s *DriverServiceImpl) CancelOrder(ctx context.Context, req *pb.CancelOrderReq) (*pb.CancelOrderResp, error) {
 	if req.DriverId <= 0 {
 		return &pb.CancelOrderResp{
@@ -919,7 +820,7 @@ func (s *DriverServiceImpl) CancelOrder(ctx context.Context, req *pb.CancelOrder
 		"confirm_person": req.DriverId,
 		"confirm_reason": req.CancelReason,
 		"confirm_remark": remark,
-		"driver":         0, // 释放司机绑定
+		"driver":         0,
 		"end_time":       time.Now(),
 	}).Error; err != nil {
 		return &pb.CancelOrderResp{
@@ -940,7 +841,8 @@ func (s *DriverServiceImpl) CancelOrder(ctx context.Context, req *pb.CancelOrder
 	}, nil
 }
 
-// GetIncome implements the DriverServiceImpl interface.
+// GetIncome 获取收益接口
+// 查询司机在指定时间段内的收益统计
 func (s *DriverServiceImpl) GetIncome(ctx context.Context, req *pb.GetIncomeReq) (*pb.GetIncomeResp, error) {
 	if req.DriverId <= 0 {
 		return &pb.GetIncomeResp{
@@ -1061,7 +963,8 @@ func (s *DriverServiceImpl) GetIncome(ctx context.Context, req *pb.GetIncomeReq)
 	}, nil
 }
 
-// UpdateLocation implements the DriverServiceImpl interface.
+// UpdateLocation 更新位置接口
+// 更新司机的实时位置信息，用于订单匹配和导航
 func (s *DriverServiceImpl) UpdateLocation(ctx context.Context, req *pb.UpdateLocationReq) (*pb.UpdateLocationResp, error) {
 	if req.DriverId <= 0 {
 		return &pb.UpdateLocationResp{

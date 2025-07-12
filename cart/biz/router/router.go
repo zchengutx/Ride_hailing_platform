@@ -9,10 +9,9 @@ func Router(h *server.Hertz) {
 		{
 			PassengerModel(apiGroup)
 			DriverModel(apiGroup)
-			WeChatModel(apiGroup)
-			MapModel(apiGroup)
+			//WeChatModel(apiGroup)
+			//MapModel(apiGroup)
 			UploadFileModel(apiGroup)
-			MongoModel(apiGroup)
 		}
 	}
 }

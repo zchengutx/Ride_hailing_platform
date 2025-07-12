@@ -15,7 +15,7 @@ var (
 	MapClient = utils.GetDefaultMapClient()
 )
 
-// GeoCoding 地理编码接口，根据地址获取坐标
+// GeoCoding 地理编码 - 根据地址获取坐标
 func GeoCoding(ctx context.Context, c *app.RequestContext) {
 	var req request.GeoCodingReq
 	if err := c.Bind(&req); err != nil {
@@ -46,7 +46,7 @@ func GeoCoding(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// ReverseGeoCoding 逆地理编码接口，根据坐标获取地址
+// ReverseGeoCoding 逆地理编码 - 根据坐标获取地址
 func ReverseGeoCoding(ctx context.Context, c *app.RequestContext) {
 	var req request.ReverseGeoCodingReq
 	if err := c.Bind(&req); err != nil {
@@ -78,7 +78,7 @@ func ReverseGeoCoding(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// IPLocation IP定位接口，根据IP获取位置信息
+// IPLocation IP定位 - 根据IP获取位置信息
 func IPLocation(ctx context.Context, c *app.RequestContext) {
 	var req request.IPLocationReq
 	if err := c.Bind(&req); err != nil {
@@ -117,7 +117,7 @@ func IPLocation(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// DistanceCalculate 距离计算接口，计算两点间距离
+// DistanceCalculate 距离计算 - 计算两点间距离
 func DistanceCalculate(ctx context.Context, c *app.RequestContext) {
 	var req request.DistanceCalculateReq
 	if err := c.Bind(&req); err != nil {
@@ -151,7 +151,7 @@ func DistanceCalculate(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// GetCurrentLocation 获取当前位置接口，基于IP获取当前位置信息
+// GetCurrentLocation 获取当前位置信息（基于IP）
 func GetCurrentLocation(ctx context.Context, c *app.RequestContext) {
 	clientIP := c.ClientIP()
 	if clientIP == "" {
@@ -182,7 +182,7 @@ func GetCurrentLocation(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// GetProvinces 获取省份列表接口，获取所有省份信息
+// GetProvinces 获取省份列表
 func GetProvinces(ctx context.Context, c *app.RequestContext) {
 	result, err := MapClient.GetProvinces(ctx, &pb.GetProvincesReq{})
 	if err != nil {
@@ -201,7 +201,7 @@ func GetProvinces(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// GetCities 获取城市列表接口，获取指定省份下的城市信息
+// GetCities 获取城市列表
 func GetCities(ctx context.Context, c *app.RequestContext) {
 	var req request.GetCitiesReq
 	if err := c.Bind(&req); err != nil {
@@ -232,7 +232,7 @@ func GetCities(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// GetDistricts 获取区县列表接口，获取指定城市下的区县信息
+// GetDistricts 获取区县列表
 func GetDistricts(ctx context.Context, c *app.RequestContext) {
 	var req request.GetDistrictsReq
 	if err := c.Bind(&req); err != nil {
@@ -263,7 +263,7 @@ func GetDistricts(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// GetRegionPath 获取区域路径接口，获取指定区域的完整路径
+// GetRegionPath 获取区域完整路径
 func GetRegionPath(ctx context.Context, c *app.RequestContext) {
 	var req request.GetRegionPathReq
 	if err := c.Bind(&req); err != nil {
@@ -294,7 +294,7 @@ func GetRegionPath(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// SearchRegion 搜索区域接口，根据关键词搜索区域信息
+// SearchRegion 搜索区域
 func SearchRegion(ctx context.Context, c *app.RequestContext) {
 	var req request.SearchRegionReq
 	if err := c.Bind(&req); err != nil {

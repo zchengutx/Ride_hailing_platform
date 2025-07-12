@@ -1,0 +1,58 @@
+Mysql:
+  User: root
+  Password: badb6fe15b05b84863ff1e2b249deab2
+  Host: 14.103.243.15
+  Port: 3306
+  Database: cart
+DatabasePool:
+  MaxOpenConns: 100
+  MaxIdleConns: 10
+  ConnMaxLifetime: 60
+  ConnMaxIdleTime: 30
+  EnableSlowLog: true
+  SlowThreshold: 200
+Redis:
+  Addr: 14.103.243.15:6379
+  Password: badb6fe15b05b84863ff1e2b249deab2
+  Db: 0
+PassengerService:
+  Host: 127.0.0.1
+  Port: 50051
+DriverService:
+  Host: 127.0.0.1
+  Port: 50054
+MapService:
+  Host: 127.0.0.1
+  Port: 50052
+WeChatService:
+  Host: 127.0.0.1
+  Port: 50053
+AppConfig:
+  AppName: 优行出行
+  WelcomeMessage: 欢迎使用优行出行
+  DefaultLocation: 北京市朝阳区
+  NicknamePrefix: passenger
+SMSConfig:
+  CodeLength: 6
+  CodeExpireTime: 5
+  MinCodeValue: 100000
+  MaxCodeValue: 999999
+BaiduMapConfig:
+  APIKey: mGQEH6rmm11Em096OUIIY4SUfUI5AD3u
+  APIHost: https://api.map.baidu.com
+WeatherConfig:
+  DefaultWeather: 今日天气：晴，温度 15°C - 25°C，适宜出行
+  APIKey: ""
+  APIHost: ""
+WeChatConfig:
+  AppID: "your_wechat_app_id"
+  AppSecret: "your_wechat_app_secret"
+  Token: "your_wechat_token"
+  EncodingAESKey: "your_wechat_encoding_aes_key"
+  RedirectURI: "http://your_domain.com/wechat/callback"
+MongoDB:
+  User: mongo_CAFJCH
+  Password: mongo_KSrmMC
+  Host: 14.103.243.15
+  Port: 27017
+  Database: cart

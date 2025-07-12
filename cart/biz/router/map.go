@@ -4,14 +4,12 @@ import (
 	"cart/biz/dal/global"
 	"cart/biz/handler/api"
 	"cart/biz/middleware"
-	"log"
 
 	"github.com/cloudwego/hertz/pkg/route"
 )
 
 // MapModel 地图模块路由
 func MapModel(r *route.RouterGroup) {
-	log.Println("百度地图服务")
 	mapModel := r.Group("/map")
 
 	// 公开的地图服务 - 不需要认证

@@ -3,7 +3,6 @@ package config
 type Config struct {
 	Mysql
 	Redis
-	MongoDB
 	PassengerService
 	DriverService
 	MapService
@@ -14,6 +13,7 @@ type Config struct {
 	WeatherConfig
 	WeChatConfig
 	DatabasePool
+	MongoDB
 }
 
 type Mysql struct {
@@ -38,14 +38,6 @@ type Redis struct {
 	Addr     string
 	Password string
 	Db       int
-}
-
-type MongoDB struct {
-	User     string
-	Password string
-	Host     string
-	Port     int
-	Database string
 }
 
 type PassengerService struct {
@@ -104,4 +96,13 @@ type WeChatConfig struct {
 	Token          string // 微信公众号Token
 	EncodingAESKey string // 微信公众号EncodingAESKey
 	RedirectURI    string // 微信授权回调地址
+}
+
+// MongoDB配置
+type MongoDB struct {
+	User     string
+	Password string
+	Host     string
+	Port     int
+	Database string
 }

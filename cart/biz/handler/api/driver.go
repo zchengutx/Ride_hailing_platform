@@ -17,7 +17,10 @@ var (
 	DriverClient = utils.GetDefaultDriverClient()
 )
 
-// DriverPetition 司机注册申请接口，处理司机注册申请
+// DriverPetition 司机注册申请接口，处理司机注册请求
+// 1. 参数绑定与校验
+// 2. 手机号格式校验
+// 3. 调用RPC服务进行注册
 func DriverPetition(ctx context.Context, c *app.RequestContext) {
 	var req request.DriverPetitionReq
 	if err := c.Bind(&req); err != nil {
@@ -54,7 +57,7 @@ func DriverPetition(ctx context.Context, c *app.RequestContext) {
 	c.JSON(200, response)
 }
 
-// CheckStatus 查询司机审核状态接口，查询司机审核状态
+// CheckStatus 查询司机审核状态接口
 func CheckStatus(ctx context.Context, c *app.RequestContext) {
 	var req request.CheckStatusReq
 	if err := c.Bind(&req); err != nil {
@@ -73,7 +76,8 @@ func CheckStatus(ctx context.Context, c *app.RequestContext) {
 	c.JSON(200, response)
 }
 
-// DriverLogin 司机登录接口，司机登录功能
+// DriverLogin 司机登录接口，支持手机号+验证码登录
+// 登录成功后生成JWT token
 func DriverLogin(ctx context.Context, c *app.RequestContext) {
 	var req request.DriverLoginReq
 	if err := c.Bind(&req); err != nil {
@@ -120,7 +124,7 @@ func DriverLogin(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// GetDriverInfo 获取司机信息接口，获取司机详细信息
+// GetDriverInfo 获取司机信息接口
 func GetDriverInfo(ctx context.Context, c *app.RequestContext) {
 	var req request.GetDriverInfoReq
 	if err := c.Bind(&req); err != nil {
@@ -139,7 +143,7 @@ func GetDriverInfo(ctx context.Context, c *app.RequestContext) {
 	c.JSON(200, response)
 }
 
-// UpdateDriverInfo 更新司机信息接口，更新司机个人信息
+// UpdateDriverInfo 更新司机信息接口，只更新非空字段
 func UpdateDriverInfo(ctx context.Context, c *app.RequestContext) {
 	var req request.UpdateDriverInfoReq
 	if err := c.Bind(&req); err != nil {
@@ -168,7 +172,8 @@ func UpdateDriverInfo(ctx context.Context, c *app.RequestContext) {
 	c.JSON(200, response)
 }
 
-// ChangeStatus 司机状态切换接口，司机上线下线功能
+// ChangeStatus 司机上线/下线接口
+// 上线时需提供位置信息
 func ChangeStatus(ctx context.Context, c *app.RequestContext) {
 	var req request.ChangeStatusReq
 	if err := c.Bind(&req); err != nil {
@@ -217,7 +222,7 @@ func ChangeStatus(ctx context.Context, c *app.RequestContext) {
 	c.JSON(200, response)
 }
 
-// GetPendingOrders 获取待接订单接口，获取司机可接取的订单列表
+// GetPendingOrders 获取待接订单接口，支持按半径筛选
 func GetPendingOrders(ctx context.Context, c *app.RequestContext) {
 	var req request.GetPendingOrdersReq
 	if err := c.Bind(&req); err != nil {
@@ -247,7 +252,7 @@ func GetPendingOrders(ctx context.Context, c *app.RequestContext) {
 	c.JSON(200, response)
 }
 
-// AcceptOrder 司机接单接口，司机接受订单
+// AcceptOrder 司机接单接口
 func AcceptOrder(ctx context.Context, c *app.RequestContext) {
 	var req request.AcceptOrderReq
 	if err := c.Bind(&req); err != nil {
@@ -267,7 +272,7 @@ func AcceptOrder(ctx context.Context, c *app.RequestContext) {
 	c.JSON(200, response)
 }
 
-// StartTrip 开始行程接口，司机开始行程
+// StartTrip 开始行程接口
 func StartTrip(ctx context.Context, c *app.RequestContext) {
 	var req request.StartTripReq
 	if err := c.Bind(&req); err != nil {
@@ -289,7 +294,7 @@ func StartTrip(ctx context.Context, c *app.RequestContext) {
 	c.JSON(200, response)
 }
 
-// CompleteOrder 完成订单接口，司机完成订单
+// CompleteOrder 完成订单接口，需校验金额
 func CompleteOrder(ctx context.Context, c *app.RequestContext) {
 	var req request.CompleteOrderReq
 	if err := c.Bind(&req); err != nil {
@@ -322,7 +327,7 @@ func CompleteOrder(ctx context.Context, c *app.RequestContext) {
 	c.JSON(200, response)
 }
 
-// CancelOrder 取消订单接口，司机取消订单
+// CancelOrder 取消订单接口，支持备注
 func CancelOrder(ctx context.Context, c *app.RequestContext) {
 	var req request.CancelOrderReq
 	if err := c.Bind(&req); err != nil {
@@ -349,7 +354,7 @@ func CancelOrder(ctx context.Context, c *app.RequestContext) {
 	c.JSON(200, response)
 }
 
-// GetIncome 查询司机收益接口，查询司机收益统计
+// GetIncome 查询司机收益接口，需校验日期格式
 func GetIncome(ctx context.Context, c *app.RequestContext) {
 	var req request.GetIncomeReq
 	if err := c.Bind(&req); err != nil {
@@ -380,7 +385,7 @@ func GetIncome(ctx context.Context, c *app.RequestContext) {
 	c.JSON(200, response)
 }
 
-// UpdateLocation 更新司机位置接口，更新司机实时位置
+// UpdateLocation 更新司机位置接口，支持速度和方向可选参数
 func UpdateLocation(ctx context.Context, c *app.RequestContext) {
 	var req request.UpdateLocationReq
 	if err := c.Bind(&req); err != nil {

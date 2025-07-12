@@ -21,3 +21,10 @@ type LxhMapApiLog struct {
 func (l *LxhMapApiLog) TableName() string {
 	return "lxh_map_api_log"
 }
+
+// BaiduMapClient 百度地图客户端结构体
+// 用于 utils/baidumap.go 和 mapserivce/handler.go
+type BaiduMapClient struct {
+	APIKey  string
+	APIHost string
+}

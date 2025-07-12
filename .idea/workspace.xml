@@ -7,39 +7,6 @@
     <list default="true" id="78b030c1-8e7f-4dd3-92d3-cc049629c2a8" name="更改" comment="Merge remote-tracking branch 'origin/lyt' into lyt&#10;&#10;# Conflicts:&#10;#&#9;go.mod">
       <change beforePath="$PROJECT_DIR$/.idea/GOHCache.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GOHCache.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/.idea/GOHCache.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/.idea/cart.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/dal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/dal/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/dal/global/global.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/dal/global/global.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/dal/inits/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/dal/inits/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/handler/api/driver.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/api/driver.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/handler/api/health.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/api/health.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/handler/api/map.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/api/map.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/handler/api/upload.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/api/upload.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/handler/api/wechat.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/api/wechat.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/handler/request/driver.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/request/driver.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/handler/request/map.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/request/map.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/handler/request/passenger.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/request/passenger.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/handler/request/wechat.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/handler/request/wechat.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/router/driver.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/router/driver.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/router/passenger.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/router/passenger.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/biz/router/wechat.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/biz/router/wechat.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/cart/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/cart/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/idl/passenger.thrift" beforeDir="false" afterPath="$PROJECT_DIR$/cart/idl/passenger.thrift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/rpc/basic/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/basic/config/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/rpc/basic/dev.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/basic/dev.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/rpc/basic/global/global.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/basic/global/global.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/rpc/basic/inits/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/basic/inits/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/rpc/driver/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/driver/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/rpc/driver/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/driver/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/rpc/mapserivce/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/mapserivce/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/rpc/passenger/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/passenger/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart/rpc/wechat/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/cart/rpc/wechat/handler.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,44 +53,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultGoTemplateProperty": "Go File",
-    "Go 构建.go build Didi/biz.executor": "Run",
-    "Go 构建.go build Didi/rpc/driver.executor": "Run",
-    "Go 构建.go build Didi/rpc/user.executor": "Run",
-    "Go 构建.go build Ride_hailing_platform/client/basic/cmd.executor": "Run",
-    "Go 构建.go build Ride_hailing_platform/kitex_gen/srock.executor": "Run",
-    "Go 构建.go build cart/biz.executor": "Run",
-    "Go 构建.go build cart/rpc/driver.executor": "Run",
-    "Go 构建.go build cart/rpc/mapserivce.executor": "Run",
-    "Go 构建.go build cart/rpc/passenger.executor": "Run",
-    "Go 构建.go build cart/rpc/wechat.executor": "Run",
-    "Go 构建.go build kitex/client/cmd.executor": "Run",
-    "Go 构建.go build kitex/rpc/driver.executor": "Run",
-    "Go 构建.go build kitex/rpc/order.executor": "Run",
-    "Go 构建.go build kitex/rpc/user.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.GoLinterPluginOnboarding": "true",
-    "RunOnceActivity.GoLinterPluginStorageMigration": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.go.formatter.settings.were.checked": "true",
-    "RunOnceActivity.go.migrated.go.modules.settings": "true",
-    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "git-widget-placeholder": "lyt",
-    "go.import.settings.migrated": "true",
-    "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "D:/gowork/src/Ride_hailing_platform",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "go.sdk",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;Go 构建.go build Didi/biz.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build Didi/rpc/driver.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build Didi/rpc/user.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build Ride_hailing_platform/client/basic/cmd.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build Ride_hailing_platform/kitex_gen/srock.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build cart/biz.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build cart/rpc/driver.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build cart/rpc/mapserivce.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build cart/rpc/passenger.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build cart/rpc/wechat.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build kitex/client/cmd.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build kitex/rpc/driver.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build kitex/rpc/order.executor&quot;: &quot;Run&quot;,
+    &quot;Go 构建.go build kitex/rpc/user.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.GoLinterPluginOnboarding&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.GoLinterPluginStorageMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;lyt&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/gowork/src/Ride_hailing_platform&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;go.sdk&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\gowork\src\Ride_hailing_platform\Didi" />
@@ -196,10 +163,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go 构建.go build cart/biz" />
-        <item itemvalue="Go 构建.go build cart/rpc/driver" />
-        <item itemvalue="Go 构建.go build cart/rpc/mapserivce" />
         <item itemvalue="Go 构建.go build cart/rpc/passenger" />
+        <item itemvalue="Go 构建.go build cart/rpc/driver" />
         <item itemvalue="Go 构建.go build cart/rpc/wechat" />
+        <item itemvalue="Go 构建.go build cart/rpc/mapserivce" />
       </list>
     </recent_temporary>
   </component>

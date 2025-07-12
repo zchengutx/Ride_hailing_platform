@@ -1,112 +1,99 @@
 package request
 
-// DriverPetitionReq 司机注册申请请求
+// 司机注册申请请求
 type DriverPetitionReq struct {
-	Name                 string `json:"name" form:"name" vd:"required"`
-	Mobile               string `json:"mobile" form:"mobile" vd:"required"`
-	NickName             string `json:"nick_name" form:"nick_name" vd:"required"`
-	CarAge               int64  `json:"car_age" form:"car_age" vd:"required"`
-	IdCardFileId         string `json:"id_card_file_id" form:"id_card_file_id" vd:"required"`
-	DriverLicenseFileId  string `json:"driver_license_file_id" form:"driver_license_file_id" vd:"required"`
-	DrivingLicenseFileId string `json:"driving_license_file_id" form:"driving_license_file_id" vd:"required"`
-	AvatarFileId         string `json:"avatar_file_id" form:"avatar_file_id" vd:"required"`
+	Name                 string `json:"name" form:"name" binding:"required"`                                       // 司机姓名
+	Mobile               string `json:"mobile" form:"mobile" binding:"required"`                                   // 联系电话
+	NickName             string `json:"nick_name" form:"nick_name" binding:"required"`                             // 昵称
+	CarAge               int64  `json:"car_age" form:"car_age" binding:"required"`                                 // 车龄
+	IdCardFileId         string `json:"id_card_file_id" form:"id_card_file_id" binding:"required"`                 // 身份证文件ID
+	DriverLicenseFileId  string `json:"driver_license_file_id" form:"driver_license_file_id" binding:"required"`   // 驾照文件ID
+	DrivingLicenseFileId string `json:"driving_license_file_id" form:"driving_license_file_id" binding:"required"` // 行驶证文件ID
+	AvatarFileId         string `json:"avatar_file_id" form:"avatar_file_id" binding:"required"`                   // 司机头像文件ID
 }
 
-// CheckStatusReq 查询审核状态请求
+// 查询审核状态请求
 type CheckStatusReq struct {
-	DriverId int64 `json:"driver_id" form:"driver_id" vd:"required"`
+	DriverId int64 `json:"driver_id" form:"driver_id" binding:"required"` // 司机ID
 }
 
-// DriverLoginReq 司机登录请求
+// 司机登录请求
 type DriverLoginReq struct {
-	Mobile  string `json:"mobile" form:"mobile" vd:"required"`
-	SmsCode string `json:"sms_code" form:"sms_code" vd:"required"`
+	Mobile  string `json:"mobile" form:"mobile" binding:"required"`     // 手机号
+	SmsCode string `json:"sms_code" form:"sms_code" binding:"required"` // 短信验证码
 }
 
-// GetDriverInfoReq 获取司机信息请求
+// 获取司机信息请求
 type GetDriverInfoReq struct {
-	DriverId int64 `json:"driver_id" form:"driver_id" vd:"required"`
+	DriverId int64 `json:"driver_id" form:"driver_id" binding:"required"` // 司机ID
 }
 
-// UpdateDriverInfoReq 更新司机信息请求
+// 更新司机信息请求
 type UpdateDriverInfoReq struct {
-	DriverId int64  `json:"driver_id" form:"driver_id" vd:"required"`
-	Name     string `json:"name" form:"name" vd:"required"`
-	NickName string `json:"nick_name" form:"nick_name" vd:"required"`
-	Age      int64  `json:"age" form:"age"`
-	Sex      string `json:"sex" form:"sex" vd:"required"`
-	FileId   int64  `json:"file_id" form:"file_id"` // 非指针
+	DriverId int64  `json:"driver_id" form:"driver_id" binding:"required"` // 司机ID
+	NickName string `json:"nick_name" form:"nick_name"`                    // 昵称（可选）
+	FileId   int64  `json:"file_id" form:"file_id"`                        // 头像文件ID（可选）
 }
 
-// ChangeStatusReq 上线/下线请求
+// 司机上线/下线请求
 type ChangeStatusReq struct {
-	DriverId  int64  `json:"driver_id" form:"driver_id" vd:"required"`
-	Status    string `json:"status" form:"status" vd:"required"`
-	Longitude string `json:"longitude" form:"longitude"`
-	Latitude  string `json:"latitude" form:"latitude"`
+	DriverId  int64  `json:"driver_id" form:"driver_id" binding:"required"` // 司机ID
+	Status    string `json:"status" form:"status" binding:"required"`       // 状态：online-上线, offline-下线
+	Longitude string `json:"longitude" form:"longitude"`                    // 经度（上线时必填）
+	Latitude  string `json:"latitude" form:"latitude"`                      // 纬度（上线时必填）
 }
 
-// UpdateLocationReq 更新司机位置请求
-type UpdateLocationReq struct {
-	DriverId  int64   `json:"driver_id" form:"driver_id" vd:"required"`
-	Longitude string  `json:"longitude" form:"longitude" vd:"required"`
-	Latitude  string  `json:"latitude" form:"latitude" vd:"required"`
-	Speed     float64 `json:"speed" form:"speed"`         // 非指针
-	Direction float64 `json:"direction" form:"direction"` // 新增
-}
-
-// GetPendingOrdersReq 获取待接订单请求
+// 获取待接订单请求
 type GetPendingOrdersReq struct {
-	DriverId  int64  `json:"driver_id" form:"driver_id" vd:"required"`
-	Longitude string `json:"longitude" form:"longitude" vd:"required"`
-	Latitude  string `json:"latitude" form:"latitude" vd:"required"`
-	Radius    int32  `json:"radius" form:"radius"` // 非指针
-	Page      int    `json:"page" form:"page"`
-	PageSize  int    `json:"page_size" form:"page_size"`
+	DriverId  int64  `json:"driver_id" form:"driver_id" binding:"required"` // 司机ID
+	Longitude string `json:"longitude" form:"longitude" binding:"required"` // 司机当前经度
+	Latitude  string `json:"latitude" form:"latitude" binding:"required"`   // 司机当前纬度
+	Radius    int32  `json:"radius" form:"radius"`                          // 搜索半径（公里），默认5公里
 }
 
-// AcceptOrderReq 接单请求
+// 接单请求
 type AcceptOrderReq struct {
-	DriverId int64 `json:"driver_id" form:"driver_id" vd:"required"`
-	OrderId  int64 `json:"order_id" form:"order_id" vd:"required"`
+	DriverId int64 `json:"driver_id" form:"driver_id" binding:"required"` // 司机ID
+	OrderId  int64 `json:"order_id" form:"order_id" binding:"required"`   // 订单ID
 }
 
-// StartTripReq 开始行程请求
+// 开始行程请求
 type StartTripReq struct {
-	DriverId  int64  `json:"driver_id" form:"driver_id" vd:"required"`
-	OrderId   int64  `json:"order_id" form:"order_id" vd:"required"`
-	Longitude string `json:"longitude" form:"longitude" vd:"required"`
-	Latitude  string `json:"latitude" form:"latitude" vd:"required"`
+	DriverId  int64  `json:"driver_id" form:"driver_id" binding:"required"` // 司机ID
+	OrderId   int64  `json:"order_id" form:"order_id" binding:"required"`   // 订单ID
+	Longitude string `json:"longitude" form:"longitude" binding:"required"` // 当前经度
+	Latitude  string `json:"latitude" form:"latitude" binding:"required"`   // 当前纬度
 }
 
-// CompleteOrderReq 完成订单请求
+// 完成订单请求
 type CompleteOrderReq struct {
-	DriverId     int64   `json:"driver_id" form:"driver_id" vd:"required"`
-	OrderId      int64   `json:"order_id" form:"order_id" vd:"required"`
-	Longitude    string  `json:"longitude" form:"longitude" vd:"required"`
-	Latitude     string  `json:"latitude" form:"latitude" vd:"required"`
-	ActualAmount float64 `json:"actual_amount" form:"actual_amount" vd:"required"`
+	DriverId     int64   `json:"driver_id" form:"driver_id" binding:"required"`         // 司机ID
+	OrderId      int64   `json:"order_id" form:"order_id" binding:"required"`           // 订单ID
+	Longitude    string  `json:"longitude" form:"longitude" binding:"required"`         // 当前经度
+	Latitude     string  `json:"latitude" form:"latitude" binding:"required"`           // 当前纬度
+	ActualAmount float64 `json:"actual_amount" form:"actual_amount" binding:"required"` // 实际费用
 }
 
-// CancelOrderReq 司机取消订单请求
+// 取消订单请求
 type CancelOrderReq struct {
-	DriverId     int64  `json:"driver_id" form:"driver_id" vd:"required"`
-	OrderId      int64  `json:"order_id" form:"order_id" vd:"required"`
-	CancelReason string `json:"cancel_reason" form:"cancel_reason" vd:"required"`
-	CancelRemark string `json:"cancel_remark" form:"cancel_remark"` // 非指针
+	DriverId     int64  `json:"driver_id" form:"driver_id" binding:"required"`         // 司机ID
+	OrderId      int64  `json:"order_id" form:"order_id" binding:"required"`           // 订单ID
+	CancelReason string `json:"cancel_reason" form:"cancel_reason" binding:"required"` // 取消原因
+	CancelRemark string `json:"cancel_remark" form:"cancel_remark"`                    // 取消备注
 }
 
-// GetIncomeReq 查询收益请求
+// 查询收益请求
 type GetIncomeReq struct {
-	DriverId  int64  `json:"driver_id" form:"driver_id" vd:"required"`
-	StartDate string `json:"start_date" form:"start_date" vd:"required"`
-	EndDate   string `json:"end_date" form:"end_date" vd:"required"`
+	DriverId  int64  `json:"driver_id" form:"driver_id" binding:"required"`   // 司机ID
+	StartDate string `json:"start_date" form:"start_date" binding:"required"` // 开始日期 YYYY-MM-DD
+	EndDate   string `json:"end_date" form:"end_date" binding:"required"`     // 结束日期 YYYY-MM-DD
 }
 
-// GetNearbyDriversReq 查询附近司机请求
-type GetNearbyDriversReq struct {
-	DriverId  int64   `json:"driver_id" form:"driver_id" vd:"required"`
-	Longitude string  `json:"longitude" form:"longitude" vd:"required"`
-	Latitude  string  `json:"latitude" form:"latitude" vd:"required"`
-	Radius    float64 `json:"radius" form:"radius"`
+// 更新位置请求
+type UpdateLocationReq struct {
+	DriverId  int64   `json:"driver_id" form:"driver_id" binding:"required"` // 司机ID
+	Longitude string  `json:"longitude" form:"longitude" binding:"required"` // 经度
+	Latitude  string  `json:"latitude" form:"latitude" binding:"required"`   // 纬度
+	Speed     float64 `json:"speed" form:"speed"`                            // 行驶速度（可选）
+	Direction float64 `json:"direction" form:"direction"`                    // 行驶方向（可选）
 }

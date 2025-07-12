@@ -590,6 +590,13 @@
             </set>
           </value>
         </entry>
+        <entry key="GeoPoint">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/model/mongo_models.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="GetCitiesReq">
           <value>
             <set>
@@ -1227,6 +1234,48 @@
             <set>
               <option value="file://$PROJECT_DIR$/cart/biz/dal/config/config.go" />
               <option value="file://$PROJECT_DIR$/cart/rpc/basic/config/config.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="MongoDistanceCache">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/model/mongo_models.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="MongoGeocodingCache">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/model/mongo_models.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="MongoIPLocationCache">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/model/mongo_models.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="MongoMapApiLog">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/model/mongo_models.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="MongoReverseGeocodingCache">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/model/mongo_models.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="MongoRouteRecord">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/model/mongo_models.go" />
             </set>
           </value>
         </entry>
@@ -1980,6 +2029,55 @@
             </set>
           </value>
         </entry>
+        <entry key="mongoDistanceCacheServiceImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/dal/mongo_service_route.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="mongoGeocodingCacheServiceImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/dal/mongo_service_route.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="mongoIPLocationCacheServiceImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/dal/mongo_service_route.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="mongoMapApiLogServiceImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/dal/mongo_service_impl.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="mongoReverseGeocodingCacheServiceImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/dal/mongo_service_route.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="mongoRouteRecordServiceImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/dal/mongo_service_route.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="mongoServiceImpl">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/cart/rpc/basic/dal/mongo_service_impl.go" />
+            </set>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="scannedPathMapping">
@@ -2047,6 +2145,13 @@
           <value>
             <ScannedPath>
               <option name="lastModified" value="1752197896630" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/cart/biz/handler/api/mongo_logs.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752148996562" />
             </ScannedPath>
           </value>
         </entry>
@@ -2215,6 +2320,13 @@
           <value>
             <ScannedPath>
               <option name="lastModified" value="1752133285785" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/cart/biz/router/mongo.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752146236547" />
             </ScannedPath>
           </value>
         </entry>
@@ -2788,6 +2900,42 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/cart/rpc/basic/dal/mongo_service.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752145806209" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/cart/rpc/basic/dal/mongo_service_impl.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752148984147" />
+              <option name="schema">
+                <list>
+                  <option value="mongoServiceImpl" />
+                  <option value="mongoMapApiLogServiceImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/cart/rpc/basic/dal/mongo_service_route.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752145975291" />
+              <option name="schema">
+                <list>
+                  <option value="mongoRouteRecordServiceImpl" />
+                  <option value="mongoGeocodingCacheServiceImpl" />
+                  <option value="mongoReverseGeocodingCacheServiceImpl" />
+                  <option value="mongoIPLocationCacheServiceImpl" />
+                  <option value="mongoDistanceCacheServiceImpl" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/cart/rpc/basic/global/global.go">
           <value>
             <ScannedPath>
@@ -2994,6 +3142,24 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/cart/rpc/basic/model/mongo_models.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1752145763627" />
+              <option name="schema">
+                <list>
+                  <option value="MongoMapApiLog" />
+                  <option value="GeoPoint" />
+                  <option value="MongoRouteRecord" />
+                  <option value="MongoGeocodingCache" />
+                  <option value="MongoReverseGeocodingCache" />
+                  <option value="MongoIPLocationCache" />
+                  <option value="MongoDistanceCache" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/cart/rpc/basic/model/region.go">
           <value>
             <ScannedPath>
@@ -3175,6 +3341,7 @@
         <entry key="geo_coding_req" value="GeoCodingReq" />
         <entry key="geo_coding_resp" value="GeoCodingResp" />
         <entry key="geo_coding_response" value="GeoCodingResponse" />
+        <entry key="geo_point" value="GeoPoint" />
         <entry key="get_cities_req" value="GetCitiesReq" />
         <entry key="get_cities_resp" value="GetCitiesResp" />
         <entry key="get_current_location_req" value="GetCurrentLocationReq" />
@@ -3269,6 +3436,19 @@
         <entry key="map_service_search_region_result" value="MapServiceSearchRegionResult" />
         <entry key="minio" value="Minio" />
         <entry key="mongo_db" value="MongoDB" />
+        <entry key="mongo_distance_cache" value="MongoDistanceCache" />
+        <entry key="mongo_distance_cache_service_impl" value="mongoDistanceCacheServiceImpl" />
+        <entry key="mongo_geocoding_cache" value="MongoGeocodingCache" />
+        <entry key="mongo_geocoding_cache_service_impl" value="mongoGeocodingCacheServiceImpl" />
+        <entry key="mongo_ip_location_cache" value="MongoIPLocationCache" />
+        <entry key="mongo_ip_location_cache_service_impl" value="mongoIPLocationCacheServiceImpl" />
+        <entry key="mongo_map_api_log" value="MongoMapApiLog" />
+        <entry key="mongo_map_api_log_service_impl" value="mongoMapApiLogServiceImpl" />
+        <entry key="mongo_reverse_geocoding_cache" value="MongoReverseGeocodingCache" />
+        <entry key="mongo_reverse_geocoding_cache_service_impl" value="mongoReverseGeocodingCacheServiceImpl" />
+        <entry key="mongo_route_record" value="MongoRouteRecord" />
+        <entry key="mongo_route_record_service_impl" value="mongoRouteRecordServiceImpl" />
+        <entry key="mongo_service_impl" value="mongoServiceImpl" />
         <entry key="mysql" value="Mysql" />
         <entry key="order_info" value="OrderInfo" />
         <entry key="passenger_cancel_order_req" value="PassengerCancelOrderReq" />
@@ -3371,6 +3551,6 @@
         <entry key="wechat_bind_info" value="WechatBindInfo" />
       </map>
     </option>
-    <option name="lastTimeChecked" value="1752200154966" />
+    <option name="lastTimeChecked" value="1752288098928" />
   </component>
 </project>

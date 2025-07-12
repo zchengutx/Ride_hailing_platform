@@ -1,9 +1,9 @@
 package main
 
 import (
+	"cart/biz/utils"
 	pb "cart/kitex_gen/cart/wechat"
 	"cart/rpc/basic/global"
-	"cart/rpc/basic/model"
 	"context"
 	"crypto/sha1"
 	"encoding/hex"
@@ -20,10 +20,9 @@ import (
 // WeChatServiceImpl implements the last service interface defined in the IDL.
 type WeChatServiceImpl struct{}
 
-// Sign 微信签名验证接口，验证微信服务器推送的消息签名
+// Sign 微信签名验证接口
+// 验证微信服务器的签名，用于微信公众平台配置验证
 func (s *WeChatServiceImpl) Sign(ctx context.Context, req *pb.SignReq) (resp *pb.SignResp, err error) {
-	ctx = context.Background()
-
 	// 获取微信配置
 	wechatConfig := &global.AppConf.WeChatConfig
 
@@ -40,7 +39,7 @@ func (s *WeChatServiceImpl) Sign(ctx context.Context, req *pb.SignReq) (resp *pb
 	if signature == req.Signature {
 		return &pb.SignResp{
 			Code:    200,
-			Message: "签名验证成功",
+			Message: "验证成功",
 			Echostr: &req.Echostr,
 		}, nil
 	}
@@ -51,10 +50,9 @@ func (s *WeChatServiceImpl) Sign(ctx context.Context, req *pb.SignReq) (resp *pb
 	}, nil
 }
 
-// GetQRCode 获取授权二维码接口，生成微信扫码登录二维码
+// GetQRCode 获取授权二维码接口
+// 生成微信授权二维码，用于用户扫码登录
 func (s *WeChatServiceImpl) GetQRCode(ctx context.Context, req *pb.GetQRCodeReq) (resp *pb.GetQRCodeResp, err error) {
-	ctx = context.Background()
-
 	// 获取微信配置
 	wechatConfig := &global.AppConf.WeChatConfig
 
@@ -72,117 +70,14 @@ func (s *WeChatServiceImpl) GetQRCode(ctx context.Context, req *pb.GetQRCodeReq)
 	// 实际项目中可以生成二维码图片数据
 	return &pb.GetQRCodeResp{
 		Code:    200,
-		Message: "获取授权二维码成功",
+		Message: "获取成功",
 		AuthUrl: &authURL,
 	}, nil
 }
 
-// WeChatUserInfoAPI 微信用户信息结构（用于API调用）
-type WeChatUserInfoAPI struct {
-	OpenID     string   `json:"openid"`
-	NickName   string   `json:"nickname"`
-	HeadImgURL string   `json:"headimgurl"`
-	Sex        int      `json:"sex"`
-	Country    string   `json:"country"`
-	Province   string   `json:"province"`
-	City       string   `json:"city"`
-	Language   string   `json:"language"`
-	Privilege  []string `json:"privilege"`
-	UnionID    string   `json:"unionid"`
-}
-
-// WeChatAccessTokenResp 微信AccessToken响应
-type WeChatAccessTokenResp struct {
-	AccessToken  string `json:"access_token"`
-	ExpiresIn    int    `json:"expires_in"`
-	RefreshToken string `json:"refresh_token"`
-	OpenID       string `json:"openid"`
-	Scope        string `json:"scope"`
-	ErrCode      int    `json:"errcode"`
-	ErrMsg       string `json:"errmsg"`
-}
-
-// saveOrUpdateWeChatUser 保存或更新微信用户信息
-func (s *WeChatServiceImpl) saveOrUpdateWeChatUser(userInfoData *WeChatUserInfoAPI) error {
-	// 将特权信息转换为JSON字符串
-	privilegeJSON, _ := json.Marshal(userInfoData.Privilege)
-
-	// 查询是否已存在该用户
-	var existingUser model.LxhWechatUser
-	result := global.DB.Debug().Where("openid = ?", userInfoData.OpenID).First(&existingUser)
-
-	if result.Error != nil {
-		// 用户不存在，创建新用户
-		newUser := model.LxhWechatUser{
-			Openid:     userInfoData.OpenID,
-			Nickname:   userInfoData.NickName,
-			Headimgurl: userInfoData.HeadImgURL,
-			Sex:        userInfoData.Sex,
-			Country:    userInfoData.Country,
-			Province:   userInfoData.Province,
-			City:       userInfoData.City,
-			Language:   userInfoData.Language,
-			Privilege:  string(privilegeJSON),
-			UnionId:    userInfoData.UnionID,
-		}
-		return global.DB.Create(&newUser).Error
-	} else {
-		// 用户已存在，更新用户信息
-		updates := map[string]interface{}{
-			"nickname":   userInfoData.NickName,
-			"headimgurl": userInfoData.HeadImgURL,
-			"sex":        userInfoData.Sex,
-			"country":    userInfoData.Country,
-			"province":   userInfoData.Province,
-			"city":       userInfoData.City,
-			"language":   userInfoData.Language,
-			"privilege":  string(privilegeJSON),
-		}
-		if userInfoData.UnionID != "" {
-			updates["unionid"] = userInfoData.UnionID
-		}
-		return global.DB.Debug().Model(&existingUser).Updates(updates).Error
-	}
-}
-
-// saveOrUpdateWeChatToken 保存或更新微信令牌信息
-func (s *WeChatServiceImpl) saveOrUpdateWeChatToken(tokenData *WeChatAccessTokenResp) error {
-	// 计算令牌过期时间
-	expiresAt := time.Now().Add(time.Duration(tokenData.ExpiresIn) * time.Second)
-
-	// 查询是否已存在该用户的令牌
-	var existingToken model.LxhWechatToken
-	result := global.DB.Debug().Where("openid = ?", tokenData.OpenID).First(&existingToken)
-
-	if result.Error != nil {
-		// 令牌不存在，创建新令牌记录
-		newToken := model.LxhWechatToken{
-			Openid:       tokenData.OpenID,
-			AccessToken:  tokenData.AccessToken,
-			RefreshToken: tokenData.RefreshToken,
-			ExpiresIn:    tokenData.ExpiresIn,
-			Scope:        tokenData.Scope,
-			TokenType:    "Bearer",
-			ExpiresAt:    expiresAt,
-		}
-		return global.DB.Create(&newToken).Error
-	} else {
-		// 令牌已存在，更新令牌信息
-		updates := map[string]interface{}{
-			"access_token":  tokenData.AccessToken,
-			"refresh_token": tokenData.RefreshToken,
-			"expires_in":    tokenData.ExpiresIn,
-			"scope":         tokenData.Scope,
-			"expires_at":    expiresAt,
-		}
-		return global.DB.Debug().Model(&existingToken).Updates(updates).Error
-	}
-}
-
-// Callback 处理微信授权回调接口，处理微信授权成功后的回调
+// Callback 处理微信授权回调接口
+// 处理微信授权回调，获取用户信息并保存到数据库
 func (s *WeChatServiceImpl) Callback(ctx context.Context, req *pb.CallbackReq) (resp *pb.CallbackResp, err error) {
-	ctx = context.Background()
-
 	// 获取微信配置
 	wechatConfig := &global.AppConf.WeChatConfig
 
@@ -211,7 +106,7 @@ func (s *WeChatServiceImpl) Callback(ctx context.Context, req *pb.CallbackReq) (
 		}, nil
 	}
 
-	var tokenData WeChatAccessTokenResp
+	var tokenData utils.WeChatAccessTokenResp
 	if err := json.Unmarshal(tokenBody, &tokenData); err != nil {
 		return &pb.CallbackResp{
 			Code:    500,
@@ -248,7 +143,7 @@ func (s *WeChatServiceImpl) Callback(ctx context.Context, req *pb.CallbackReq) (
 		}, nil
 	}
 
-	var userInfoData WeChatUserInfoAPI
+	var userInfoData utils.WeChatUserInfoAPI
 	if err := json.Unmarshal(userInfoBody, &userInfoData); err != nil {
 		return &pb.CallbackResp{
 			Code:    500,
@@ -257,7 +152,7 @@ func (s *WeChatServiceImpl) Callback(ctx context.Context, req *pb.CallbackReq) (
 	}
 
 	// 3. 保存微信用户信息到数据库
-	if err := s.saveOrUpdateWeChatUser(&userInfoData); err != nil {
+	if err := utils.SaveOrUpdateWeChatUser(&userInfoData, global.DB); err != nil {
 		return &pb.CallbackResp{
 			Code:    500,
 			Message: "保存用户信息失败",
@@ -265,7 +160,7 @@ func (s *WeChatServiceImpl) Callback(ctx context.Context, req *pb.CallbackReq) (
 	}
 
 	// 4. 保存微信令牌信息到数据库
-	if err := s.saveOrUpdateWeChatToken(&tokenData); err != nil {
+	if err := utils.SaveOrUpdateWeChatToken(&tokenData, global.DB); err != nil {
 		return &pb.CallbackResp{
 			Code:    500,
 			Message: "保存令牌信息失败",
@@ -288,7 +183,7 @@ func (s *WeChatServiceImpl) Callback(ctx context.Context, req *pb.CallbackReq) (
 	// 返回成功响应
 	return &pb.CallbackResp{
 		Code:        200,
-		Message:     "微信授权成功",
+		Message:     "授权成功",
 		UserInfo:    userInfo,
 		AccessToken: &tokenData.AccessToken,
 	}, nil

@@ -12,7 +12,10 @@ import (
 	"github.com/cloudwego/hertz/pkg/app"
 )
 
-// UploadFile 文件上传接口，支持视频、音频、图片格式上传到Minio对象存储
+// UploadFile 文件上传接口，支持视频、音频、图片格式，最大500MB
+// 1. 校验文件大小
+// 2. 校验文件格式
+// 3. 上传到 Minio 对象存储
 func UploadFile(ctx context.Context, c *app.RequestContext) {
 	file, _ := c.FormFile("file")
 

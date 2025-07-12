@@ -1,0 +1,24 @@
+System:
+  Host: 127.0.0.1
+  Port: 8080
+  Name: cartDemo
+PassengerClient:
+  Host: 127.0.0.1
+  Port: 50051
+DriverClient:
+  Host: 127.0.0.1
+  Port: 50054
+MapClient:
+  Host: 127.0.0.1
+  Port: 50052
+WeChatClient:
+  Host: 127.0.0.1
+  Port: 50053
+Minio:
+  Endpoint: 14.103.243.15:9000
+  AccessKeyId: minio_DMGEXP
+  AccessKeySecret: minio_xZyCX5
+  BucketName: test
+  UseSsl: false
+  BasePath: ""
+  BucketUrl: http://14.103.243.15:9000/test

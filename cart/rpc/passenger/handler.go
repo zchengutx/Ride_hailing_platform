@@ -1,21 +1,25 @@
 package main
 
 import (
+	"cart/biz/utils"
 	pb "cart/kitex_gen/cart/passenger"
 	"cart/rpc/basic/global"
 	"cart/rpc/basic/model"
 	"context"
 	"fmt"
-	"math"
 	"math/rand"
 	"sort"
 	"time"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 // PassengerServiceImpl implements the last service interface defined in the IDL.
 type PassengerServiceImpl struct{}
 
-// SendSms implements the PassengerServiceImpl interface.
+// SendSms 发送短信验证码接口
+// 生成并发送短信验证码到指定手机号
 func (s *PassengerServiceImpl) SendSms(ctx context.Context, req *pb.SendSmsReq) (*pb.SendSmsResp, error) {
 	ctx = context.Background()
 
@@ -41,7 +45,8 @@ func (s *PassengerServiceImpl) SendSms(ctx context.Context, req *pb.SendSmsReq) 
 	}, nil
 }
 
-// RegisterPassenger implements the PassengerServiceImpl interface.
+// RegisterPassenger 乘客注册接口
+// 验证短信验证码，创建新乘客账户
 func (s *PassengerServiceImpl) RegisterPassenger(ctx context.Context, req *pb.RegisterPassengerReq) (*pb.RegisterPassengerResp, error) {
 	ctx = context.Background()
 	result, err := global.Rdb.Get(ctx, "sendSms"+req.Mobile).Result()
@@ -91,7 +96,8 @@ func (s *PassengerServiceImpl) RegisterPassenger(ctx context.Context, req *pb.Re
 	}, nil
 }
 
-// LoginPassenger implements the PassengerServiceImpl interface.
+// LoginPassenger 乘客登录接口
+// 验证手机号和短信验证码，返回乘客ID
 func (s *PassengerServiceImpl) LoginPassenger(ctx context.Context, req *pb.LoginPassengerReq) (*pb.LoginPassengerResp, error) {
 	ctx = context.Background()
 	result, err := global.Rdb.Get(ctx, "sendSms"+req.Mobile).Result()
@@ -127,210 +133,8 @@ func (s *PassengerServiceImpl) LoginPassenger(ctx context.Context, req *pb.Login
 	}, nil
 }
 
-// getRecentDestinations 获取用户最近目的地（从数据库读取真实的地理信息）
-func (s *PassengerServiceImpl) getRecentDestinations(passengerId int16) []string {
-	// TODO: 从数据库查询用户的最近订单目的地
-	// 这里先从region表中获取一些热门城市作为模拟数据
-	var regions []model.Region
-
-	// 获取一些热门城市（这里随机选择一些区域）
-	if err := global.DB.Where("level = 3").Limit(10).Find(&regions).Error; err != nil {
-		// 如果查询失败，返回默认数据
-		return []string{
-			"北京市朝阳区国贸中心",
-			"上海市浦东新区陆家嘴",
-			"广州市天河区珠江新城",
-			"深圳市南山区科技园",
-		}
-	}
-
-	var destinations []string
-	for i, region := range regions {
-		if i >= 4 { // 只取前4个
-			break
-		}
-		// 获取区域的完整路径
-		fullPath := s.getRegionFullPath(region.Code)
-		destinations = append(destinations, fullPath)
-	}
-
-	if len(destinations) == 0 {
-		// 如果没有数据，返回默认值
-		return []string{
-			"北京市朝阳区国贸中心",
-			"上海市浦东新区陆家嘴",
-			"广州市天河区珠江新城",
-			"深圳市南山区科技园",
-		}
-	}
-
-	return destinations
-}
-
-// getRegionFullPath 获取区域的完整路径
-func (s *PassengerServiceImpl) getRegionFullPath(regionCode int64) string {
-	var currentRegion model.Region
-	if err := global.DB.Where("code = ?", regionCode).First(&currentRegion).Error; err != nil {
-		return "未知地区"
-	}
-
-	pathParts := []string{currentRegion.Name}
-
-	// 递归获取上级区域
-	if currentRegion.Pcode != 0 {
-		var parentRegion model.Region
-		if err := global.DB.Where("code = ?", currentRegion.Pcode).First(&parentRegion).Error; err == nil {
-			// 继续递归获取上级
-			if parentRegion.Pcode != 0 {
-				var grandParentRegion model.Region
-				if err := global.DB.Where("code = ?", parentRegion.Pcode).First(&grandParentRegion).Error; err == nil {
-					pathParts = append([]string{grandParentRegion.Name, parentRegion.Name}, pathParts...)
-				} else {
-					pathParts = append([]string{parentRegion.Name}, pathParts...)
-				}
-			} else {
-				pathParts = append([]string{parentRegion.Name}, pathParts...)
-			}
-		}
-	}
-
-	fullPath := ""
-	for i, part := range pathParts {
-		if i > 0 {
-			fullPath += "/"
-		}
-		fullPath += part
-	}
-
-	return fullPath
-}
-
-// getNearbyCars 获取附近车辆（从数据库读取在线司机信息）
-func (s *PassengerServiceImpl) getNearbyCars(location string) []*pb.CarInfo {
-	// 查询状态为online的司机
-	var drivers []model.LxhDriver
-	if err := global.DB.Where("status = ?", "online").Limit(10).Find(&drivers).Error; err != nil {
-		// 如果查询失败，返回空数组
-		return []*pb.CarInfo{}
-	}
-
-	// 如果没有在线司机，返回空数组
-	if len(drivers) == 0 {
-		return []*pb.CarInfo{}
-	}
-
-	var nearbyCarInfos []*pb.CarInfo
-
-	// 车型列表，用于随机分配
-	carTypes := []string{"经济型", "舒适型", "豪华型", "商务型"}
-
-	// 车牌前缀，用于生成真实车牌
-	platePrefix := []string{"沪A", "沪B", "沪C", "沪D", "沪E"}
-
-	for i, driver := range drivers {
-		// 动态生成距离（0.3-3.0公里）
-		distance := 0.3 + rand.Float64()*2.7
-
-		// 根据距离计算预计到达时间（距离*2分钟，最少2分钟）
-		estimatedTime := int32(math.Max(2, distance*2))
-
-		// 随机选择车型
-		carType := carTypes[rand.Intn(len(carTypes))]
-
-		// 生成真实车牌号：前缀+5位数字
-		newPlatePrefix := platePrefix[rand.Intn(len(platePrefix))]
-		plateNumber := fmt.Sprintf("%s%05d", newPlatePrefix, rand.Intn(100000))
-
-		// 生成评分（4.0-5.0之间）
-		rating := 4.0 + rand.Float64()
-
-		// 处理司机姓名，如果没有昵称则使用姓名
-		driverName := driver.NickName
-		if driverName == "" {
-			driverName = driver.Name
-		}
-		if driverName == "" {
-			driverName = fmt.Sprintf("司机%d", driver.Id)
-		}
-
-		carInfo := &pb.CarInfo{
-			CarId:         int16(driver.Id),
-			CarType:       carType,
-			LicensePlate:  plateNumber,
-			Distance:      distance,
-			EstimatedTime: int16(estimatedTime),
-			DriverName:    driverName,
-			Rating:        rating,
-		}
-
-		nearbyCarInfos = append(nearbyCarInfos, carInfo)
-
-		// 最多返回5辆车
-		if i >= 4 {
-			break
-		}
-	}
-
-	// 按距离排序，最近的在前面
-	sort.Slice(nearbyCarInfos, func(i, j int) bool {
-		return nearbyCarInfos[i].Distance < nearbyCarInfos[j].Distance
-	})
-
-	return nearbyCarInfos
-}
-
-// getServiceInfo 获取服务信息（从数据库读取，这里暂时使用模拟数据）
-func (s *PassengerServiceImpl) getServiceInfo() []*pb.ServiceInfo {
-	// TODO: 从数据库或配置文件读取服务信息
-	return []*pb.ServiceInfo{
-		{
-			ServiceName: "快车",
-			ServiceDesc: "经济实惠，快速到达",
-			ServiceIcon: "icon_kuaiche",
-			ServiceUrl:  "/service/kuaiche",
-		},
-		{
-			ServiceName: "专车",
-			ServiceDesc: "舒适体验，专业服务",
-			ServiceIcon: "icon_zhuanche",
-			ServiceUrl:  "/service/zhuanche",
-		},
-		{
-			ServiceName: "豪华车",
-			ServiceDesc: "高端体验，尊贵享受",
-			ServiceIcon: "icon_haohua",
-			ServiceUrl:  "/service/haohua",
-		},
-		{
-			ServiceName: "代驾",
-			ServiceDesc: "安全代驾，放心回家",
-			ServiceIcon: "icon_daijia",
-			ServiceUrl:  "/service/daijia",
-		},
-	}
-}
-
-// getCurrentLocationFromRegion 根据用户提供的位置字符串，从Region数据库中获取匹配的地区信息
-func (s *PassengerServiceImpl) getCurrentLocationFromRegion(locationStr string) string {
-	if locationStr == "" {
-		// 从配置获取默认位置
-		return global.AppConf.AppConfig.DefaultLocation
-	}
-
-	// 在region表中搜索匹配的地区
-	var regions []model.Region
-	if err := global.DB.Where("name LIKE ? OR sname LIKE ? OR mername LIKE ?",
-		"%"+locationStr+"%", "%"+locationStr+"%", "%"+locationStr+"%").
-		Limit(1).Find(&regions).Error; err != nil || len(regions) == 0 {
-		// 如果找不到匹配的地区，返回原始字符串
-		return locationStr
-	}
-
-	// 返回匹配地区的完整路径
-	return s.getRegionFullPath(regions[0].Code)
-}
-
-// HomePage implements the PassengerServiceImpl interface.
+// HomePage 首页接口
+// 获取首页数据，包括欢迎信息、当前位置、附近车辆、服务信息等
 func (s *PassengerServiceImpl) HomePage(ctx context.Context, req *pb.HomePageReq) (*pb.HomePageResp, error) {
 	// 验证用户是否存在
 	var passenger model.LxhPassenger
@@ -345,20 +149,20 @@ func (s *PassengerServiceImpl) HomePage(ctx context.Context, req *pb.HomePageReq
 	appConfig := &global.AppConf.AppConfig
 	weatherConfig := &global.AppConf.WeatherConfig
 
-	// 获取用户的最近目的地（从region数据库获取真实地理信息）
-	recentDestinations := s.getRecentDestinations(req.PassengerId)
+	// 获取用户的最近目的地
+	recentDestinations := utils.GetRecentDestinations(req.PassengerId, global.DB)
 
-	// 处理当前位置（利用region数据库进行地理位置匹配）
+	// 处理当前位置
 	currentLocation := appConfig.DefaultLocation
 	if req.Location != nil {
-		currentLocation = s.getCurrentLocationFromRegion(*req.Location)
+		currentLocation = utils.GetCurrentLocationFromRegion(*req.Location, global.DB, appConfig.DefaultLocation)
 	}
 
 	// 获取附近车辆信息
-	nearbyCars := s.getNearbyCars(currentLocation)
+	nearbyCars := utils.GetNearbyCars(currentLocation, global.DB)
 
 	// 获取服务信息
-	services := s.getServiceInfo()
+	services := utils.GetServiceInfo()
 
 	// 获取当前时间用于欢迎信息
 	currentTime := time.Now()
@@ -389,7 +193,8 @@ func (s *PassengerServiceImpl) HomePage(ctx context.Context, req *pb.HomePageReq
 	}, nil
 }
 
-// CallACar implements the PassengerServiceImpl interface.
+// CallACar 叫车接口
+// 乘客发起叫车请求，创建订单
 func (s *PassengerServiceImpl) CallACar(ctx context.Context, req *pb.CallACarReq) (*pb.CallACarResp, error) {
 	// 验证用户是否存在
 	var passenger model.LxhPassenger
@@ -408,9 +213,9 @@ func (s *PassengerServiceImpl) CallACar(ctx context.Context, req *pb.CallACarReq
 		}, nil
 	}
 
-	// 地址标准化：尝试从region数据库中匹配和标准化地址
-	standardizedStart := s.getCurrentLocationFromRegion(req.StartingPlace)
-	standardizedDest := s.getCurrentLocationFromRegion(req.Destination)
+	// 地址标准化
+	standardizedStart := utils.GetCurrentLocationFromRegion(req.StartingPlace, global.DB, global.AppConf.AppConfig.DefaultLocation)
+	standardizedDest := utils.GetCurrentLocationFromRegion(req.Destination, global.DB, global.AppConf.AppConfig.DefaultLocation)
 
 	// 创建订单记录
 	orderData := model.LxhOrder{
@@ -435,7 +240,8 @@ func (s *PassengerServiceImpl) CallACar(ctx context.Context, req *pb.CallACarReq
 	}, nil
 }
 
-// GetPassengerInfo implements the PassengerServiceImpl interface.
+// GetPassengerInfo 获取乘客信息接口
+// 根据乘客ID查询并返回乘客的详细信息
 func (s *PassengerServiceImpl) GetPassengerInfo(ctx context.Context, req *pb.GetPassengerInfoReq) (*pb.GetPassengerInfoResp, error) {
 	var passengerModel model.LxhPassenger
 	if err := global.DB.Where("id = ?", req.PassengerId).First(&passengerModel).Error; err != nil {
@@ -461,7 +267,8 @@ func (s *PassengerServiceImpl) GetPassengerInfo(ctx context.Context, req *pb.Get
 	}, nil
 }
 
-// UpdatePassengerInfo implements the PassengerServiceImpl interface.
+// UpdatePassengerInfo 更新乘客信息接口
+// 更新乘客的基本信息，如姓名、昵称、头像等
 func (s *PassengerServiceImpl) UpdatePassengerInfo(ctx context.Context, req *pb.UpdatePassengerInfoReq) (*pb.UpdatePassengerInfoResp, error) {
 	var passengerModel model.LxhPassenger
 	if err := global.DB.Where("id = ?", req.PassengerId).First(&passengerModel).Error; err != nil {
@@ -503,7 +310,8 @@ func (s *PassengerServiceImpl) UpdatePassengerInfo(ctx context.Context, req *pb.
 	}, nil
 }
 
-// CreateOrder implements the PassengerServiceImpl interface.
+// CreateOrder 创建订单接口
+// 创建新的出行订单，支持多种订单类型
 func (s *PassengerServiceImpl) CreateOrder(ctx context.Context, req *pb.CreateOrderReq) (*pb.CreateOrderResp, error) {
 	// 验证用户是否存在
 	var passengerModel model.LxhPassenger
@@ -517,56 +325,43 @@ func (s *PassengerServiceImpl) CreateOrder(ctx context.Context, req *pb.CreateOr
 	// 生成订单号
 	orderCode := fmt.Sprintf("O%d%d", time.Now().Unix(), req.PassengerId)
 
-	// 创建订单
-	order := model.LxhOrder{
-		OrderCode:   orderCode,
+	// 构造MongoDB订单结构体
+	mongoOrder := model.MongoOrder{
+		OrderId:     orderCode,
 		PassengerId: int64(req.PassengerId),
 		StartAddr:   req.StartAddr,
-		EndEnd:      req.EndAddr,
+		EndAddr:     req.EndAddr,
 		OrderStatus: "待接单",
 		OrderType:   req.OrderType,
 		PayStatus:   "未支付",
+		Amount:      0,
 		StartTime:   time.Now(),
+		CreateTime:  time.Now(),
+		UpdateTime:  time.Now(),
 	}
 
-	if err := global.DB.Create(&order).Error; err != nil {
+	// 写入MongoDB
+	collection := global.MongoDB.Database("cart").Collection("orders")
+	_, err := collection.InsertOne(ctx, mongoOrder)
+	if err != nil {
 		return &pb.CreateOrderResp{
 			Code:    503,
-			Message: "创建订单失败",
+			Message: "创建订单失败(MongoDB)",
 		}, nil
-	}
-
-	// 创建路线记录
-	routeRecord := model.LxhRouteRecord{
-		OrderId:      order.Id,
-		PassengerId:  int64(req.PassengerId),
-		StartAddress: req.StartAddr,
-		StartLng:     req.StartLng,
-		StartLat:     req.StartLat,
-		EndAddress:   req.EndAddr,
-		EndLng:       req.EndLng,
-		EndLat:       req.EndLat,
-		RouteStatus:  "planning",
-		StartTime:    time.Now(),
-	}
-
-	if err := global.DB.Create(&routeRecord).Error; err != nil {
-		// 路线记录创建失败不影响订单创建
-		fmt.Printf("创建路线记录失败: %v", err)
 	}
 
 	return &pb.CreateOrderResp{
 		Code:      200,
-		Message:   "订单创建成功",
+		Message:   "订单创建成功(MongoDB)",
 		OrderCode: &orderCode,
 	}, nil
 }
 
-// GetOrderList implements the PassengerServiceImpl interface.
+// GetOrderList 获取订单列表接口
+// 查询乘客的订单历史，支持分页和状态筛选
 func (s *PassengerServiceImpl) GetOrderList(ctx context.Context, req *pb.GetOrderListReq) (*pb.GetOrderListResp, error) {
 	page := int32(1)
 	pageSize := int32(10)
-
 	if req.Page != nil {
 		page = *req.Page
 	}
@@ -576,14 +371,13 @@ func (s *PassengerServiceImpl) GetOrderList(ctx context.Context, req *pb.GetOrde
 
 	offset := (page - 1) * pageSize
 
+	// 1. 查MySQL已完成订单
 	query := global.DB.Where("passenger_id = ?", req.PassengerId)
 	if req.Status != nil {
 		query = query.Where("order_status = ?", *req.Status)
 	}
-
 	var orders []model.LxhOrder
 	var total int64
-
 	query.Count(&total)
 	if err := query.Offset(int(offset)).Limit(int(pageSize)).Order("start_time DESC").Find(&orders).Error; err != nil {
 		return &pb.GetOrderListResp{
@@ -592,6 +386,32 @@ func (s *PassengerServiceImpl) GetOrderList(ctx context.Context, req *pb.GetOrde
 		}, nil
 	}
 
+	// 2. 查MongoDB未完成订单
+	mongoFilter := bson.M{"passenger_id": int64(req.PassengerId)}
+	if req.Status != nil {
+		mongoFilter["order_status"] = *req.Status
+	} else {
+		mongoFilter["order_status"] = bson.M{"$in": []string{"待接单", "已接单", "进行中"}}
+	}
+	collection := global.MongoDB.Database("cart").Collection("orders")
+	findOpts := options.Find().SetSort(bson.D{{"create_time", -1}})
+	cur, err := collection.Find(ctx, mongoFilter, findOpts)
+	if err != nil {
+		return &pb.GetOrderListResp{
+			Code:    503,
+			Message: "MongoDB查询失败",
+		}, nil
+	}
+	defer cur.Close(ctx)
+	var mongoOrders []model.MongoOrder
+	for cur.Next(ctx) {
+		var mo model.MongoOrder
+		if err := cur.Decode(&mo); err == nil {
+			mongoOrders = append(mongoOrders, mo)
+		}
+	}
+
+	// 3. 合并结果
 	var orderInfos []*pb.OrderInfo
 	for _, order := range orders {
 		orderInfos = append(orderInfos, &pb.OrderInfo{
@@ -609,47 +429,98 @@ func (s *PassengerServiceImpl) GetOrderList(ctx context.Context, req *pb.GetOrde
 			OrderType:   order.OrderType,
 		})
 	}
-
-	totalInt32 := int32(total)
+	for _, mo := range mongoOrders {
+		orderInfos = append(orderInfos, &pb.OrderInfo{
+			OrderCode:   mo.OrderId,
+			Amount:      mo.Amount,
+			OrderStatus: mo.OrderStatus,
+			StartAddr:   mo.StartAddr,
+			EndEnd:      mo.EndAddr,
+			Driver:      mo.DriverId,
+			StartTime:   mo.StartTime.Format("2006-01-02 15:04:05"),
+			EndTime:     mo.EndTime.Format("2006-01-02 15:04:05"),
+			PayStatus:   mo.PayStatus,
+			OrderType:   mo.OrderType,
+		})
+	}
+	// 4. 排序（按StartTime倒序）
+	sort.Slice(orderInfos, func(i, j int) bool {
+		return orderInfos[i].StartTime > orderInfos[j].StartTime
+	})
+	// 5. 分页
+	start := int(offset)
+	end := start + int(pageSize)
+	if start > len(orderInfos) {
+		start = len(orderInfos)
+	}
+	if end > len(orderInfos) {
+		end = len(orderInfos)
+	}
+	orderInfosPage := orderInfos[start:end]
+	totalInt32 := int32(len(orderInfos))
 	return &pb.GetOrderListResp{
 		Code:    200,
 		Message: "查询成功",
-		Data:    orderInfos,
+		Data:    orderInfosPage,
 		Total:   &totalInt32,
 	}, nil
 }
 
-// GetOrderDetail implements the PassengerServiceImpl interface.
+// GetOrderDetail 获取订单详情接口
+// 查询指定订单的详细信息
 func (s *PassengerServiceImpl) GetOrderDetail(ctx context.Context, req *pb.GetOrderDetailReq) (*pb.GetOrderDetailResp, error) {
+	// 1. 先查MySQL
 	var order model.LxhOrder
-	if err := global.DB.Where("id = ? AND passenger_id = ?", req.OrderId, req.PassengerId).First(&order).Error; err != nil {
+	if err := global.DB.Where("order_code = ? AND passenger_id = ?", req.OrderId, req.PassengerId).First(&order).Error; err == nil {
+		return &pb.GetOrderDetailResp{
+			Code:    200,
+			Message: "查询成功",
+			Data: &pb.OrderInfo{
+				Id:          order.Id,
+				OrderCode:   order.OrderCode,
+				Amount:      order.Amount,
+				OrderStatus: order.OrderStatus,
+				StartAddr:   order.StartAddr,
+				EndEnd:      order.EndEnd,
+				Driver:      order.Driver,
+				StartTime:   order.StartTime.Format("2006-01-02 15:04:05"),
+				EndTime:     order.EndTime.Format("2006-01-02 15:04:05"),
+				PayStatus:   order.PayStatus,
+				PayType:     order.PayType,
+				OrderType:   order.OrderType,
+			},
+		}, nil
+	}
+	// 2. 查MongoDB
+	collection := global.MongoDB.Database("cart").Collection("orders")
+	var mo model.MongoOrder
+	err := collection.FindOne(ctx, bson.M{"order_id": req.OrderId, "passenger_id": int64(req.PassengerId)}).Decode(&mo)
+	if err != nil {
 		return &pb.GetOrderDetailResp{
 			Code:    404,
 			Message: "订单不存在",
 		}, nil
 	}
-
 	return &pb.GetOrderDetailResp{
 		Code:    200,
 		Message: "查询成功",
 		Data: &pb.OrderInfo{
-			Id:          order.Id,
-			OrderCode:   order.OrderCode,
-			Amount:      order.Amount,
-			OrderStatus: order.OrderStatus,
-			StartAddr:   order.StartAddr,
-			EndEnd:      order.EndEnd,
-			Driver:      order.Driver,
-			StartTime:   order.StartTime.Format("2006-01-02 15:04:05"),
-			EndTime:     order.EndTime.Format("2006-01-02 15:04:05"),
-			PayStatus:   order.PayStatus,
-			PayType:     order.PayType,
-			OrderType:   order.OrderType,
+			OrderCode:   mo.OrderId,
+			Amount:      mo.Amount,
+			OrderStatus: mo.OrderStatus,
+			StartAddr:   mo.StartAddr,
+			EndEnd:      mo.EndAddr,
+			Driver:      mo.DriverId,
+			StartTime:   mo.StartTime.Format("2006-01-02 15:04:05"),
+			EndTime:     mo.EndTime.Format("2006-01-02 15:04:05"),
+			PayStatus:   mo.PayStatus,
+			OrderType:   mo.OrderType,
 		},
 	}, nil
 }
 
-// CancelOrder implements the PassengerServiceImpl interface.
+// CancelOrder 取消订单接口
+// 乘客取消订单，需要提供取消原因
 func (s *PassengerServiceImpl) CancelOrder(ctx context.Context, req *pb.CancelOrderReq) (*pb.CancelOrderResp, error) {
 	var order model.LxhOrder
 	if err := global.DB.Where("id = ? AND passenger_id = ?", req.OrderId, req.PassengerId).First(&order).Error; err != nil {
@@ -691,7 +562,8 @@ func (s *PassengerServiceImpl) CancelOrder(ctx context.Context, req *pb.CancelOr
 	}, nil
 }
 
-// EvaluateOrder implements the PassengerServiceImpl interface.
+// EvaluateOrder 评价订单接口
+// 乘客对已完成订单进行评价，包括评分和评论
 func (s *PassengerServiceImpl) EvaluateOrder(ctx context.Context, req *pb.EvaluateOrderReq) (*pb.EvaluateOrderResp, error) {
 	var order model.LxhOrder
 	if err := global.DB.Where("id = ? AND passenger_id = ?", req.OrderId, req.PassengerId).First(&order).Error; err != nil {
@@ -731,7 +603,8 @@ func (s *PassengerServiceImpl) EvaluateOrder(ctx context.Context, req *pb.Evalua
 	}, nil
 }
 
-// GetFavoriteLocations implements the PassengerServiceImpl interface.
+// GetFavoriteLocations 获取收藏地点接口
+// 查询乘客收藏的常用地点列表
 func (s *PassengerServiceImpl) GetFavoriteLocations(ctx context.Context, req *pb.GetFavoriteLocationsReq) (*pb.GetFavoriteLocationsResp, error) {
 	query := global.DB.Where("passenger_id = ?", req.PassengerId)
 	if req.LocationType != nil {
@@ -770,7 +643,8 @@ func (s *PassengerServiceImpl) GetFavoriteLocations(ctx context.Context, req *pb
 	}, nil
 }
 
-// AddFavoriteLocation implements the PassengerServiceImpl interface.
+// AddFavoriteLocation 添加收藏地点接口
+// 添加新的收藏地点，支持设置默认地址
 func (s *PassengerServiceImpl) AddFavoriteLocation(ctx context.Context, req *pb.AddFavoriteLocationReq) (*pb.AddFavoriteLocationResp, error) {
 	// 检查是否已存在相同地址
 	var existingLoc model.LxhFavoriteLocation
@@ -820,7 +694,8 @@ func (s *PassengerServiceImpl) AddFavoriteLocation(ctx context.Context, req *pb.
 	}, nil
 }
 
-// DeleteFavoriteLocation implements the PassengerServiceImpl interface.
+// DeleteFavoriteLocation 删除收藏地点接口
+// 删除指定的收藏地点
 func (s *PassengerServiceImpl) DeleteFavoriteLocation(ctx context.Context, req *pb.DeleteFavoriteLocationReq) (*pb.DeleteFavoriteLocationResp, error) {
 	result := global.DB.Where("id = ? AND passenger_id = ?", req.LocationId, req.PassengerId).Delete(&model.LxhFavoriteLocation{})
 	if result.Error != nil {
@@ -843,7 +718,8 @@ func (s *PassengerServiceImpl) DeleteFavoriteLocation(ctx context.Context, req *
 	}, nil
 }
 
-// GetHotLocations implements the PassengerServiceImpl interface.
+// GetHotLocations 获取热门地点接口
+// 查询指定城市的热门地点列表
 func (s *PassengerServiceImpl) GetHotLocations(ctx context.Context, req *pb.GetHotLocationsReq) (*pb.GetHotLocationsResp, error) {
 	limit := int32(10)
 	if req.Limit != nil {
@@ -884,7 +760,8 @@ func (s *PassengerServiceImpl) GetHotLocations(ctx context.Context, req *pb.GetH
 	}, nil
 }
 
-// BindWechat implements the PassengerServiceImpl interface.
+// BindWechat 绑定微信接口
+// 将乘客账户与微信账户进行绑定
 func (s *PassengerServiceImpl) BindWechat(ctx context.Context, req *pb.BindWechatReq) (*pb.BindWechatResp, error) {
 	// 这里需要根据微信授权码获取用户信息
 	// 暂时简化处理，实际需要调用微信API
@@ -942,7 +819,8 @@ func (s *PassengerServiceImpl) BindWechat(ctx context.Context, req *pb.BindWecha
 	}, nil
 }
 
-// UnbindWechat implements the PassengerServiceImpl interface.
+// UnbindWechat 解绑微信接口
+// 解除乘客账户与微信账户的绑定关系
 func (s *PassengerServiceImpl) UnbindWechat(ctx context.Context, req *pb.UnbindWechatReq) (*pb.UnbindWechatResp, error) {
 	result := global.DB.Model(&model.LxhUserWechatBind{}).
 		Where("passenger_id = ? AND bind_status = 1", req.PassengerId).
@@ -972,7 +850,8 @@ func (s *PassengerServiceImpl) UnbindWechat(ctx context.Context, req *pb.UnbindW
 	}, nil
 }
 
-// GetWechatBindStatus implements the PassengerServiceImpl interface.
+// GetWechatBindStatus 获取微信绑定状态接口
+// 查询乘客账户的微信绑定状态和相关信息
 func (s *PassengerServiceImpl) GetWechatBindStatus(ctx context.Context, req *pb.GetWechatBindStatusReq) (*pb.GetWechatBindStatusResp, error) {
 	var bind model.LxhUserWechatBind
 	if err := global.DB.Where("passenger_id = ? AND bind_status = 1", req.PassengerId).First(&bind).Error; err != nil {
@@ -1005,7 +884,8 @@ func (s *PassengerServiceImpl) GetWechatBindStatus(ctx context.Context, req *pb.
 	}, nil
 }
 
-// GetRouteRecords implements the PassengerServiceImpl interface.
+// GetRouteRecords 获取路线记录接口
+// 查询乘客的历史出行路线记录
 func (s *PassengerServiceImpl) GetRouteRecords(ctx context.Context, req *pb.GetRouteRecordsReq) (*pb.GetRouteRecordsResp, error) {
 	page := int32(1)
 	pageSize := int32(10)
@@ -1061,7 +941,8 @@ func (s *PassengerServiceImpl) GetRouteRecords(ctx context.Context, req *pb.GetR
 	}, nil
 }
 
-// SearchAddress implements the PassengerServiceImpl interface.
+// SearchAddress 搜索地址接口
+// 根据关键词搜索地址，支持模糊匹配
 func (s *PassengerServiceImpl) SearchAddress(ctx context.Context, req *pb.SearchAddressReq) (*pb.SearchAddressResp, error) {
 	limit := int32(10)
 	if req.Limit != nil {

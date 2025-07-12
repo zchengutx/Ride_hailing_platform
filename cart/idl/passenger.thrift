@@ -1,35 +1,29 @@
 namespace go cart.passenger
 
-// 短信发送请求
-struct SendSmsReq{
-    1: string mobile       // 手机号
-    2: string sendSmsCode  // 验证码
+struct SendSmsReq{ //短信发送
+    1: string mobile
+    2: string sendSmsCode
 }
-// 短信发送响应
 struct SendSmsResp{
-    1: i16 code           // 状态码
-    2: string message     // 返回消息
+    1: i16 code
+    2: string message
 }
-// 乘客注册请求
-struct RegisterPassengerReq{
-    1: string mobile       // 手机号
-    2: string sendSmsCode  // 验证码
+struct RegisterPassengerReq{ //注册
+    1: string mobile
+    2: string sendSmsCode
 }
-// 乘客注册响应
 struct RegisterPassengerResp{
-    1: i16 code           // 状态码
-    2: string message     // 返回消息
+    1: i16 code
+    2: string message
 }
-// 乘客登录请求
-struct LoginPassengerReq{
-    1: string mobile       // 手机号
-    2: string sendSmsCode  // 验证码
+struct LoginPassengerReq{ //登录
+    1: string mobile
+    2: string sendSmsCode
 }
-// 乘客登录响应
 struct LoginPassengerResp{
-    1: i16 code           // 状态码
-    2: string message     // 返回消息
-    3: i16 passengerId    // 乘客ID
+    1: i16 code
+    2: string message
+    3: i16 passengerId
 }
 
 // 主页请求
@@ -74,16 +68,14 @@ struct HomePageResp{
     3: optional HomePageData data
 }
 
-// 叫车请求
 struct CallACarReq{
-    1: i16 passengerId      // 乘客ID
-    2: string startingPlace // 出发地
-    3: string destination   // 目的地
+    1: i16 passengerId
+    2: string startingPlace
+    3: string destination
 }
-// 叫车响应
 struct CallACarResp{
-    1: i16 code            // 状态码
-    2: string message      // 返回消息
+    1: i16 code
+    2: string message
 }
 
 // 个人信息管理
@@ -396,7 +388,7 @@ service PassengerService{
     DeleteFavoriteLocationResp DeleteFavoriteLocation(1: DeleteFavoriteLocationReq req)
     GetHotLocationsResp GetHotLocations(1: GetHotLocationsReq req)
     
-    // 微信绑定管理
+    // 第三方绑定管理
     BindWechatResp BindWechat(1: BindWechatReq req)
     UnbindWechatResp UnbindWechat(1: UnbindWechatReq req)
     GetWechatBindStatusResp GetWechatBindStatus(1: GetWechatBindStatusReq req)
