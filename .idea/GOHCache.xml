@@ -3,6 +3,13 @@
   <component name="GoORMHelperCache">
     <option name="schemaMapping">
       <map>
+        <entry key="ALiYun">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kitex_main/config/config.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="AddMenuAuthorityInfo">
           <value>
             <set>
@@ -5465,12 +5472,13 @@
         <entry key="file://$PROJECT_DIR$/kitex_main/config/config.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751976511648" />
+              <option name="lastModified" value="1752289268088" />
               <option name="schema">
                 <list>
                   <option value="AppConfig" />
                   <option value="Mysql" />
                   <option value="Redis" />
+                  <option value="ALiYun" />
                 </list>
               </option>
             </ScannedPath>
@@ -5857,7 +5865,7 @@
         <entry key="file://$PROJECT_DIR$/kitex_main/model/order.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752285403824" />
+              <option name="lastModified" value="1752291174784" />
               <option name="schema">
                 <list>
                   <option value="LxhOrder" />
@@ -5881,7 +5889,7 @@
         <entry key="file://$PROJECT_DIR$/kitex_main/model/user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752285403757" />
+              <option name="lastModified" value="1752291174773" />
               <option name="schema">
                 <list>
                   <option value="LxhPassenger" />
@@ -5959,7 +5967,7 @@
         <entry key="file://$PROJECT_DIR$/kitex_main/pkg/sendSms.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1751976511574" />
+              <option name="lastModified" value="1752289347115" />
             </ScannedPath>
           </value>
         </entry>
@@ -6025,6 +6033,7 @@
     <option name="tableStructMapping">
       <map>
         <entry key="_gorm" value="_gorm" />
+        <entry key="a_li_yun" value="ALiYun" />
         <entry key="add_menu_authority_info" value="AddMenuAuthorityInfo" />
         <entry key="aliyun_oss" value="AliyunOSS" />
         <entry key="api" value="api" />
