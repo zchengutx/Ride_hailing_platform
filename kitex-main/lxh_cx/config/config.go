@@ -13,8 +13,4 @@ type AppConfig struct {
 		Password string
 		Db       int
 	}
-	ALiYun struct {
-		AccessKeyID     string
-		AccessKeySecret string
-	}
 }
