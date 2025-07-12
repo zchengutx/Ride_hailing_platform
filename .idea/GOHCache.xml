@@ -3412,10 +3412,10 @@
         <entry key="file://$PROJECT_DIR$/gin-vue-admin/server/model/lxh_cx/lxh_passenger.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752289258492" />
+              <option name="lastModified" value="1752289277310" />
               <option name="schema">
                 <list>
-                  <option value="Lxh_Passenger" />
+                  <option value="LxhPassenger" />
                 </list>
               </option>
             </ScannedPath>
