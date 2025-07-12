@@ -11,6 +11,4 @@ Redis:
    Addr: 14.103.133.61:6379
    Password: 348f10f863b27ec106195c96e23dcd91
    Db: 0
-ALiYun:
-   AccessKeyID: LTAI5tLW4b2EEMsHXX23hGnd
-   AccessKeySecret: KVJ6W87iRP3c5b79A7VotutwhsaaJG
+
