@@ -974,6 +974,13 @@
             </set>
           </value>
         </entry>
+        <entry key="Lxh_Passenger">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/gin-vue-admin/server/model/lxh_cx/lxh_passenger.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="MCP">
           <value>
             <set>
@@ -3405,10 +3412,10 @@
         <entry key="file://$PROJECT_DIR$/gin-vue-admin/server/model/lxh_cx/lxh_passenger.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1752288698053" />
+              <option name="lastModified" value="1752289258492" />
               <option name="schema">
                 <list>
-                  <option value="LxhPassenger" />
+                  <option value="Lxh_Passenger" />
                 </list>
               </option>
             </ScannedPath>
@@ -6376,6 +6383,7 @@
         <entry key="login_req" value="LoginReq" />
         <entry key="login_resp" value="LoginResp" />
         <entry key="login_response" value="LoginResponse" />
+        <entry key="lxh__passenger" value="Lxh_Passenger" />
         <entry key="lxh_auth" value="LxhAuth" />
         <entry key="lxh_driver" value="LxhDriver" />
         <entry key="lxh_driver_check" value="LxhDriverCheck" />
